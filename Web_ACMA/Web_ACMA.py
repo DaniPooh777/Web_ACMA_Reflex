@@ -14,6 +14,7 @@ from Web_ACMA.state import State
 from Web_ACMA.views.body.contact.form import solicitud_form 
 from Web_ACMA.views.body.contact.contact_cards import contact_cards
 
+#Hola esto es una prueba
 
 # Página Inicio
 def index() -> rx.Component:
