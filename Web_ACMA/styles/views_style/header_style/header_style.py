@@ -2,7 +2,7 @@ import reflex as rx
 
 HEADER_CONTAINER_STYLE = {
     "width": "100%",
-    "padding_top": "5rem",    # Espacio generoso arriba para que no lo tape la navbar
+    "padding_top": "3rem",    # Espacio generoso arriba para que no lo tape la navbar
     "padding_bottom": "0rem", # Espacio abajo antes de las tarjetas
     "align_items": "center",  # Centra el contenido horizontalmente
     "text_align": "center",   # Centra el texto

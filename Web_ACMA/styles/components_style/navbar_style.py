@@ -1,18 +1,28 @@
 import reflex as rx
 
-# Contenedor principal de la Navbar
+# NUEVO: Estilo para forzar el centro matemático
+NAV_CENTER_HSTACK_STYLE = {
+    "position": "absolute",
+    "left": "50%",
+    "transform": "translateX(-50%)",
+    "display": ["none", "none", "flex", "flex"], # Responsive
+    "align_items": "center",
+    "justify_content": "center",
+}
+
+# Asegurate de que el NAVBAR_STYLE tenga position relative si no lo tiene
 NAVBAR_STYLE = {
-    "position": "sticky",
+    "position": "sticky", # Ya lo tenés así
     "top": "0",
     "z_index": "999",
     "width": "100%",
     "padding_x": "2rem",
     "padding_y": "1rem",
-    "background_color": "rgba(17, 24, 39, 0.8)",  # Un toque de transparencia
-    "backdrop_filter": "blur(10px)",              # Efecto esmerilado
+    "background_color": "rgba(17, 24, 39, 0.8)",
+    "backdrop_filter": "blur(10px)",
     "border_bottom": "1px solid rgba(255, 255, 255, 0.1)",
     "align_items": "center",
-    "justify_content": "space-between",           # Esto separa logo, links y botón
+    "justify_content": "space-between", 
 }
 
 # Estilos para los links de navegación

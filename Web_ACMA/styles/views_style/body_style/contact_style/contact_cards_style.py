@@ -23,7 +23,7 @@ ICON_CONTAINER_STYLE = {
 CARD_TITLE_STYLE = {
     "font_weight": "bold",
     "color": "white",
-    "size": "4",
+    "size": "6",
 }
 
 CARD_LINK_STYLE = {
