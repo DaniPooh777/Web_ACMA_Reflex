@@ -1,5 +1,6 @@
 import reflex as rx
-from Web_ACMA.state import FormState # Ajustá el path según tu estructura
+from Web_ACMA.state import FormState
+from Web_ACMA.styles.views_style.body_style.contact_style.form_style import FORM_CONTAINER_STYLE
 
 def solicitud_form() -> rx.Component:
     return rx.form(
@@ -34,9 +35,10 @@ def solicitud_form() -> rx.Component:
             
             # Envío
             rx.button("Enviar Solicitud", type="submit"),
-            
-            align_items="start",
-            width="100%",
+
+            # Aplicamos el estilo con el scroll_margin_top
+            **FORM_CONTAINER_STYLE,
+            id="formulario-encargo"
         ),
         on_submit=FormState.handle_submit,
     )

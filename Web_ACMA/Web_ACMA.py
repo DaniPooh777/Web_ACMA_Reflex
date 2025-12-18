@@ -70,14 +70,23 @@ def contact() -> rx.Component:
             "Contacta con ACMA",
             "Estamos aquí para ayudarte a crear los mejores recursos educativos."
         ),
-        contact_cards(),
-        rx.container(
-            solicitud_form() # Metelo adentro de un container para que no explote
-
+        # Contenedor principal de contenido centrado
+        rx.vstack(
+            contact_cards(),
+            rx.box(
+                solicitud_form(),
+                width="100%",
+                max_width="800px", # Limita el ancho del formulario para que sea legible
+            ),
+            width="100%",
+            align_items="center", # Centra horizontalmente todo el contenido
+            spacing="9",
+            padding_y="4rem",
         ),
         footer(),
         spacing="0",
-        width="100%"
+        width="100%",
+        background_color="rgb(10, 10, 15)", # El fondo oscuro profundo de la captura
     )
 
 
