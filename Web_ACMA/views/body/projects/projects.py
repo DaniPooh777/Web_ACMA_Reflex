@@ -26,7 +26,6 @@ def projects() -> rx.Component:
                     title="La fe en el marco del pensamiento",
                     description="Presentación interactiva en Genially sobre las principales religiones del mundo, con elementos multimedia y actividades.",
                 ),
-                **CARDS_FLEX_STYLE
             ),
             **PROJECTS_CONTAINER_STYLE
         ),

@@ -11,6 +11,7 @@ from Web_ACMA.views.body.who_are_we.information import information
 from Web_ACMA.views.body.who_are_we.founder import founder
 from Web_ACMA.views.body.projects.projects import projects
 from Web_ACMA.state import State  # Importar State desde el archivo separado
+from Web_ACMA.views.body.contact.form import solicitud_form 
 
 
 # Página Inicio
@@ -64,7 +65,10 @@ def who_are_we() -> rx.Component:
 def contact() -> rx.Component:
     return rx.vstack(
         navbar(),
-        problem_solutions(),
+        rx.container(
+            solicitud_form(), # Metelo adentro de un container para que no explote
+            padding_y="5em",
+        ),
         footer(),
         spacing="0",
         width="100%"
