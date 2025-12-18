@@ -1,7 +1,7 @@
 import reflex as rx
 from Web_ACMA.components.project_card import project_card
 from Web_ACMA.views.header.header import header
-from Web_ACMA.styles.project_style import (
+from Web_ACMA.styles.views_style.body_style.projects_style.project_style import (
     PROJECTS_SECTION_STYLE,
     PROJECTS_CONTAINER_STYLE,
     CARDS_FLEX_STYLE,

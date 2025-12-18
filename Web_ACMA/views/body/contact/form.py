@@ -4,12 +4,12 @@ from Web_ACMA.state import FormState # Ajustá el path según tu estructura
 def solicitud_form() -> rx.Component:
     return rx.form(
         rx.vstack(
-            # Título
-            rx.heading("Solicita un nuevo encargo", size="7"),
+            # Le clavamos un ID al heading para que sirva de ancla
+            rx.heading("Solicita un nuevo encargo", size="7", id="formulario-encargo"),
             
-            # Campos secuenciales
             rx.text("Nombre"),
-            rx.input(name="nombre"),
+            # El auto_focus hace que el cursor aparezca solo al llegar
+            rx.input(name="nombre", auto_focus=True),
             
             rx.text("Email"),
             rx.input(name="email", type="email"),

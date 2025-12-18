@@ -1,5 +1,5 @@
 import reflex as rx
-from Web_ACMA.styles.project_style import (
+from Web_ACMA.styles.views_style.body_style.projects_style.project_style import (
     CARD_STYLE,
     IMAGE_CONTAINER_STYLE,
     IMAGE_STYLE,
