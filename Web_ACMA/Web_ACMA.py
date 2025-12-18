@@ -10,8 +10,9 @@ from Web_ACMA.components.link_button import link_button
 from Web_ACMA.views.body.who_are_we.information import information
 from Web_ACMA.views.body.who_are_we.founder import founder
 from Web_ACMA.views.body.projects.projects import projects
-from Web_ACMA.state import State  # Importar State desde el archivo separado
+from Web_ACMA.state import State 
 from Web_ACMA.views.body.contact.form import solicitud_form 
+from Web_ACMA.views.body.contact.contact_cards import contact_cards
 
 
 # Página Inicio
@@ -65,9 +66,14 @@ def who_are_we() -> rx.Component:
 def contact() -> rx.Component:
     return rx.vstack(
         navbar(),
+        header(
+            "Contacta con ACMA",
+            "Estamos aquí para ayudarte a crear los mejores recursos educativos."
+        ),
+        contact_cards(),
         rx.container(
-            solicitud_form(), # Metelo adentro de un container para que no explote
-            padding_y="5em",
+            solicitud_form() # Metelo adentro de un container para que no explote
+
         ),
         footer(),
         spacing="0",
