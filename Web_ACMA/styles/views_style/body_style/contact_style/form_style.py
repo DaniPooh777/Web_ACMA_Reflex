@@ -23,19 +23,24 @@ FORM_CONTAINER_STYLE = {
 INPUT_STYLE = {
     "width": "100%",
     "height": "2.8rem",
-    "background_color": COLOR_INPUT_BG,
-    "border": f"1px solid {COLOR_BORDER_INPUT}", # Usamos la nueva constante
-    "color": "white",
-    "border_radius": "8px",
-    "outline": "none",
-    "box_shadow": "none", # Mata sombras internas
-    "background_clip": "padding-box", # Evita que el fondo se comporte raro en los bordes
-    "appearance": "none",
-    # Esto es CLAVE para evitar el cambio de color al escribir o por autofill
+    "background_color": COLOR_INPUT_BG, #
+    "border": f"1px solid {COLOR_BORDER_INPUT}", #
+    "color": "white", #
+    "border_radius": "8px", #
+    "outline": "none !important",
+    "transition": "all 0.2s ease-in-out",
+    
+    # LA SOLUCIÓN DEFINITIVA:
+    "& fieldset": { "border": "none" }, # Quitamos el borde interno de Radix
+    "&:focus-within": {
+        "border": f"0.5px solid {COLOR_ACCENT} !important", # Forzamos el azul
+        "box_shadow": f"0 0 0 1px {COLOR_ACCENT} !important",
+    },
+    
     "_autofill": {
         "transition": "background-color 5000s ease-in-out 0s",
         "text_fill_color": "white",
-    },
+    }, #
 }
 
 LABEL_STYLE = {

@@ -19,7 +19,8 @@ def input_field(label: str, placeholder: str, name: str, type: str = "text") -> 
             name=name,
             placeholder=placeholder,
             type=type,
-            style=INPUT_STYLE, # Este ya trae el border: 1px solid COLOR_BORDER
+            style=INPUT_STYLE, #
+
         ),
         width="100%",
         align_items="start",
@@ -33,25 +34,53 @@ def solicitud_form() -> rx.Component:
             
             input_field("Nombre", "Tu nombre completo", "nombre"),
             input_field("Email", "tu@email.com", "email", type="email"),
-            
+
             rx.vstack(
                 rx.text("Nivel Educativo", **LABEL_STYLE),
-                rx.select(
-                    ["Guardería", "Infantil", "Primaria", "Secundaria", "Bachillerato"],
-                    placeholder="Selecciona el nivel...",
-                    name="nivel_educativo",
+                rx.box(
+                    rx.select(
+                        ["Guardería", "Infantil", "Primaria", "Secundaria", "Bachillerato"],
+                        placeholder="Selecciona el nivel...",
+                        name="nivel_educativo",
+                        width="100%",
+                        height="100%",
+                        variant="ghost",
+                        style={
+                            "color": "white",
+                            "width": "100%",
+                            "& .rt-SelectTrigger": {
+                                "background_color": "transparent !important",
+                                "border": "none !important",
+                                "box_shadow": "none !important",
+                                "width": "100% !important",
+                                "height": "2.8rem !important",
+                                "padding": "0 1rem",
+                                "cursor": "pointer",
+                            },
+                            # Mantenemos el bloqueo de color para que no se ponga azul/gris
+                            "& .rt-SelectTrigger:hover": {
+                                "background_color": "transparent !important",
+                            },
+                            "& .rt-SelectTrigger:focus": {
+                                "background_color": "transparent !important",
+                                "box_shadow": "none !important",
+                            },
+                        },
+                    ),
+                    background_color=COLOR_INPUT_BG,
+                    border=f"1px solid {COLOR_BORDER_INPUT}",
+                    border_radius="8px",
                     width="100%",
                     height="2.8rem",
-                    style={
-                        "border": f"1px solid {COLOR_BORDER_INPUT}", # Borde blanco unificado
-                        "border_radius": "8px",
-                        "background_color": COLOR_INPUT_BG,
-                        "color": "white",
-                    },
+                    padding_x="1rem",
+                    display="flex",
+                    align_items="center",
+                    overflow="hidden",
                 ),
-                width="100%", align_items="start", spacing="1",
+                width="100%", 
+                align_items="stretch",
+                spacing="1",
             ),
-
             rx.vstack(
                 rx.text("Descripción del Encargo", **LABEL_STYLE),
                 rx.box(
@@ -61,24 +90,29 @@ def solicitud_form() -> rx.Component:
                         width="100%",
                         min_height="160px",
                         background_color="transparent", 
-                        style={"border": "none"}, # Fundamental para que no se pisen los bordes
+                        style={"border": "none"},
                     ),                   
+                    # El componente de upload tiene que estar ACÁ ADENTRO
                     rx.upload(
                         rx.hstack(
                             rx.icon(tag="upload", size=16),
                             rx.text("Adjuntar", font_size="0.8rem"),
-                            **ATTACH_STYLE
+                            **ATTACH_STYLE # Este estilo tiene position="absolute"
                         ),
                         id="upload_files",
                         **UPLOAD_CLEAN_STYLE
                     ),
-                    # ACÁ ESTÁ EL PROBLEMA: Asegurate de usar COLOR_BORDER_INPUT
-                    border=COLOR_BORDER_INPUT, 
+                    
+                    # ESTO ES LO QUE TE FALTABA:
+                    position="relative", # <--- "Atrapa" al botón de adjuntar
+                    border=f"1px solid {COLOR_BORDER_INPUT}", 
                     background_color=COLOR_INPUT_BG,
                     border_radius="8px",
                     width="100%",
                 ),
-                width="100%", align_items="start", spacing="1",
+                width="100%", 
+                align_items="start", 
+                spacing="1",
             ),
             
             rx.button("Enviar Solicitud", type="submit", **SUBMIT_BUTTON_STYLE),
