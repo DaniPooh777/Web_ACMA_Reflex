@@ -21,10 +21,13 @@ def index() -> rx.Component:
         navbar(),
         rx.vstack(
             header(
-                "Tu Aliado en la Innovación Educativa",
+                "ACMA: Tu aliado confiable en la\nInnovación Educativa",
                 "Transformamos tu visión pedagógica en recursos digitales de alta calidad, ahorrándote tiempo y garantizando la excelencia."
             ),
-            link_button()
+            link_button(),
+            width="100%",           # Aseguramos que ocupe todo el ancho
+            align_items="center",    # <--- ESTO ES LO QUE TE FALTA, LOCO
+            spacing="4",
         ),
         problem_solutions(),
         resources(),

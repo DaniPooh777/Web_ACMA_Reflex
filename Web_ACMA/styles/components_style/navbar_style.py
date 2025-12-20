@@ -45,5 +45,20 @@ NAV_BUTTON_STYLE = {
     "padding_x": "1.5rem",
     "_hover": {
         "background_color": "rgb(37, 99, 235)",
+        "transition": "all 0.2s ease-in-out",
+    },
+}
+
+HERO_BUTTON_STYLE = {
+    "background_color": "rgb(59, 130, 246)",
+    "color": "white",
+    "border_radius": "8px",
+    "padding_x": "2.5rem", # Más ancho
+    "padding_y": "1.5rem", # Más alto
+    "font_size": "1.1rem", # Texto más legible
+    "font_weight": "600",
+    "_hover": {
+        "background_color": "rgb(37, 99, 235)",
+        "transition": "all 0.2s ease-in-out",
     },
 }
