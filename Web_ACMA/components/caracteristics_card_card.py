@@ -21,12 +21,12 @@ def caracteristics_card_card(tittle: str, text: str, text2: str, icon: str, num:
         rx.hstack(
             rx.vstack(
                 rx.text(text, color="rgb(59, 130, 246)", font_size="0.8rem"),
-                rx.text(num, size="6", color="white", font_weight="bold"),
+                rx.text(num, size="6", color="white"),
                 **INNER_SCHEDULE_STYLE
             ),
             rx.vstack(
                 rx.text(text2, color="rgb(59, 130, 246)", font_size="0.8rem"),
-                rx.text(num2, size="6", color="white", font_weight="bold"),
+                rx.text(num2, size="6", color="white"),
                 **INNER_SCHEDULE_STYLE
             ),
             width="100%",
