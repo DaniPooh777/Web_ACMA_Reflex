@@ -3,16 +3,17 @@ import reflex as rx
 # Colores extraídos quirúrgicamente de la captura
 COLOR_BG_DARK = "rgb(10, 10, 15)"
 COLOR_CARD_BG = "rgba(17, 24, 39, 0.5)"
-COLOR_BORDER = "rgba(255, 255, 255, 0.1)"
+COLOR_BORDER_INPUT = "rgba(255, 255, 255, 0.2)"
+COLOR_BORDER_CONTAINER = "rgba(255, 255, 255, 0.1)"
 COLOR_ACCENT = "rgb(59, 130, 246)" 
-COLOR_INPUT_BG = "rgba(0, 0, 0, 0.3)" # Un toque más oscuro para que se hunda el input
+COLOR_INPUT_BG = "rgb(20, 24, 33)" # Un toque más oscuro para que se hunda el input
 COLOR_TEXT_GRAY = "rgb(156, 163, 175)"
 
 FORM_CONTAINER_STYLE = {
     "width": "100%",
     "max_width": "824px",
     "background_color": COLOR_CARD_BG,
-    "border": f"1px solid {COLOR_BORDER}",
+    "border": f"1px solid {COLOR_BORDER_CONTAINER}",
     "padding": "2rem",
     "border_radius": "12px",
     "align_items": "stretch",
@@ -23,11 +24,18 @@ INPUT_STYLE = {
     "width": "100%",
     "height": "2.8rem",
     "background_color": COLOR_INPUT_BG,
-    "border": f"1px solid {COLOR_BORDER}",
+    "border": f"1px solid {COLOR_BORDER_INPUT}", # Usamos la nueva constante
     "color": "white",
-    "padding_x": "1rem",
     "border_radius": "8px",
-    "_focus": {"border_color": COLOR_ACCENT},
+    "outline": "none",
+    "box_shadow": "none", # Mata sombras internas
+    "background_clip": "padding-box", # Evita que el fondo se comporte raro en los bordes
+    "appearance": "none",
+    # Esto es CLAVE para evitar el cambio de color al escribir o por autofill
+    "_autofill": {
+        "transition": "background-color 5000s ease-in-out 0s",
+        "text_fill_color": "white",
+    },
 }
 
 LABEL_STYLE = {

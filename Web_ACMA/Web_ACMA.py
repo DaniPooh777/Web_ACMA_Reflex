@@ -77,7 +77,7 @@ def contact() -> rx.Component:
             
             width="100%",
             align_items="center", # <--- ESTO ES LO QUE LO CENTRA
-            spacing="9",
+            spacing="8",
             padding_y="4rem",
         ),
         footer(),
