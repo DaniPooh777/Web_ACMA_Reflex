@@ -70,23 +70,20 @@ def contact() -> rx.Component:
             "Contacta con ACMA",
             "Estamos aquí para ayudarte a crear los mejores recursos educativos."
         ),
-        # Contenedor principal de contenido centrado
+        # Este es el contenedor clave que tiene que estar centrado
         rx.vstack(
-            contact_cards(),
-            rx.box(
-                solicitud_form(),
-                width="100%",
-                max_width="800px", # Limita el ancho del formulario para que sea legible
-            ),
+            contact_cards(),   # Tiene max_width="824px"
+            solicitud_form(),  # Ahora también tiene max_width="824px"
+            
             width="100%",
-            align_items="center", # Centra horizontalmente todo el contenido
+            align_items="center", # <--- ESTO ES LO QUE LO CENTRA
             spacing="9",
             padding_y="4rem",
         ),
         footer(),
         spacing="0",
         width="100%",
-        background_color="rgb(10, 10, 15)", # El fondo oscuro profundo de la captura
+        background_color="rgb(10, 10, 15)", 
     )
 
 
