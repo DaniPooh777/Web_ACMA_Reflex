@@ -1,26 +1,39 @@
 import reflex as rx
-
+from Web_ACMA.styles.components_style.footer_style import (
+    FOOTER_CONTAINER_STYLE,
+    FOOTER_NAV_LINK_STYLE,
+    FOOTER_COPYRIGHT_STYLE
+)
 
 def footer() -> rx.Component:
     return rx.vstack(
-        rx.divider(),
         rx.hstack(
-            rx.link(
-                rx.avatar(
-                src="favicon.ico",
-                ),
-                href = "/"
+            # Bloque Izquierdo: Logo
+            rx.hstack(
+                rx.avatar(src="favicon.ico", size="3"),
+                rx.text("ACMA", font_weight="bold", color="white", font_size="1.2rem"),
+                align_items="center",
+                spacing="3",
             ),
-            rx.link(
-                rx.text("ACMA", height = "40px"),
-                href = "/"
+            
+            rx.spacer(), # Empuja los links a la derecha
+            
+            # Bloque Derecho: Navegación
+            rx.hstack(
+                rx.link("Inicio", href="/", **FOOTER_NAV_LINK_STYLE),
+                rx.link("Proyectos", href="/project", **FOOTER_NAV_LINK_STYLE),
+                rx.link("Quiénes somos", href="/quienes-somos", **FOOTER_NAV_LINK_STYLE),
+                rx.link("Contacto", href="/contact", **FOOTER_NAV_LINK_STYLE),
+                spacing="6",
             ),
-             rx.link("Inicio", href="/"),
-            rx.link("Proyecto", href="/project"),
-            rx.link("Quiénes somos", href="/quienes-somos"), 
-            rx.link("Contacto", href="/contact"),
+            width="100%",
+            max_width="1100px",
         ),
-        rx.divider(),
-        rx.text("© 2025 ACMA. Agencia de Contenido Manyanet."),
-        width = "100%",
+        
+        rx.text(
+            "© 2025 ACMA. Agencia de Contenido Manyanet Alcobendas.",
+            **FOOTER_COPYRIGHT_STYLE
+        ),
+        
+        style=FOOTER_CONTAINER_STYLE
     )
