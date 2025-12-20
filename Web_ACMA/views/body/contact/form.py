@@ -68,7 +68,7 @@ def solicitud_form() -> rx.Component:
                         },
                     ),
                     background_color=COLOR_INPUT_BG,
-                    border=f"1px solid {COLOR_BORDER_INPUT}",
+                    border=f"2px solid {COLOR_BORDER_INPUT}",
                     border_radius="8px",
                     width="100%",
                     height="2.8rem",
