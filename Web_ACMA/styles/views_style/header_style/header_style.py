@@ -4,7 +4,7 @@ import reflex as rx
 HEADER_CONTAINER_STYLE = {
     "width": "100%",
     "padding_top": "3rem",    # Un poco más de aire arriba
-    "padding_bottom": "2rem", # Espacio sutil antes de lo que sigue
+    "padding_bottom": "0rem", # Espacio sutil antes de lo que sigue
     "align_items": "center",
     "text_align": "center",
 }
