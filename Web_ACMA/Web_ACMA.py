@@ -15,17 +15,17 @@ from Web_ACMA.views.body.contact.form import solicitud_form
 from Web_ACMA.views.body.contact.contact_cards import contact_cards
 
 
-# Página Inicio
+# Web_ACMA.py
 def index() -> rx.Component:
     return rx.vstack(
         navbar(),
         rx.vstack(
             header(
                 "ACMA: Tu aliado confiable en la\nInnovación Educativa",
-                "Transformamos tu visión pedagógica en recursos digitales de alta calidad, ahorrándote tiempo y garantizando la excelencia."
+                "Transformamos tu visión pedagógica en recursos digitales de alta calidad..."
             ),
             link_button(),
-            width="100%",           # Aseguramos que ocupe todo el ancho
+            width="100%",
             align_items="center",    # <--- ESTO ES LO QUE TE FALTA, LOCO
             spacing="4",
         ),
@@ -34,7 +34,8 @@ def index() -> rx.Component:
         caracteristics(),
         footer(),
         spacing="0",
-        width="100%"
+        width="100%",
+        align_items="center",        # <--- EL PADRE TAMBIÉN TIENE QUE CENTRAR
     )
 
 

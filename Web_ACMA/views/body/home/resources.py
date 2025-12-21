@@ -2,6 +2,7 @@ import reflex as rx
 from Web_ACMA.components.resources_types_card import resources_type_card
 from Web_ACMA.components.problem_card import problem_card
 from Web_ACMA.components.example_resource_type_card import example_resources_type_card
+from Web_ACMA.styles.components_style.resources_type_card_style import RESOURCES_GRID_STYLE # Importá el estilo
 
 def resources() -> rx.Component:
     # Importamos State dentro de la función para evitar importación circular (¿Qué es la importación circular?)
@@ -15,7 +16,8 @@ def resources() -> rx.Component:
             resources_type_card("Pósters", "file", State.toggle_posters),
             resources_type_card("Presentaciones", "presentation", State.toggle_presentaciones),
             resources_type_card("Cuestionarios", "notepad-text", State.toggle_cuestionarios),
-            resources_type_card("Documentos", "file-text", State.toggle_documentos)
+            resources_type_card("Documentos", "file-text", State.toggle_documentos),
+            style=RESOURCES_GRID_STYLE # <--- USA ESTO PARA EL FLEX Y EL GAP
         ),
         
         # Contenido que aparece para Pósters
@@ -106,6 +108,7 @@ def resources() -> rx.Component:
             )
         ),
         
+        width="100%",
+        align_items="center", # Centra el heading y el grid
         spacing="4",
-        width="100%"
     )
