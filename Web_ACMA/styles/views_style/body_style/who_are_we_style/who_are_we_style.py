@@ -66,7 +66,7 @@ FOUNDER_TEXT_CARD_STYLE = {
 FOUNDER_SECTION_TITLE_STYLE = {
     "font_weight": "bold",
     "color": "white", # O el azul ACMA rgb(59, 130, 246)
-    "font_size": ["2rem", "3rem"],
+    "font_size": "2.7rem",
     "margin_top": "1rem",
     "text_align": "center",
     "width": "100%",
