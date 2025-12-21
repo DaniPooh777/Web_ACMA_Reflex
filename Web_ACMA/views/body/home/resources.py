@@ -2,17 +2,19 @@ import reflex as rx
 from Web_ACMA.components.resources_types_card import resources_type_card
 from Web_ACMA.components.problem_card import problem_card
 from Web_ACMA.components.example_resource_type_card import example_resources_type_card
-from Web_ACMA.styles.components_style.resources_type_card_style import RESOURCES_GRID_STYLE # Importá el estilo
+from Web_ACMA.styles.components_style.resources_type_card_style import RESOURCES_GRID_STYLE, HEADER_TITLE_STYLE # Importá el estilo
 
 def resources() -> rx.Component:
     # Importamos State dentro de la función para evitar importación circular (¿Qué es la importación circular?)
     from Web_ACMA.Web_ACMA import State
     
     return rx.vstack(
-        rx.heading("Recursos a tu Alcance", size="8"),
+        rx.heading("Recursos a tu Alcance", 
+                   style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}
+                ),
         
         # Tarjetas clickeables
-        rx.hstack(
+        rx.flex(
             resources_type_card("Pósters", "file", State.toggle_posters),
             resources_type_card("Presentaciones", "presentation", State.toggle_presentaciones),
             resources_type_card("Cuestionarios", "notepad-text", State.toggle_cuestionarios),

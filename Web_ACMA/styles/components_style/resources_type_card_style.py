@@ -1,28 +1,29 @@
 import reflex as rx
 
-# El contenedor padre que sostiene todo el quilombo
-RESOURCES_SECTION_STYLE = {
-    "width": "100%",
-    "padding_y": "4rem",
-    "background_color": "rgb(10, 10, 15)", # Fondo bien oscuro
-    "align_items": "center",
+HEADER_TITLE_STYLE = {
+    "font_size": "4rem",
+    "font_weight": "800",
+    "color": "white",
+    "line_height": "1.1",
+    "margin_bottom": "0rem",
+    "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
 }
 
 # El Grid de las 4 tarjetas principales
 RESOURCES_GRID_STYLE = {
     "display": "flex",
     "flex_wrap": "wrap",
-    "justify_content": "center",
+    "justify_content": "center", # Esto ya lo teníamos para centrar
     "gap": "1.5rem",
     "width": "100%",
-    "max_width": "1100px",
-    "padding": "2rem",
+    "max_width": "1200px", # <--- IGUAL QUE LAS TARJETAS DE ARRIBA
+    "padding": "1rem",
 }
 
 # La tarjeta individual (La magia está acá)
 RESOURCE_CARD_STYLE = {
-    "width": ["100%", "240px"], # Responsive: full en mobile, fijo en desktop
-    "height": "160px",
+    "width": ["100%", "265px"], # Responsive: full en mobile, fijo en desktop
+    "height": "140px",
     "background_color": "rgba(17, 24, 39, 0.5)",
     "border": "1px solid rgba(255, 255, 255, 0.1)",
     "border_radius": "12px",
@@ -35,7 +36,6 @@ RESOURCE_CARD_STYLE = {
     "_hover": {
         "background_color": "rgba(30, 41, 59, 0.8)",
         "border_color": "rgb(59, 130, 246)", # El azul de ACMA
-        "box_shadow": "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
     },
 }
 
