@@ -1,9 +1,15 @@
 import reflex as rx
+from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style import (
+    INFO_CARD_STYLE, 
+    INFO_TITLE_STYLE, 
+    INFO_TEXT_STYLE
+)
 
-
-def information_card(tittle: str, subtittle: str, text: str) -> rx.Component:
-    return rx.card(
-                rx.text(tittle, size = "5"),
-                rx.text(subtittle),
-                rx.text(text)
-            )
+def information_card(tittle: str, text: str, width: str = "100%") -> rx.Component:
+    return rx.vstack(
+        rx.heading(tittle, style=INFO_TITLE_STYLE),
+        rx.text(text, style=INFO_TEXT_STYLE),
+        style={**INFO_CARD_STYLE, "width": width},
+        align_items="center", # Centra el texto dentro de la tarjeta
+        padding="2.5rem",      # Dale aire para que no sea un bloque mazacote
+    )
