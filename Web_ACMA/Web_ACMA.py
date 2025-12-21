@@ -44,10 +44,15 @@ def index() -> rx.Component:
 def project() -> rx.Component:
     return rx.vstack(
         navbar(),
+        header(
+                "Proyectos Más Relevantes",
+                "Descubre algunos de los proyectos más destacados que hemos realizado para el profesorado."
+            ),
         projects(),  # Usando el nuevo componente
         footer(),
         spacing="0",
-        width="100%"
+        width="100%",
+        background_color="rgb(10, 10, 15)"
     )
 
 

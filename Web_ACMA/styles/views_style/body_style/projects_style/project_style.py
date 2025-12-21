@@ -3,21 +3,15 @@ import reflex as rx
 # Estilos para la tarjeta de proyecto
 CARD_STYLE = {
     "width": "100%",
-    "max_width": "450px",
-    "height": "auto",
-    "min_height": "300px",
-    "max_height": "520px",
-    "border_radius": "8px",
-    "overflow": "hidden",
-    "box_shadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "max_width": "360px",  # Ajustado para que entren 3 por fila en 1200px
     "background": "rgb(17, 24, 39)",
-    "display": "flex",
-    "flex_direction": "column",
-    "border": "2px solid rgba(59, 130, 246, 0)",
+    "border_radius": "12px",
+    "overflow": "hidden",
+    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "transition": "all 0.3s ease",
     "_hover": {
-        "border_color": "rgba(59, 130, 246, 0.5)",
-    },
-    "transition": "border-color 0.3s ease",
+        "border": "1px solid rgb(59, 130, 246)", 
+    }
 }
 
 # Estilos para la imagen de la tarjeta
@@ -33,8 +27,7 @@ IMAGE_STYLE = {
     "width": "100%",
     "height": "200px",
     "object_fit": "cover",
-    "border_radius": "8px 8px 0 0",
-    "flex_shrink": "0",
+    "transition": "opacity 0.2s ease",
 }
 
 # Estilos para el contenedor de contenido
@@ -51,10 +44,6 @@ HEADER_STYLE = {
     "align_items": "center",
     "padding": "1.5rem",
     "cursor": "pointer",
-    "_hover": {
-        "background": "rgba(255, 255, 255, 0.05)",
-    },
-    "transition": "background 0.2s ease",
     "flex_shrink": "0",
 }
 
@@ -80,7 +69,7 @@ EXPANDABLE_CONTAINER_STYLE = {
 # Estilos para el contenido de descripción
 DESCRIPTION_CONTAINER_STYLE = {
     "padding": "0 1.5rem 1.5rem 1.5rem",
-    "opacity": "0",
+    "opacity": "1", # Quitamos el 0 para que no desaparezca en el render
     "animation": "fadeIn 0.3s ease-out forwards",
 }
 
@@ -110,9 +99,10 @@ PROJECTS_CONTAINER_STYLE = {
 
 # Estilos para el flex container de tarjetas
 CARDS_FLEX_STYLE = {
-    "wrap": "wrap",
+    "flex_wrap": "wrap",
     "spacing": "6",
-    "justify": "center",
+    "justify_content": "center",
     "align_items": "start",
     "width": "100%",
+    "max_width": "1200px",
 }
