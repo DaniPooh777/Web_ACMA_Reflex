@@ -26,7 +26,12 @@ def resources() -> rx.Component:
         rx.cond(
             State.seccion_activa == "posters",
             rx.box(
-                rx.heading("Ejemplo de Póster", size="5"),
+                rx.heading("Ejemplo de Póster", 
+                        size="7",
+                        padding_bottom="1rem",
+                        padding_top="1rem",
+                        align="center"
+                    ),
                 rx.flex(
                     problem_card(
                         "Ejemplo",
@@ -37,7 +42,9 @@ def resources() -> rx.Component:
                         orientativas y un texto claro y accesible para los más pequeños."""
                     ),
                     example_resources_type_card("favicon.ico"),
-                    spacing="4"
+                    spacing="6", # Más espacio entre las dos tarjetas
+                    justify="center", # Centramos las dos tarjetas una al lado de la otra
+                    flex_wrap="wrap",
                 ),
                 padding_x="20px",
                 margin_bottom="20px"
@@ -48,7 +55,12 @@ def resources() -> rx.Component:
         rx.cond(
             State.seccion_activa == "presentaciones",
             rx.box(
-                rx.heading("Ejemplo de Presentación", size="5"),
+                rx.heading("Ejemplo de Presentación", 
+                        size="7",
+                        padding_bottom="1rem",
+                        padding_top="1rem",
+                        align="center"
+                    ),
                 rx.flex(
                     problem_card(
                         "Ejemplo",
@@ -60,7 +72,9 @@ def resources() -> rx.Component:
                         y directo al grano."""
                     ),
                     example_resources_type_card("favicon.ico"),
-                    spacing="4"
+                    spacing="6", # Más espacio entre las dos tarjetas
+                    justify="center", # Centramos las dos tarjetas una al lado de la otra
+                    flex_wrap="wrap",
                 ),
                 padding_x="20px",
                 margin_bottom="20px"
@@ -71,7 +85,12 @@ def resources() -> rx.Component:
         rx.cond(
             State.seccion_activa == "cuestionarios",
             rx.box(
-                rx.heading("Ejemplo de Cuestionario", size="5"),
+                rx.heading("Ejemplo de Cuestionario", 
+                        size="7",
+                        padding_bottom="1rem",
+                        padding_top="1rem",
+                        align="center"
+                    ),
                 rx.flex(
                     problem_card(
                         "Ejemplo",
@@ -81,7 +100,9 @@ def resources() -> rx.Component:
                         de Historia de España para los alumnos de 2º de Bachillerato."""
                     ),
                     example_resources_type_card("favicon.ico"),
-                    spacing="4"
+                    spacing="6", # Más espacio entre las dos tarjetas
+                    justify="center", # Centramos las dos tarjetas una al lado de la otra
+                    flex_wrap="wrap",
                 ),
                 padding_x="20px",
                 margin_bottom="20px"
@@ -92,7 +113,12 @@ def resources() -> rx.Component:
         rx.cond(
             State.seccion_activa == "documentos",
             rx.box(
-                rx.heading("Ejemplo de Documento", size="5"),
+                rx.heading("Ejemplo de Documento", 
+                        size="7",
+                        padding_bottom="1rem",
+                        padding_top="1rem",
+                        align="center"
+                    ),
                 rx.flex(
                     problem_card(
                         "Ejemplo",
@@ -103,7 +129,9 @@ def resources() -> rx.Component:
                         una originalidad asombrosa para innovar en el anuncio. """
                     ),
                     example_resources_type_card("favicon.ico"),
-                    spacing="4"
+                    spacing="6", # Más espacio entre las dos tarjetas
+                    justify="center", # Centramos las dos tarjetas una al lado de la otra
+                    flex_wrap="wrap",
                 ),
                 padding_x="20px",
                 margin_bottom="20px"

@@ -22,7 +22,7 @@ def index() -> rx.Component:
         rx.vstack(
             header(
                 "ACMA: Tu aliado confiable en la\nInnovación Educativa",
-                "Transformamos tu visión pedagógica en recursos digitales de alta calidad..."
+                "Transformamos tu visión pedagógica en recursos digitales de alta calidad"
             ),
             link_button(),
             width="100%",

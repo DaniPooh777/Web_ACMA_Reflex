@@ -9,4 +9,5 @@ def link_button() -> rx.Component:
         ),
         href="/contact#formulario-encargo",
         text_decoration="none",
+        padding_top="2rem"
     )
