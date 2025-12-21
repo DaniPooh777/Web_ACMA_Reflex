@@ -3,7 +3,7 @@ from Web_ACMA.components.caracteristics_card import caracteristics_card
 
 def caracteristics() -> rx.Component:
     return rx.vstack(
-        rx.heading("Tu Clase, Impulsada por la Calidad", size="8", margin_bottom="2rem"),
+        rx.heading("Tu Clase, Impulsada por la Calidad", size="8", margin_bottom="1rem"),
         
         rx.flex(
             caracteristics_card(

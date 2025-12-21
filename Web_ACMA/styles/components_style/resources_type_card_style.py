@@ -5,7 +5,7 @@ HEADER_TITLE_STYLE = {
     "font_weight": "800",
     "color": "white",
     "line_height": "1.1",
-    "margin_bottom": "0rem",
+    "margin_bottom": "1rem",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
 }
 
@@ -17,7 +17,7 @@ RESOURCES_GRID_STYLE = {
     "gap": "1.5rem",
     "width": "100%",
     "max_width": "1200px", # <--- IGUAL QUE LAS TARJETAS DE ARRIBA
-    "padding": "1rem",
+    "margin_bottom": "0.5rem",
 }
 
 # La tarjeta individual (La magia está acá)
