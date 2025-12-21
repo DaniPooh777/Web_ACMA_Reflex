@@ -31,3 +31,43 @@ INFO_TEXT_STYLE = {
     "font_size": "1rem",
     "line_height": "1.6",
 }
+
+# El contenedor que agrupa la imagen + la tarjeta
+FOUNDER_SECTION_CONTAINER = {
+    "width": "100%",
+    "max_width": "1100px",
+    "display": "flex",
+    "flex_direction": ["column", "row"], # Columna en mobile, fila en desktop
+    "align_items": "center",
+    "justify_content": "center",
+    "gap": "3rem", # El "aire" entre la imagen y la tarjeta
+    "padding_y": "2rem",
+}
+
+FOUNDER_IMAGE_STYLE = {
+    "width": ["250px", "350px"],
+    "height": ["250px", "350px"],
+    "border_radius": "20px",
+    "object_fit": "cover",
+    "box_shadow": "0px 10px 30px rgba(0, 0, 0, 0.5)",
+    "border": "2px solid rgba(59, 130, 246, 0.5)",
+}
+
+# La tarjeta de texto (ahora sin la imagen adentro)
+FOUNDER_TEXT_CARD_STYLE = {
+    "flex": "1",
+    "background_color": "rgba(17, 24, 39, 0.5)",
+    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "padding": "3rem",
+    "border_radius": "15px",
+    "text_align": "left",
+}
+
+FOUNDER_SECTION_TITLE_STYLE = {
+    "font_weight": "bold",
+    "color": "white", # O el azul ACMA rgb(59, 130, 246)
+    "font_size": ["2rem", "3rem"],
+    "margin_top": "1rem",
+    "text_align": "center",
+    "width": "100%",
+}

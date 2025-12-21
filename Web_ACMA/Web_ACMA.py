@@ -60,15 +60,13 @@ def project() -> rx.Component:
 def who_are_we() -> rx.Component:
     return rx.vstack(
         navbar(),
-        header(
-            "Profundizando en ACMA",
-            ""
-        ),
-        information(),
-        founder(),
+        header("Profundizando en ACMA", "Conocé a los que ensucian las manos."),
+        information(), # El que arreglamos antes
+        founder(),     # El que acabamos de pulir
         footer(),
-        spacing="0",
-        width="100%"
+        width="100%",
+        align_items="center", # <--- ESTO ES NO NEGOCIABLE
+        background_color="rgb(10, 10, 15)",
     )
 
 
