@@ -31,4 +31,5 @@ def problem_solutions() -> rx.Component:
         ),
         style=SOLUTIONS_CONTAINER_STYLE,
         width="100%",
+        background_color="rgb(10, 10, 15)"
     )

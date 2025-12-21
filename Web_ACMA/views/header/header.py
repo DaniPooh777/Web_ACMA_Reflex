@@ -9,5 +9,5 @@ def header(tittle: str, text: str) -> rx.Component:
     return rx.vstack(
         rx.heading(tittle, style=HEADER_TITLE_STYLE),
         rx.text(text, style=HEADER_TEXT_STYLE),
-        style=HEADER_CONTAINER_STYLE
+        style=HEADER_CONTAINER_STYLE,
     )

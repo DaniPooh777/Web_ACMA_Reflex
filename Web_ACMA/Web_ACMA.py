@@ -36,6 +36,7 @@ def index() -> rx.Component:
         spacing="0",
         width="100%",
         align_items="center",        # <--- EL PADRE TAMBIÉN TIENE QUE CENTRAR
+        background_color="rgb(10, 10, 15)"
     )
 
 
