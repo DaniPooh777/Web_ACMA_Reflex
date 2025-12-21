@@ -3,9 +3,10 @@ import reflex as rx
 # Contenedor principal de la sección
 WHO_ARE_WE_CONTAINER_STYLE = {
     "width": "100%",
-    "padding_y": "3rem",
+    "padding_top": "2rem",     
+    "padding_bottom": "3rem",
     "align_items": "center",
-    "spacing": "6",
+    "spacing": "0",         
 }
 
 # Estilo de la tarjeta (Basado en el diseño de Contacto para consistencia)
@@ -13,7 +14,7 @@ INFO_CARD_STYLE = {
     "width": "100%",
     "background_color": "rgba(17, 24, 39, 0.5)",
     "border": "1px solid rgba(255, 255, 255, 0.1)",
-    "padding": "2rem",
+    "padding": "3.5rem 2.5rem", # <--- Padding generoso para que el texto no asfixie
     "border_radius": "12px",
     "text_align": "center",
 }
