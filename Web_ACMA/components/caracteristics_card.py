@@ -12,6 +12,6 @@ def caracteristics_card(tittle: str, text: str, icon: str) -> rx.Component:
             **ICON_CONTAINER_STYLE
         ),
         rx.text(tittle, **CARD_TITLE_STYLE),
-        rx.text(text, color="rgb(229, 231, 235)", font_size="0.9rem"),
+        rx.text(text, color="rgb(156, 163, 175)", font_size="0.9rem"),
         **CONTACT_CARD_STYLE
     )

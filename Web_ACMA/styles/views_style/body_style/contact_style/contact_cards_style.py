@@ -21,7 +21,6 @@ ICON_CONTAINER_STYLE = {
 }
 
 CARD_TITLE_STYLE = {
-    "font_weight": "bold",
     "color": "white",
     "size": "6",
 }
