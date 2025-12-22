@@ -118,8 +118,10 @@ def solicitud_form() -> rx.Component:
             rx.button("Enviar Solicitud", type="submit", **SUBMIT_BUTTON_STYLE),
             **FORM_CONTAINER_STYLE,
         ),
+        id="formulario-encargo", # <--- AGREGÁ ESTO ACÁ, LOCO
         on_submit=FormState.handle_submit,
         width="100%",
+        scroll_margin_top="100px",
         display="flex",
         justify_content="center",
         align_self="center", # Para que no se te escape al costado
