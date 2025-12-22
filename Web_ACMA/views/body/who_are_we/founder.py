@@ -6,7 +6,8 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
     FOUNDER_TEXT_CARD_STYLE,
     FOUNDER_SECTION_TITLE_STYLE, # El nuevo estilo
     INFO_TITLE_STYLE,
-    INFO_TEXT_STYLE
+    INFO_TEXT_STYLE,
+    INFO_SUBTITTLE_STYLE
 )
 
 def founder() -> rx.Component:
@@ -25,6 +26,10 @@ def founder() -> rx.Component:
                 # TARJETA A LA DERECHA
                 rx.vstack(
                     rx.heading("José Antonio Romero Paniagua", style=INFO_TITLE_STYLE),
+                    rx.text(
+                        "Profesor y Director de ACMA",
+                        style=INFO_SUBTITTLE_STYLE
+                    ),
                     rx.text(
                         "Acá va toda la historia del fundador. Al estar fuera de la tarjeta, la imagen tiene su propio peso visual y la tarjeta de la derecha contiene solo el mensaje, tal cual pediste.",
                         style=INFO_TEXT_STYLE

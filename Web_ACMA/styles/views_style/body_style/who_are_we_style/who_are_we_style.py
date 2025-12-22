@@ -21,9 +21,16 @@ INFO_CARD_STYLE = {
 
 INFO_TITLE_STYLE = {
     "font_weight": "bold",
-    "color": "rgb(59, 130, 246)", # El azul ACMA
-    "margin_bottom": "1rem",
+    "color": "white",
+    "margin_bottom": "0.5rem",
     "font_size": "1.5rem",
+}
+
+INFO_SUBTITTLE_STYLE = {
+    "color": "rgb(59, 130, 246)", # El azul ACMA
+    "font_size": "1.2rem",
+    "line_height": "1.6",
+    "margin_bottom": "0.5rem",
 }
 
 INFO_TEXT_STYLE = {
