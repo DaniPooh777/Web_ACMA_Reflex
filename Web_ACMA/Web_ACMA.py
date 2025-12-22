@@ -8,6 +8,7 @@ from Web_ACMA.views.body.home.caracteristics import caracteristics
 from Web_ACMA.components.footer import footer
 from Web_ACMA.components.link_button import link_button
 from Web_ACMA.views.body.who_are_we.information import information
+from Web_ACMA.views.body.who_are_we.collaborators import collaborators 
 from Web_ACMA.views.body.who_are_we.founder import founder
 from Web_ACMA.views.body.projects.projects import projects
 from Web_ACMA.state import State 
@@ -63,6 +64,7 @@ def who_are_we() -> rx.Component:
         header("Profundizando en ACMA", "Conocé a los que ensucian las manos."),
         information(), # El que arreglamos antes
         founder(),     # El que acabamos de pulir
+        collaborators(),
         footer(),
         width="100%",
         align_items="center", # <--- ESTO ES NO NEGOCIABLE

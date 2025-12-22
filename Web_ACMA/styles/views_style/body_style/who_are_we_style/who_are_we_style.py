@@ -21,13 +21,13 @@ INFO_CARD_STYLE = {
 
 INFO_TITLE_STYLE = {
     "font_weight": "bold",
-    "color": "white",
+     "color": "rgb(59, 130, 246)", # El azul ACMA
     "margin_bottom": "0.5rem",
     "font_size": "1.5rem",
 }
 
 INFO_SUBTITTLE_STYLE = {
-    "color": "rgb(59, 130, 246)", # El azul ACMA
+    "color": "white", # El azul ACMA
     "font_size": "1.2rem",
     "line_height": "1.6",
     "margin_bottom": "0.5rem",
@@ -51,13 +51,31 @@ FOUNDER_SECTION_CONTAINER = {
     "padding_y": "2rem",
 }
 
+COLLABORATOR_SECTION_CONTAINER = {
+    "width": "100%",
+    "max_width": "1100px",
+    "display": "flex",
+    "flex_direction": ["column", "row"], # Columna en mobile, fila en desktop
+    "align_items": "center",
+    "justify_content": "center",
+    "gap": "2rem", # El "aire" entre la imagen y la tarjeta
+    "padding_y": "2rem",
+}
+
 FOUNDER_IMAGE_STYLE = {
     "width": ["250px", "350px"],
     "height": ["250px", "350px"],
     "border_radius": "20px",
     "object_fit": "cover",
-    "box_shadow": "0px 10px 30px rgba(0, 0, 0, 0.5)",
     "border": "2px solid rgba(59, 130, 246, 0.5)",
+}
+
+COLLABORATOR_IMAGE_STYLE = {
+    "width": "100%",
+    "height": "350px",
+    "border_radius": "12px",
+    "object_fit": "cover",
+    "margin_bottom": "1rem"
 }
 
 # La tarjeta de texto (ahora sin la imagen adentro)
