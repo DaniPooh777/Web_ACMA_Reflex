@@ -9,9 +9,9 @@ def contact_cards() -> rx.Component:
         rx.hstack(
             caracteristics_card_link(
                 "Correo Electrónico",
-                "acma@ejemplo.com", 
+                "acma@alcobendas.manyanet.org", 
                 "mail",
-                "https://reflex.dev/"
+                "mailto:acma@alcobendas.manyanet.org"
             ),
             caracteristics_card(
                 "Ubicación",
