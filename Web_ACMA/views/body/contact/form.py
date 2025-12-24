@@ -9,7 +9,8 @@ from Web_ACMA.styles.views_style.body_style.contact_style.form_style import (
     SUBMIT_BUTTON_STYLE,
     UPLOAD_CLEAN_STYLE,
     COLOR_INPUT_BG,
-    COLOR_BORDER_INPUT
+    COLOR_BORDER_INPUT,
+    COLOR_BORDER_CONTAINER
 )
 
 def input_field(label: str, placeholder: str, name: str, type: str = "text") -> rx.Component:
@@ -83,6 +84,7 @@ def solicitud_form() -> rx.Component:
             ),
             rx.vstack(
                 rx.text("Descripción del Encargo", **LABEL_STYLE),
+                # RECUADRO DE TEXTO (Solo el área de escritura y el botón)
                 rx.box(
                     rx.text_area(
                         name="descripcion",
@@ -91,24 +93,46 @@ def solicitud_form() -> rx.Component:
                         min_height="160px",
                         background_color="transparent", 
                         style={"border": "none"},
-                    ),                   
-                    # El componente de upload tiene que estar ACÁ ADENTRO
+                    ),
                     rx.upload(
                         rx.hstack(
                             rx.icon(tag="upload", size=16),
                             rx.text("Adjuntar", font_size="0.8rem"),
-                            **ATTACH_STYLE # Este estilo tiene position="absolute"
+                            **ATTACH_STYLE 
                         ),
                         id="upload_files",
+                        on_drop=FormState.handle_upload(rx.upload_files(upload_id="upload_files")), 
                         **UPLOAD_CLEAN_STYLE
                     ),
-                    
-                    # ESTO ES LO QUE TE FALTABA:
-                    position="relative", # <--- "Atrapa" al botón de adjuntar
+                    position="relative",
                     border=f"1px solid {COLOR_BORDER_INPUT}", 
                     background_color=COLOR_INPUT_BG,
                     border_radius="8px",
                     width="100%",
+                ),
+                
+                # LISTA DE ARCHIVOS (Fuera del recuadro, tal cual la imagen)
+                rx.vstack(
+                    rx.foreach(
+                        FormState.archivos_seleccionados,
+                        lambda file: rx.hstack(
+                            rx.text(file, font_size="0.85rem", color="white"),
+                            rx.spacer(),
+                            rx.icon(
+                                tag="x", 
+                                size=14, 
+                                color="gray", 
+                                cursor="pointer",
+                                on_click=FormState.remove_file(file) # <--- Necesitamos esta lógica
+                            ),
+                            width="100%",
+                            padding_y="0.5rem",
+                            border_bottom=f"1px solid {COLOR_BORDER_CONTAINER}",
+                        )
+                    ),
+                    align_items="start",
+                    width="100%",
+                    padding_top="0.5rem", # Espacio entre el recuadro y la lista
                 ),
                 width="100%", 
                 align_items="start", 
