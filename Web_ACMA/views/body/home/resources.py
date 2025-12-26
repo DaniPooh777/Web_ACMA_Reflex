@@ -37,14 +37,19 @@ def resources() -> rx.Component:
                         "Ejemplo",
                         "Póster: Tú Decides",
                         "Descripción",
-                        """Póster educativo que ilustra los problemas de la España vaciada 
-                        para los alumnos de Primaria. Incluye, elementos visuales, imágenes 
-                        orientativas y un texto claro y accesible para los más pequeños."""
+                        """Este póster es un recurso didáctico diseñado para explicar el fenómeno de la despoblación a alumnos de Primaria.
+
+                        - Objetivo: Sensibilizar sobre la realidad rural mediante un enfoque empático y sencillo.
+
+                        - Diseño: Combina imágenes orientativas con una disposición visual clara que facilita la retención de conceptos clave.
+
+                        - Contenido: Utiliza un lenguaje adaptado, eliminando tecnicismos para que el mensaje sea accesible y fomente la reflexión crítica desde edades tempranas."""
                     ),
-                    example_resources_type_card("favicon.ico"),
+                    example_resources_type_card("TÚ DECIDES.png"),
                     spacing="6", # Más espacio entre las dos tarjetas
                     justify="center", # Centramos las dos tarjetas una al lado de la otra
                     flex_wrap="wrap",
+                    white_space = "pre-line"
                 ),
                 padding_x="20px",
                 margin_bottom="20px"
@@ -66,15 +71,19 @@ def resources() -> rx.Component:
                         "Ejemplo",
                         "Presentación: Enlaces Químicos",
                         "Descripción",
-                        """Presentación dinámica con nº diapositivas que habla sobre los distintos enlaces 
-                        químicos adaptado para la comprensión de los alumnos de 4º E.S.O.. Incluye una múltiple 
-                        variedad de elementos gráficos, dos juegos interactivos y un texto, claro, accesible 
-                        y directo al grano."""
+                        """Este recurso es una presentación dinámica estructurada en un número determinado de diapositivas, diseñada específicamente para el nivel de 4º de E.S.O.
+
+                        - Contenido temático: Explica de manera integral los distintos tipos de enlaces químicos, adaptando la complejidad técnica al nivel académico de los alumnos.
+
+                        - Componentes Visuales: Se apoya en una múltiple variedad de elementos gráficos que facilitan la comprensión de los conceptos teóricos.
+
+                        - Tono y estilo: Utiliza un texto claro, accesible y directo al grano, eliminando tecnicismos para que el mensaje sea accesible."""
                     ),
-                    example_resources_type_card("favicon.ico"),
+                    example_resources_type_card("Enlaces Químicos.png"),
                     spacing="6", # Más espacio entre las dos tarjetas
                     justify="center", # Centramos las dos tarjetas una al lado de la otra
                     flex_wrap="wrap",
+                    white_space = "pre-line"
                 ),
                 padding_x="20px",
                 margin_bottom="20px"
@@ -96,13 +105,19 @@ def resources() -> rx.Component:
                         "Ejemplo",
                         "Cuestionario: Cuestionario Tema 4 Historia de España",
                         "Descripción",
-                        """Cuestionario digital con 50 preguntas de opción múltiple sobre el tema 4 
-                        de Historia de España para los alumnos de 2º de Bachillerato."""
+                        """Este cuestionario es una herramienta de repaso exhaustivo centrada en el tema 4 de la asignatura.
+
+                        - Estructura: Consta de 50 preguntas de opción múltiple que cubren todo el temario del bloque.
+
+                        - Objetivo: Facilitar la autoevaluación y el refuerzo de conceptos clave para alumnos que preparan la EBAU.
+
+                        - Formato: Digital, diseñado para una resolución ágil y una corrección inmediata."""
                     ),
-                    example_resources_type_card("favicon.ico"),
+                    example_resources_type_card("Cuestionario Tema 4 Historia de España.png"),
                     spacing="6", # Más espacio entre las dos tarjetas
                     justify="center", # Centramos las dos tarjetas una al lado de la otra
                     flex_wrap="wrap",
+                    white_space = "pre-line"
                 ),
                 padding_x="20px",
                 margin_bottom="20px"
@@ -124,14 +139,19 @@ def resources() -> rx.Component:
                         "Ejemplo",
                         "Documento: Guion Anuncio ACMA 2025-2026",
                         "Descripción",
-                        """Una propuesta que hizo <nombre>, integrante de la promoción del 2025-2026, 
-                        para el anuncio de ACMA. Cuanta con una estructura clara, buena maquetación y 
-                        una originalidad asombrosa para innovar en el anuncio. """
+                        """Este documento detalla una estrategia innovadora para el anuncio de la próxima temporada de ACMA.
+
+                        - Diseño y forma: Destaca por una estructura clara y una buena maquetación, facilitando una lectura fluida y profesional de la propuesta.
+
+                        - Factor innovador: El valor diferencial radica en una originalidad asombrosa, rompiendo con los formatos convencionales para buscar un impacto visual y creativo único.
+
+                        - Objetivo: Modernizar la imagen del anuncio 25-26 mediante una narrativa visual y conceptual que busca la innovación total."""
                     ),
-                    example_resources_type_card("favicon.ico"),
+                    example_resources_type_card("Guión Anuncio Acma.png"),
                     spacing="6", # Más espacio entre las dos tarjetas
                     justify="center", # Centramos las dos tarjetas una al lado de la otra
                     flex_wrap="wrap",
+                    white_space = "pre-line"
                 ),
                 padding_x="20px",
                 margin_bottom="20px"

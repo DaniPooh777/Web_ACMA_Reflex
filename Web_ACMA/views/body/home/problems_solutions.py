@@ -17,13 +17,13 @@ def problem_solutions() -> rx.Component:
         rx.flex(
             problem_card(
                 "Problema", 
-                "Falta de creatividad a la hora de crear recursos como presentaciones,\n pósters, cuestionarios…", 
+                "Falta de creatividad a la hora de crear recursos como presentaciones, pósters, cuestionarios…", 
                 "Solución", 
                 "Podemos crear esos recursos con buena calidad y originalidad."
             ),
             problem_card(
                 "Problema",
-                "Falta de tiempo y de ganas y no pueden crear los recursos que quieras.",
+                "Falta de tiempo y de ganas para crear los recursos que imagináis hacer.",
                 "Solución",
                 "Ahorramos tiempo y ganas a los profesores."
             ),

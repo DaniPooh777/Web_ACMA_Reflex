@@ -24,7 +24,7 @@ def example_resources_type_card(url: str) -> rx.Component:
                 src=url,
                 alt="Vista previa del recurso",
                 width="100%",
-                height="200px",
+                height="400px",
                 object_fit="contain",
                 border_radius="8px",
             ),

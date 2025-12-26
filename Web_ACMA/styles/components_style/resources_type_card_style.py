@@ -18,6 +18,7 @@ RESOURCES_GRID_STYLE = {
     "width": "100%",
     "max_width": "1200px", # <--- IGUAL QUE LAS TARJETAS DE ARRIBA
     "margin_bottom": "0.5rem",
+    "white_space": "pre-line"
 }
 
 # La tarjeta individual (La magia está acá)
