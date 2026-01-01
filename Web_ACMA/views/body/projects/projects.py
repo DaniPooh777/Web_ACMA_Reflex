@@ -15,35 +15,35 @@ def projects() -> rx.Component:
                 # ---PRIMERA FILA---
                 project_card(
                     "p1", "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800",
-                    "La fe en el marco del pensamiento",
-                    "Presentación interactiva en Genially sobre las principales religiones del mundo."
+                    "La Fe en el Marco del Pensamiento",
+                    "Presentación interactiva en Genially sobre las principales religiones del mundo, con elementos multimedia y actividades."
                 ),
                 project_card(
                     "p2", "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800",
                     "El Mural de Manyanet",
-                    "Proyecto colaborativo de arte digital y físico para el colegio."
+                    "Póster motivacional y creativo sobre los distintos aspectos y valores que aprendemos en el Colegio Padre Manyanet Alcobendas."
                 ),
                 project_card(
                     "p3", "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800",
                     "Vídeo del Acto de la Virgen",
-                    "Producción audiovisual completa del evento institucional de la paz."
+                    "Un montaje de las distintas fotos que se realizaron durante el evento escolar."
                 ),
 
                 # ---SEGUNDA FILA---
                 project_card(
                     "p4", "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800",
-                    "La fe en el marco del pensamiento",
-                    "Presentación interactiva en Genially sobre las principales religiones del mundo."
+                    "Inserte Título",
+                    "Inserte descripción."
                 ),
                 project_card(
                     "p5", "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800",
-                    "El Mural de Manyanet",
-                    "Proyecto colaborativo de arte digital y físico para el colegio."
+                    "Inserte Título",
+                    "Inserte descripción."
                 ),
                 project_card(
                     "p6", "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800",
-                    "Vídeo del Acto de la Virgen",
-                    "Producción audiovisual completa del evento institucional de la paz."
+                    "Inserte Título",
+                    "Inserte descripción."
                 ),
                 **CARDS_FLEX_STYLE
             ),

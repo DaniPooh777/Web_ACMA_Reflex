@@ -46,7 +46,7 @@ def project_card(card_id: str, image_url: str, title: str, description: str) -> 
                 rx.cond(
                     is_expanded,
                     rx.box(
-                        rx.text("Descripción del trabajo: ", **DESCRIPTION_LABEL_STYLE),
+                        rx.text("Descripción: ", **DESCRIPTION_LABEL_STYLE),
                         rx.text(description, **DESCRIPTION_TEXT_STYLE),
                         **DESCRIPTION_CONTAINER_STYLE
                     ),
