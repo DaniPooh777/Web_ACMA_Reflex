@@ -1,6 +1,6 @@
 import reflex as rx
 from Web_ACMA.components.information_card import information_card
-from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style import WHO_ARE_WE_CONTAINER_STYLE
+from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style import WHO_ARE_WE_CONTAINER_STYLE, ORDER_CARD_STYLE
 
 def information() -> rx.Component:
     return rx.vstack(
@@ -34,14 +34,7 @@ def information() -> rx.Component:
                 crítico y colaboración, impulsando la innovación educativa.""",
                 width=["100%", "48%"]
             ),
-            width="100%",
-            justify_content="space-between", # Las pega a los bordes de la de arriba
-            flex_wrap="wrap",
-            margin_top="1.5rem",  # <--- ACÁ ESTÁ EL SECRETO, LOCO. Separamos los bloques.
+            style=ORDER_CARD_STYLE
         ),
-        style=WHO_ARE_WE_CONTAINER_STYLE,
-        width="100%",
-        max_width="1100px", # <--- ESTO define el límite de la de arriba
-        align_items="center", # <--- ESTO centra todo el bloque
-        margin="0 auto", # Margen automático para centrar el bloque en la pantalla
+        style=WHO_ARE_WE_CONTAINER_STYLE
     )

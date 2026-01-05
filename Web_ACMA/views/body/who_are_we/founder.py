@@ -4,26 +4,27 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
     FOUNDER_SECTION_CONTAINER,
     FOUNDER_IMAGE_STYLE,
     FOUNDER_TEXT_CARD_STYLE,
-    FOUNDER_SECTION_TITLE_STYLE, # El nuevo estilo
+    FOUNDER_SECTION_TITLE_STYLE, 
     INFO_TITLE_STYLE,
     INFO_TEXT_STYLE,
     INFO_SUBTITTLE_STYLE
 )
 
+
 def founder() -> rx.Component:
     return rx.center(
         rx.vstack(
-            # TÍTULO ARRIBA DE TODO, BIEN PLANTADO
+            # Título de arriba
             rx.heading("Nuestro Fundador", style=FOUNDER_SECTION_TITLE_STYLE),
             
-            # CONTENEDOR DE IMAGEN + TARJETA
+            # Contenedor de imagen + tarjeta
             rx.flex(
-                # IMAGEN A LA IZQUIERDA
+                # Imagen a la izquierda
                 rx.image(
-                    src="favicon.ico", # Poné la ruta que va, no seas boludo
+                    src="favicon.ico",
                     style=FOUNDER_IMAGE_STYLE
                 ),
-                # TARJETA A LA DERECHA
+                # Tarjeta a la derecha
                 rx.vstack(
                     rx.heading("José Antonio Romero Paniagua", style=INFO_TITLE_STYLE),
                     rx.text(

@@ -10,9 +10,11 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
 )
 
 def collaborator_item(name: str, role: str, description: str, img_src: str) -> rx.Component:
-    """Unidad lógica: Imagen arriba, Tarjeta abajo."""
     return rx.vstack(
+        # Imagen arriba
         rx.image(src=img_src, style=COLLABORATOR_IMAGE_STYLE),
+
+        # Tarjetas abajo
         rx.vstack(
             rx.heading(name, style=INFO_TITLE_STYLE),
             rx.text(role, style=INFO_SUBTITTLE_STYLE),
@@ -29,17 +31,20 @@ def collaborator_item(name: str, role: str, description: str, img_src: str) -> r
 def collaborators() -> rx.Component:
     return rx.center(
         rx.vstack(
+            # Título principal
             rx.heading("Nuestros Colaboradores Principales", style=FOUNDER_SECTION_TITLE_STYLE),
+
+            # Tarjetas + imágenes
             rx.flex(
                 collaborator_item(
-                    "Nombre Colaborador", 
+                    "Marcos Asenjo González", 
                     "Rol en ACMA", 
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-                    "favicon.ico" # Reemplazá por la posta
+                    "favicon.ico" 
                 ),
                 collaborator_item(
-                    "Nombre Colaborador", 
-                    "Rol en ACMA", 
+                    "Daniel González Rodríguez", 
+                    "Integrante y creador de la página web de ACMA", 
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
                     "favicon.ico"
                 ),
