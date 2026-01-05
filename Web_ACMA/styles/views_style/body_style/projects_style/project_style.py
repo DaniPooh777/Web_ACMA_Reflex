@@ -3,7 +3,7 @@ import reflex as rx
 # Estilos para la tarjeta de proyecto
 CARD_STYLE = {
     "width": "100%",
-    "max_width": "360px",  # Ajustado para que entren 3 por fila en 1200px
+    "max_width": "360px", 
     "background": "rgb(17, 24, 39)",
     "border_radius": "12px",
     "overflow": "hidden",
@@ -69,7 +69,7 @@ EXPANDABLE_CONTAINER_STYLE = {
 # Estilos para el contenido de descripción
 DESCRIPTION_CONTAINER_STYLE = {
     "padding": "0 1.5rem 1.5rem 1.5rem",
-    "opacity": "1", # Quitamos el 0 para que no desaparezca en el render
+    "opacity": "1", 
     "animation": "fadeIn 0.3s ease-out forwards",
 }
 

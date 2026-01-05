@@ -11,6 +11,7 @@ from Web_ACMA.styles.views_style.body_style.projects_style.project_style import 
 def projects() -> rx.Component:
     return rx.box(
         rx.vstack(
+            # Tarjetas proyecto
             rx.flex(
                 # ---PRIMERA FILA---
                 project_card(
