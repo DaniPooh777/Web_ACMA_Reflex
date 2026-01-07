@@ -5,7 +5,7 @@ from Web_ACMA.components.example_resource_type_card import example_resources_typ
 from Web_ACMA.styles.components_style.resources_type_card_style import RESOURCES_GRID_STYLE, HEADER_TITLE_STYLE # Importá el estilo
 
 def resources() -> rx.Component:
-    # Importamos State dentro de la función para evitar importación circular (¿Qué es la importación circular?)
+    # Importamos State dentro de la función para evitar importación circular 
     from Web_ACMA.Web_ACMA import State
     
     return rx.vstack(
@@ -19,7 +19,7 @@ def resources() -> rx.Component:
             resources_type_card("Presentaciones", "presentation", State.toggle_presentaciones),
             resources_type_card("Cuestionarios", "notepad-text", State.toggle_cuestionarios),
             resources_type_card("Documentos", "file-text", State.toggle_documentos),
-            style=RESOURCES_GRID_STYLE # <--- USA ESTO PARA EL FLEX Y EL GAP
+            style=RESOURCES_GRID_STYLE #
         ),
         
         # Contenido que aparece para Pósters
@@ -46,8 +46,8 @@ def resources() -> rx.Component:
                         - Contenido: Utiliza un lenguaje adaptado, eliminando tecnicismos para que el mensaje sea accesible y fomente la reflexión crítica desde edades tempranas."""
                     ),
                     example_resources_type_card("TÚ DECIDES.png"),
-                    spacing="6", # Más espacio entre las dos tarjetas
-                    justify="center", # Centramos las dos tarjetas una al lado de la otra
+                    spacing="6",
+                    justify="center", 
                     flex_wrap="wrap",
                     white_space = "pre-line"
                 ),
@@ -80,8 +80,8 @@ def resources() -> rx.Component:
                         - Tono y estilo: Utiliza un texto claro, accesible y directo al grano, eliminando tecnicismos para que el mensaje sea accesible."""
                     ),
                     example_resources_type_card("Enlaces Químicos.png"),
-                    spacing="6", # Más espacio entre las dos tarjetas
-                    justify="center", # Centramos las dos tarjetas una al lado de la otra
+                    spacing="6", 
+                    justify="center", 
                     flex_wrap="wrap",
                     white_space = "pre-line"
                 ),
@@ -114,8 +114,8 @@ def resources() -> rx.Component:
                         - Formato: Digital, diseñado para una resolución ágil y una corrección inmediata."""
                     ),
                     example_resources_type_card("Cuestionario Tema 4 Historia de España.png"),
-                    spacing="6", # Más espacio entre las dos tarjetas
-                    justify="center", # Centramos las dos tarjetas una al lado de la otra
+                    spacing="6", 
+                    justify="center", 
                     flex_wrap="wrap",
                     white_space = "pre-line"
                 ),
@@ -148,8 +148,8 @@ def resources() -> rx.Component:
                         - Objetivo: Modernizar la imagen del anuncio 25-26 mediante una narrativa visual y conceptual que busca la innovación total."""
                     ),
                     example_resources_type_card("Guión Anuncio Acma.png"),
-                    spacing="6", # Más espacio entre las dos tarjetas
-                    justify="center", # Centramos las dos tarjetas una al lado de la otra
+                    spacing="6", 
+                    justify="center", 
                     flex_wrap="wrap",
                     white_space = "pre-line"
                 ),
@@ -157,8 +157,7 @@ def resources() -> rx.Component:
                 margin_bottom="20px"
             )
         ),
-        
         width="100%",
-        align_items="center", # Centra el heading y el grid
+        align_items="center", 
         spacing="4",
     )

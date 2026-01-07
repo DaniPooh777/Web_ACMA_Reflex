@@ -21,13 +21,12 @@ def caracteristics() -> rx.Component:
                 "No te preocupes por crear recursos interactivos, nosotros lo hacemos.",
                 "sparkles"
             ),
-            # ESTILOS DEL FLEX PARA ALINEACIÓN HORIZONTAL
             width="100%",
-            max_width="1130px", # Alineado con el resto de la web
+            max_width="1130px",
             display="flex",
             flex_wrap="nowrap", # Forzamos que se queden en la misma línea en desktop
             justify_content="center",
-            gap="1.5rem", # Espaciado equilibrado
+            gap="1.5rem",
         ),
         width="100%",
         align_items="center",

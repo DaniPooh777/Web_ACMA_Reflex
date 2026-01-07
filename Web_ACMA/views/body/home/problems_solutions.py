@@ -13,7 +13,6 @@ def problem_solutions() -> rx.Component:
             "Transforma tu Tiempo de Planificación", 
             style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}
         ),
-        # EL FLEX ES EL PADRE DIRECTO DE LAS TARJETAS
         rx.flex(
             problem_card(
                 "Problema", 
@@ -27,7 +26,7 @@ def problem_solutions() -> rx.Component:
                 "Solución",
                 "Ahorramos tiempo y ganas a los profesores."
             ),
-            style=PROBLEMS_GRID_STYLE # <--- ACÁ VA LA MAGIA
+            style=PROBLEMS_GRID_STYLE 
         ),
         style=SOLUTIONS_CONTAINER_STYLE,
         width="100%",
