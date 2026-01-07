@@ -8,7 +8,7 @@ def example_resources_type_card(url: str) -> rx.Component:
         "width": ["100%", "550px"], # Ahora sí, pisamos el valor original
         "height": "auto",
         "padding": "1.5rem",
-        "cursor": "default",      # <--- El cursor por defecto, nada de manitos de "hacé click acá"
+        "cursor": "default",    
         "_hover": {},
     })
 

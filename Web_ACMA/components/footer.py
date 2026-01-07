@@ -16,7 +16,7 @@ def footer() -> rx.Component:
                 spacing="3",
             ),
             
-            rx.spacer(), # Empuja los links a la derecha
+            rx.spacer(), 
             
             # Bloque Derecho: Navegación
             rx.hstack(

@@ -3,7 +3,7 @@ from Web_ACMA.styles.components_style.navbar_style import (
     NAVBAR_STYLE, 
     NAV_LINK_STYLE, 
     NAV_BUTTON_STYLE,
-    NAV_CENTER_HSTACK_STYLE # <--- No te olvides de importarlo
+    NAV_CENTER_HSTACK_STYLE # 
 )
 
 def navbar() -> rx.Component:
@@ -23,7 +23,7 @@ def navbar() -> rx.Component:
             rx.link("Quiénes Somos", href="/quienes-somos", **NAV_LINK_STYLE),
             rx.link("Contacto", href="/contact", **NAV_LINK_STYLE),
             spacing="6",
-            style=NAV_CENTER_HSTACK_STYLE, # <--- Aplicamos la magia acá
+            style=NAV_CENTER_HSTACK_STYLE, 
         ),
         
         # Bloque Derecho: Botón

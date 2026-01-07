@@ -5,7 +5,7 @@ def link_button() -> rx.Component:
     return rx.link(
         rx.button(
             "Nuevo encargo",
-            style=HERO_BUTTON_STYLE # <--- PONETE LAS PILAS ACÁ
+            style=HERO_BUTTON_STYLE 
         ),
         href="/contact#formulario-encargo",
         text_decoration="none",

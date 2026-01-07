@@ -10,6 +10,6 @@ def information_card(tittle: str, text: str, width: str = "100%") -> rx.Componen
         rx.heading(tittle, style=INFO_TITLE_STYLE),
         rx.text(text, style=INFO_TEXT_STYLE),
         style={**INFO_CARD_STYLE, "width": width},
-        align_items="center", # Centra el texto dentro de la tarjeta
-        padding="2.5rem",      # Dale aire para que no sea un bloque mazacote
+        align_items="center", 
+        padding="2.5rem",     
     )
