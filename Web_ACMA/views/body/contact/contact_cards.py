@@ -19,7 +19,7 @@ def contact_cards() -> rx.Component:
                 "map_pin",
             ),
             width="100%",
-            justify="center", # <--- CLAVE: Centra las dos tarjetas superiores
+            justify="center",
             spacing="6",
         ),
         caracteristics_card_card(
@@ -31,7 +31,7 @@ def contact_cards() -> rx.Component:
             "12:25 - 13:20"
         ),
         width="100%",
-        max_width="824px", # Ancho equivalente a 2 tarjetas de 400px + spacing
+        max_width="824px", 
         align_items="center",
         spacing="8",
     )

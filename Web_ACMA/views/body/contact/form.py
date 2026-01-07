@@ -132,7 +132,7 @@ def solicitud_form() -> rx.Component:
                     ),
                     align_items="start",
                     width="100%",
-                    padding_top="0.5rem", # Espacio entre el recuadro y la lista
+                    padding_top="0.5rem", 
                 ),
                 width="100%", 
                 align_items="start", 
@@ -142,11 +142,11 @@ def solicitud_form() -> rx.Component:
             rx.button("Enviar Solicitud", type="submit", **SUBMIT_BUTTON_STYLE),
             **FORM_CONTAINER_STYLE,
         ),
-        id="formulario-encargo", # <--- AGREGÁ ESTO ACÁ, LOCO
+        id="formulario-encargo", 
         on_submit=FormState.handle_submit,
         width="100%",
         scroll_margin_top="100px",
         display="flex",
         justify_content="center",
-        align_self="center", # Para que no se te escape al costado
+        align_self="center", 
     )
