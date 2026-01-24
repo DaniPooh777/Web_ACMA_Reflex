@@ -21,7 +21,7 @@ def founder() -> rx.Component:
             rx.flex(
                 # Imagen a la izquierda
                 rx.image(
-                    src="WebMaster.png",
+                    src="WebMaster.jpg",
                     style=FOUNDER_IMAGE_STYLE
                 ),
                 # Tarjeta a la derecha
