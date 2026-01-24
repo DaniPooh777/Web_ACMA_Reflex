@@ -27,7 +27,7 @@ def index() -> rx.Component:
             ),
             link_button(),
             width="100%",
-            align_items="center",    # <--- ESTO ES LO QUE TE FALTA, LOCO
+            align_items="center",    
             spacing="4",
         ),
         problem_solutions(),
@@ -36,12 +36,12 @@ def index() -> rx.Component:
         footer(),
         spacing="0",
         width="100%",
-        align_items="center",        # <--- EL PADRE TAMBIÉN TIENE QUE CENTRAR
+        align_items="center",       
         background_color="rgb(10, 10, 15)"
     )
 
 
-# Página Proyectos - ACTUALIZADA
+# Página Proyectos 
 def project() -> rx.Component:
     return rx.vstack(
         navbar(),
@@ -49,7 +49,7 @@ def project() -> rx.Component:
                 "Proyectos Más Relevantes",
                 "Descubre algunos de los proyectos más destacados que hemos realizado para el profesorado."
             ),
-        projects(),  # Usando el nuevo componente
+        projects(),  
         footer(),
         spacing="0",
         width="100%",
@@ -62,12 +62,12 @@ def who_are_we() -> rx.Component:
     return rx.vstack(
         navbar(),
         header("Profundizando en ACMA", "Conocé a los que ensucian las manos."),
-        information(), # El que arreglamos antes
-        founder(),     # El que acabamos de pulir
+        information(), 
+        founder(),     
         collaborators(),
         footer(),
         width="100%",
-        align_items="center", # <--- ESTO ES NO NEGOCIABLE
+        align_items="center",
         background_color="rgb(10, 10, 15)",
     )
 
@@ -80,13 +80,12 @@ def contact() -> rx.Component:
             "Contacta con ACMA",
             "Estamos aquí para ayudarte a crear los mejores recursos educativos."
         ),
-        # Este es el contenedor clave que tiene que estar centrado
         rx.vstack(
-            contact_cards(),   # Tiene max_width="824px"
-            solicitud_form(),  # Ahora también tiene max_width="824px"
+            contact_cards(),   
+            solicitud_form(),  
             
             width="100%",
-            align_items="center", # <--- ESTO ES LO QUE LO CENTRA
+            align_items="center", 
             spacing="8",
             padding_y="4rem",
         ),

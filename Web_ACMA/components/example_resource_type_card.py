@@ -5,7 +5,7 @@ def example_resources_type_card(url: str) -> rx.Component:
     # Creamos una copia para no romper el estilo original de las otras tarjetas
     custom_style = RESOURCE_CARD_STYLE.copy()
     custom_style.update({
-        "width": ["100%", "550px"], # Ahora sí, pisamos el valor original
+        "width": ["100%", "550px"],
         "height": "auto",
         "padding": "1.5rem",
         "cursor": "default",    
@@ -33,5 +33,5 @@ def example_resources_type_card(url: str) -> rx.Component:
             border_radius="12px",
             width="100%",
         ),
-        style=custom_style # Aplicamos el diccionario ya corregido
+        style=custom_style # Aplicamos el diccionario customizado
     )

@@ -24,7 +24,7 @@ def caracteristics() -> rx.Component:
             width="100%",
             max_width="1130px",
             display="flex",
-            flex_wrap="nowrap", # Forzamos que se queden en la misma línea en desktop
+            flex_wrap="nowrap", 
             justify_content="center",
             gap="1.5rem",
         ),

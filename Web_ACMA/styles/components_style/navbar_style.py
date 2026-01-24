@@ -1,6 +1,5 @@
 import reflex as rx
 
-# NUEVO: Estilo para forzar el centro matemático
 NAV_CENTER_HSTACK_STYLE = {
     "position": "absolute",
     "left": "50%",
@@ -10,9 +9,8 @@ NAV_CENTER_HSTACK_STYLE = {
     "justify_content": "center",
 }
 
-# Asegurate de que el NAVBAR_STYLE tenga position relative si no lo tiene
 NAVBAR_STYLE = {
-    "position": "sticky", # Ya lo tenés así
+    "position": "sticky", 
     "top": "0",
     "z_index": "999",
     "width": "100%",
@@ -54,9 +52,9 @@ HERO_BUTTON_STYLE = {
     "background_color": "rgb(59, 130, 246)",
     "color": "white",
     "border_radius": "8px",
-    "padding_x": "2.5rem", # Más ancho
-    "padding_y": "1.5rem", # Más alto
-    "font_size": "1.1rem", # Texto más legible
+    "padding_x": "2.5rem", 
+    "padding_y": "1.5rem", 
+    "font_size": "1.1rem", 
     "font_weight": "600",
     "cursor": "pointer",
     "_hover": {

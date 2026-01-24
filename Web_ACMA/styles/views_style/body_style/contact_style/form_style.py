@@ -1,12 +1,11 @@
 import reflex as rx
 
-# Colores extraídos quirúrgicamente de la captura
 COLOR_BG_DARK = "rgb(10, 10, 15)"
 COLOR_CARD_BG = "rgba(17, 24, 39, 0.5)"
 COLOR_BORDER_INPUT = "rgba(255, 255, 255, 0.2)"
 COLOR_BORDER_CONTAINER = "rgba(255, 255, 255, 0.1)"
 COLOR_ACCENT = "rgb(59, 130, 246)" 
-COLOR_INPUT_BG = "rgb(20, 24, 33)" # Un toque más oscuro para que se hunda el input
+COLOR_INPUT_BG = "rgb(20, 24, 33)" 
 COLOR_TEXT_GRAY = "rgb(156, 163, 175)"
 
 FORM_CONTAINER_STYLE = {
@@ -30,8 +29,7 @@ INPUT_STYLE = {
     "outline": "none !important",
     "transition": "all 0.2s ease-in-out",
     
-    # LA SOLUCIÓN DEFINITIVA:
-    "& fieldset": { "border": "none" }, # Quitamos el borde interno de Radix
+    "& fieldset": { "border": "none" }, 
     "&:focus-within": {
         "border": f"0.5px solid {COLOR_ACCENT} !important", # Forzamos el azul
         "box_shadow": f"0 0 0 1px {COLOR_ACCENT} !important",

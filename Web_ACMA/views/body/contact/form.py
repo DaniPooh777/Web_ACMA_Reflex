@@ -123,7 +123,7 @@ def solicitud_form() -> rx.Component:
                                 size=14, 
                                 color="gray", 
                                 cursor="pointer",
-                                on_click=FormState.remove_file(file) # <--- Necesitamos esta lógica
+                                on_click=FormState.remove_file(file) 
                             ),
                             width="100%",
                             padding_y="0.5rem",

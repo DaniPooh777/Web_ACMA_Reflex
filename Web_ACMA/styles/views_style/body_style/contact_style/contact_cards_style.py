@@ -1,8 +1,8 @@
 import reflex as rx
 
 CONTACT_CARD_STYLE = {
-    "width": ["100%", "100%", "50%", "550px"], # <--- IGUAL QUE LAS DE ARRIBA
-    "max_width": "830px", # Evita que se deformen en pantallas gigantes
+    "width": ["100%", "100%", "50%", "550px"], 
+    "max_width": "830px", 
     "background_color": "rgba(17, 24, 39, 0.5)",
     "border": "1px solid rgba(255, 255, 255, 0.1)",
     "padding": "2rem",
@@ -32,7 +32,7 @@ CARD_LINK_STYLE = {
 }
 
 SCHEDULE_CARD_STYLE = {
-    "width": "100%", # Ocupa todo el ancho del vstack padre (824px)
+    "width": "100%", 
     "max_width": "824px", 
     "background_color": "rgba(17, 24, 39, 0.5)",
     "border": "1px solid rgba(255, 255, 255, 0.1)",

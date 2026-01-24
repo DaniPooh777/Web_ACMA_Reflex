@@ -13,15 +13,15 @@ HEADER_TITLE_STYLE = {
 RESOURCES_GRID_STYLE = {
     "display": "flex",
     "flex_wrap": "wrap",
-    "justify_content": "center", # Esto ya lo teníamos para centrar
+    "justify_content": "center", 
     "gap": "1.5rem",
     "width": "100%",
-    "max_width": "1200px", # <--- IGUAL QUE LAS TARJETAS DE ARRIBA
+    "max_width": "1200px", 
     "margin_bottom": "0.5rem",
     "white_space": "pre-line"
 }
 
-# La tarjeta individual (La magia está acá)
+# La tarjeta individual
 RESOURCE_CARD_STYLE = {
     "width": ["100%", "265px"], # Responsive: full en mobile, fijo en desktop
     "height": "140px",

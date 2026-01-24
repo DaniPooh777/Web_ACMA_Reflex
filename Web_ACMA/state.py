@@ -26,7 +26,7 @@ class FormState(rx.State):
     def handle_submit(self, form_data: dict):
         # El diccionario form_data trae los 'name' de los inputs como keys
         print(f"Datos recibidos: {form_data}")
-        # Acá podrías incluir self.archivos_seleccionados en el envío final
+        # Incluir self.archivos_seleccionados en el envío final
         return rx.window_alert(f"¡Solicitud enviada con éxito! Archivos: {', '.join(self.archivos_seleccionados)}")
 
     async def handle_upload(self, files: list[rx.UploadFile]):
@@ -36,7 +36,7 @@ class FormState(rx.State):
         """
         for file in files:
             upload_data = await file.read()
-            # Definimos la ruta de salida (asegurate de que la carpeta exista)
+            # Definimos la ruta de salida
             outfile = f".web/public/{file.filename}"
             
             with open(outfile, "wb") as f:
