@@ -21,7 +21,7 @@ def founder() -> rx.Component:
             rx.flex(
                 # Imagen a la izquierda
                 rx.image(
-                    src="favicon.ico",
+                    src="WebMaster.png",
                     style=FOUNDER_IMAGE_STYLE
                 ),
                 # Tarjeta a la derecha
@@ -32,7 +32,9 @@ def founder() -> rx.Component:
                         style=INFO_SUBTITTLE_STYLE
                     ),
                     rx.text(
-                        "Acá va toda la historia del fundador. Al estar fuera de la tarjeta, la imagen tiene su propio peso visual y la tarjeta de la derecha contiene solo el mensaje, tal cual pediste.",
+                        """ACMA nació bajo el respaldo de Jefatura de Estudios como un proyecto innovador dentro de la optativa Ciencias de la Computación. 
+                        Nuestra misión es doble: facilitar la labor docente con materiales de alta calidad y ofrecer al alumno una experiencia laboral real 
+                        sin añadir carga lectiva a la PAU. Aquí entrenamos el rigor profesional ayudando a nuestros profesores.""",
                         style=INFO_TEXT_STYLE
                     ),
                     style=FOUNDER_TEXT_CARD_STYLE,
