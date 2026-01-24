@@ -29,7 +29,7 @@ def navbar() -> rx.Component:
         # Bloque Derecho: Botón
         rx.link(
             rx.button(
-                "Solicite un nuevo encargo",
+                "Nuevo encargo",
                 **NAV_BUTTON_STYLE
             ),
             href="/contact#formulario-encargo",
