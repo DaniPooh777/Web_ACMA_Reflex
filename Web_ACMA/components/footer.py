@@ -1,4 +1,5 @@
 import reflex as rx
+from datetime import datetime
 from Web_ACMA.styles.components_style.footer_style import (
     FOOTER_CONTAINER_STYLE,
     FOOTER_NAV_LINK_STYLE,
@@ -6,6 +7,8 @@ from Web_ACMA.styles.components_style.footer_style import (
 )
 
 def footer() -> rx.Component:
+    year = datetime.now().year
+
     return rx.vstack(
         rx.hstack(
             # Bloque Izquierdo: Logo
@@ -37,7 +40,7 @@ def footer() -> rx.Component:
         ),
         
         rx.text(
-            "© 2025 ACMA. Agencia de Contenido Manyanet Alcobendas.",
+            f"© {year} ACMA. Agencia de Contenido Manyanet Alcobendas.",
             **FOOTER_COPYRIGHT_STYLE
         ),
         
