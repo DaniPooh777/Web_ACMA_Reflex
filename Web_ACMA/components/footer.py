@@ -10,7 +10,7 @@ def footer() -> rx.Component:
         rx.hstack(
             # Bloque Izquierdo: Logo
             rx.hstack(
-                rx.avatar(src="favicon.ico", size="3"),
+                rx.avatar(src="Acma Logo 2025-2026.png", size="3"),
                 rx.text("ACMA", font_weight="bold", color="white", font_size="1.2rem"),
                 align_items="center",
                 spacing="3",
