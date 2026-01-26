@@ -82,6 +82,10 @@ def solicitud_form() -> rx.Component:
                 align_items="stretch",
                 spacing="1",
             ),
+
+            input_field(label="Asunto", placeholder="Dale un nombre al encargo", name="asunto"),
+            input_field(label="Fecha de Entrega", placeholder="Indica cuándo lo necesitas (ej. 12/04/2026)", name="fecha_entrega"),
+
             rx.vstack(
                 rx.text("Descripción del Encargo", **LABEL_STYLE),
                 # RECUADRO DE TEXTO (Solo el área de escritura y el botón)
