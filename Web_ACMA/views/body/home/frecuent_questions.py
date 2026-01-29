@@ -4,17 +4,22 @@ from Web_ACMA.styles.views_style.body_style.home_style.frecuent_questions_style 
 )
 
 class FaqState(rx.State):
-    opened_items: dict[str, bool] = {}
+    # Guardamos solo el ID de la que está abierta. Si es "", todas están cerradas.
+    opened_id: str = ""
 
     def toggle_faq(self, id: str):
-        self.opened_items[id] = not self.opened_items.get(id, False)
+        # Si clickeás la que ya está abierta, la cerramos. Si no, abrimos la nueva.
+        if self.opened_id == id:
+            self.opened_id = ""
+        else:
+            self.opened_id = id
 
 def faq_item(question: str, answer: str, id: str) -> rx.Component:
-    is_open = FaqState.opened_items.get(id, False)
+    # La condición ahora es: "¿Es mi ID el que está guardado en el estado?"
+    is_open = (FaqState.opened_id == id)
     
     return rx.box(
         rx.vstack(
-            # Cabecera: Pregunta + Icono
             rx.hstack(
                 rx.text(question, style=FAQ_QUESTION_STYLE),
                 rx.icon(
@@ -28,13 +33,11 @@ def faq_item(question: str, answer: str, id: str) -> rx.Component:
                 align_items="center",
                 width="100%",
             ),
-            # Respuesta Condicional
             rx.cond(
                 is_open,
                 rx.text(answer, style=FAQ_ANSWER_STYLE),
             ),
             style=FAQ_ITEM_INNER_STYLE,
-            # EL CLICK ESTÁ ACÁ: Envuelve todo el contenido incluyendo el padding
             on_click=lambda: FaqState.toggle_faq(id),
         ),
         style=FAQ_CARD_STYLE,
