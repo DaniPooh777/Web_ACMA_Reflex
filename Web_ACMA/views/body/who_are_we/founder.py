@@ -28,7 +28,7 @@ def founder() -> rx.Component:
                 rx.vstack(
                     rx.heading("José Antonio Romero Paniagua", style=INFO_TITLE_STYLE),
                     rx.text(
-                        "Profesor y Director de ACMA",
+                        "Fundador y Director de ACMA",
                         style=INFO_SUBTITTLE_STYLE
                     ),
                     rx.text(

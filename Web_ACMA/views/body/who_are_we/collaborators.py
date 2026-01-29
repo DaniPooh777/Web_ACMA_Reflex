@@ -39,16 +39,20 @@ def collaborators() -> rx.Component:
                 collaborator_item(
                     "Marcos Asenjo González", 
                     "Rol en ACMA", 
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-                    "favicon.ico" 
+                    """La informática ha evolucionado mucho en los últimos años y décadas, y en este mundo cada vez más digital 
+                    aparece la necesidad de contar con equipos que ayuden a los docentes en esta tarea. Mi papel como co-formador 
+                    en ACMA consiste en proveer a los trabajadores de ACMA de la formación en programación, redes y sistemas para 
+                    que las soluciones proporcionadas por nuestro equipo ya no consistan únicamente en soluciones de diseño, sino 
+                    también soluciones técnicas a los problemas de la docencia.""",
+                    "Foto Marcos.jpg" 
                 ),
                 collaborator_item(
                     "Daniel González Rodríguez", 
                     "Integrante y creador de la página web de ACMA", 
                     """Pieza clave en ACMA, no solo es el fundador de esta web, sino un integrante excepcional que ha elevado 
                     la calidad de nuestros trabajos. Su visión técnica nos llevó a GitHub, creando el espacio donde compartimos 
-                    nuestro código creado en los múltiples proyectos que trabajamos, destacando el videojuego ROGUETHON creado 
-                    por Daniel. Además, su labor publicitaria (¡especialmente en Primaria!) ha sido vital para generar esa confianza 
+                    nuestro código creado en los múltiples proyectos que trabajamos, destacando el videojuego ROGUETHON que creé. 
+                    Además, su labor publicitaria (¡especialmente en Primaria!) ha sido vital para generar esa confianza 
                     y cercanía que hoy nos une con los profesores.""",
                     "favicon.ico"
                 ),
