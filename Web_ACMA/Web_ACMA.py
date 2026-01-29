@@ -14,6 +14,7 @@ from Web_ACMA.views.body.projects.projects import projects
 from Web_ACMA.state import State 
 from Web_ACMA.views.body.contact.form import solicitud_form 
 from Web_ACMA.views.body.contact.contact_cards import contact_cards
+from Web_ACMA.views.body.home.frecuent_questions import frecuent_questions
 
 
 # Web_ACMA.py
@@ -33,6 +34,7 @@ def index() -> rx.Component:
         problem_solutions(),
         resources(),
         caracteristics(),
+        frecuent_questions(),
         footer(),
         spacing="0",
         width="100%",

@@ -30,5 +30,5 @@ def caracteristics() -> rx.Component:
         ),
         width="100%",
         align_items="center",
-        padding_y="4rem",
+        padding_top="4rem",
     )
