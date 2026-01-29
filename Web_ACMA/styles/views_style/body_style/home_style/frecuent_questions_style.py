@@ -1,8 +1,6 @@
-import reflex as rx
-
 FAQ_CONTAINER_STYLE = {
     "width": "100%",
-    "max_width": "824px",  # Alineado con tus otros formularios
+    "max_width": "824px",
     "padding_y": "4rem",
     "align_items": "center",
 }
@@ -12,17 +10,21 @@ FAQ_CARD_STYLE = {
     "background_color": "rgba(17, 24, 39, 0.5)",
     "border": "1px solid rgba(255, 255, 255, 0.1)",
     "border_radius": "12px",
-    "overflow": "hidden", # Importante para que el click no se escape por los bordes
-    "transition": "all 0.3s ease",
+    "overflow": "hidden",
+    "transition": "all 0.3s ease-in-out",
+    "cursor": "pointer",
     "_hover": {
         "border_color": "rgba(59, 130, 246, 0.5)",
+        "background_color": "rgba(17, 24, 39, 0.7)",
     },
 }
 
+# Este es el contenedor que recibe el click y tiene el padding general
 FAQ_ITEM_INNER_STYLE = {
     "width": "100%",
-    "padding": "1.5rem", # El padding se lo damos al contenido, no a la tarjeta
-    "cursor": "pointer",
+    "padding_x": "1.5rem",
+    "padding_top": "2rem",
+    "padding_bottom": "1.2rem",
 }
 
 FAQ_QUESTION_STYLE = {
@@ -32,11 +34,17 @@ FAQ_QUESTION_STYLE = {
     "user_select": "none",
 }
 
+# La magia está acá: Animamos solo lo necesario
+FAQ_ANSWER_ANIMATION_STYLE = {
+    "transition": "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out",
+    "overflow": "hidden",
+}
+
 FAQ_ANSWER_STYLE = {
     "color": "rgb(156, 163, 175)",
     "font_size": "1rem",
-    "padding_top": "1rem",
     "line_height": "1.6",
+    "padding_top": "1rem", # El padding vive ACÁ adentro
 }
 
 HEADER_TITLE_STYLE = {

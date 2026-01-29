@@ -1,45 +1,48 @@
 import reflex as rx
-from Web_ACMA.styles.views_style.body_style.home_style.frecuent_questions_style import (
-    FAQ_CONTAINER_STYLE, FAQ_CARD_STYLE, FAQ_QUESTION_STYLE, FAQ_ANSWER_STYLE, FAQ_ITEM_INNER_STYLE, HEADER_TITLE_STYLE
-)
+from Web_ACMA.styles.views_style.body_style.home_style.frecuent_questions_style import *
 
 class FaqState(rx.State):
-    # Guardamos solo el ID de la que está abierta. Si es "", todas están cerradas.
     opened_id: str = ""
 
     def toggle_faq(self, id: str):
-        # Si clickeás la que ya está abierta, la cerramos. Si no, abrimos la nueva.
         if self.opened_id == id:
             self.opened_id = ""
         else:
             self.opened_id = id
 
 def faq_item(question: str, answer: str, id: str) -> rx.Component:
-    # La condición ahora es: "¿Es mi ID el que está guardado en el estado?"
     is_open = (FaqState.opened_id == id)
     
     return rx.box(
         rx.vstack(
+            # Header
             rx.hstack(
                 rx.text(question, style=FAQ_QUESTION_STYLE),
                 rx.icon(
                     tag="chevron-down",
                     size=20,
                     color="rgb(59, 130, 246)",
+                    # Animación del icono también suave
                     transform=rx.cond(is_open, "rotate(180deg)", "rotate(0deg)"),
-                    transition="transform 0.3s ease",
+                    transition="transform 0.4s ease-in-out",
                 ),
                 justify_content="space-between",
                 align_items="center",
                 width="100%",
             ),
-            rx.cond(
-                is_open,
+            
+            # Contenedor de la Respuesta (El "túnel")
+            rx.box(
                 rx.text(answer, style=FAQ_ANSWER_STYLE),
+                style=FAQ_ANSWER_ANIMATION_STYLE,
+                # Usamos valores fijos para que el CSS pueda interpolar
+                max_height=rx.cond(is_open, "300px", "0px"),
+                opacity=rx.cond(is_open, "1", "0"),
             ),
             style=FAQ_ITEM_INNER_STYLE,
-            on_click=lambda: FaqState.toggle_faq(id),
         ),
+        # Hitbox total: el click está en la tarjeta
+        on_click=lambda: FaqState.toggle_faq(id),
         style=FAQ_CARD_STYLE,
         margin_bottom="1rem",
     )
