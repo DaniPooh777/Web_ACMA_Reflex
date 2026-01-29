@@ -2,10 +2,9 @@ import reflex as rx
 
 FAQ_CONTAINER_STYLE = {
     "width": "100%",
-    "max_width": "800px",
+    "max_width": "824px",  # Alineado con tus otros formularios
     "padding_y": "4rem",
     "align_items": "center",
-    "spacing": "4",
 }
 
 FAQ_CARD_STYLE = {
@@ -13,19 +12,24 @@ FAQ_CARD_STYLE = {
     "background_color": "rgba(17, 24, 39, 0.5)",
     "border": "1px solid rgba(255, 255, 255, 0.1)",
     "border_radius": "12px",
-    "padding": "1.5rem",
+    "overflow": "hidden", # Importante para que el click no se escape por los bordes
     "transition": "all 0.3s ease",
     "_hover": {
         "border_color": "rgba(59, 130, 246, 0.5)",
     },
 }
 
+FAQ_ITEM_INNER_STYLE = {
+    "width": "100%",
+    "padding": "1.5rem", # El padding se lo damos al contenido, no a la tarjeta
+    "cursor": "pointer",
+}
+
 FAQ_QUESTION_STYLE = {
     "color": "white",
     "font_weight": "600",
     "font_size": "1.1rem",
-    "cursor": "pointer",
-    "width": "100%",
+    "user_select": "none",
 }
 
 FAQ_ANSWER_STYLE = {
