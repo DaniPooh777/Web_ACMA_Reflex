@@ -23,40 +23,41 @@ class ProjectCardState(rx.State):
 
 
 def project_card(card_id: str, image_url: str, title: str, description: str) -> rx.Component:
-    # Verificamos si la tarjeta está expandida
     is_expanded = ProjectCardState.expanded_cards.contains(card_id) & ProjectCardState.expanded_cards[card_id]
     
     return rx.box(
-        rx.box(
+        rx.vstack(
             rx.image(src=image_url, **IMAGE_STYLE),
-            on_click=ProjectCardState.toggle_card(card_id),
-            cursor="pointer",
-        ),
-        rx.box(
-            rx.hstack(
-                rx.heading(title, **TITLE_STYLE),
-                rx.icon(
-                    tag=rx.cond(is_expanded, "chevron-up", "chevron-down"),
-                    **ICON_STYLE
-                ),
-                on_click=ProjectCardState.toggle_card(card_id),
-                **HEADER_STYLE
-            ),
             rx.box(
-                rx.cond(
-                    is_expanded,
-                    rx.box(
+                rx.hstack(
+                    rx.heading(title, **TITLE_STYLE),
+                    rx.icon(
+                        tag="chevron-down",
+                        **ICON_STYLE,
+                        transform=rx.cond(is_expanded, "rotate(180deg)", "rotate(0deg)"),
+                        transition="transform 0.4s ease-in-out",
+                    ),
+                    **HEADER_STYLE,
+                    width="100%",
+                ),
+                rx.box(
+                    # USAMOS UN SOLO TEXT CON SPANS ADENTRO PARA EVITAR SALTOS DE LÍNEA
+                    rx.text(
                         rx.text("Descripción: ", **DESCRIPTION_LABEL_STYLE),
                         rx.text(description, **DESCRIPTION_TEXT_STYLE),
-                        **DESCRIPTION_CONTAINER_STYLE
+                        **DESCRIPTION_CONTAINER_STYLE,
                     ),
+                    max_height=rx.cond(is_expanded, "300px", "0px"),
+                    opacity=rx.cond(is_expanded, "1", "0"),
+                    transition="max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out",
+                    overflow="hidden",
                 ),
-                # Animación de altura
-                max_height=rx.cond(is_expanded, "300px", "0px"),
-                transition="max-height 0.4s ease-in-out",
-                overflow="hidden",
+                **CONTENT_CONTAINER_STYLE,
+                width="100%", 
             ),
-            **CONTENT_CONTAINER_STYLE
+            spacing="0",
         ),
-        **CARD_STYLE
+        on_click=ProjectCardState.toggle_card(card_id),
+        **CARD_STYLE,
+        cursor="pointer",
     )

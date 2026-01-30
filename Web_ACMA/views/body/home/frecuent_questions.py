@@ -24,7 +24,7 @@ def faq_item(question: str, answer: str, id: str) -> rx.Component:
                     color="rgb(59, 130, 246)",
                     # Animación del icono también suave
                     transform=rx.cond(is_open, "rotate(180deg)", "rotate(0deg)"),
-                    transition="transform 0.4s ease-in-out",
+                    transition="transform 0.6s ease-in-out",
                 ),
                 justify_content="space-between",
                 align_items="center",
