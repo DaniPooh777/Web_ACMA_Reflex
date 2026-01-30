@@ -48,3 +48,12 @@ INNER_SCHEDULE_STYLE = {
     "width": "100%",
     "align_items": "start",
 }
+
+HEADER_TITLE_STYLE = {
+    "font_size": "4rem",
+    "font_weight": "800",
+    "color": "white",
+    "line_height": "1.1",
+    "margin_bottom": "1rem",
+    "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
+}

@@ -1,9 +1,9 @@
 import reflex as rx
-from Web_ACMA.components.caracteristics_card import caracteristics_card
+from Web_ACMA.components.caracteristics_card import *
 
 def caracteristics() -> rx.Component:
     return rx.vstack(
-        rx.heading("Tu Clase, Impulsada por la Calidad", size="8", margin_bottom="1rem"),
+        rx.heading("Tu Clase, Impulsada por la Calidad", style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}),
         
         rx.flex(
             caracteristics_card(

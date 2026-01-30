@@ -1,9 +1,5 @@
 import reflex as rx
-from Web_ACMA.styles.views_style.body_style.contact_style.contact_cards_style import (
-    CONTACT_CARD_STYLE, 
-    ICON_CONTAINER_STYLE, 
-    CARD_TITLE_STYLE
-)
+from Web_ACMA.styles.views_style.body_style.contact_style.contact_cards_style import *
 
 def caracteristics_card(tittle: str, text: str, icon: str) -> rx.Component:
     return rx.vstack(
