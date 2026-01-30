@@ -15,6 +15,7 @@ from Web_ACMA.state import State
 from Web_ACMA.views.body.contact.form import solicitud_form 
 from Web_ACMA.views.body.contact.contact_cards import contact_cards
 from Web_ACMA.views.body.home.frecuent_questions import frecuent_questions
+from Web_ACMA.views.body.home.frecuent_questions import FaqState
 from Web_ACMA.components.project_card import ProjectCardState
 
 
@@ -41,7 +42,10 @@ def index() -> rx.Component:
         width="100%",
         align_items="center",       
         background_color="rgb(10, 10, 15)",
-        on_mount=ProjectCardState.clean_state
+        on_mount=[
+            ProjectCardState.clean_state, 
+            FaqState.clean_state          
+        ]
     )
 
 
@@ -58,7 +62,10 @@ def project() -> rx.Component:
         spacing="0",
         width="100%",
         background_color="rgb(10, 10, 15)",
-        on_mount=ProjectCardState.clean_state
+        on_mount=[
+            ProjectCardState.clean_state, 
+            FaqState.clean_state          
+        ]
     )
 
 
@@ -74,7 +81,10 @@ def who_are_we() -> rx.Component:
         width="100%",
         align_items="center",
         background_color="rgb(10, 10, 15)",
-        on_mount=ProjectCardState.clean_state
+        on_mount=[
+            ProjectCardState.clean_state, 
+            FaqState.clean_state          
+        ]
     )
 
 
@@ -99,7 +109,10 @@ def contact() -> rx.Component:
         spacing="0",
         width="100%",
         background_color="rgb(10, 10, 15)", 
-        on_mount=ProjectCardState.clean_state
+        on_mount=[
+            ProjectCardState.clean_state, 
+            FaqState.clean_state          
+        ]
     )
 
 

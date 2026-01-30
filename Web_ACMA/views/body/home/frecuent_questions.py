@@ -10,6 +10,10 @@ class FaqState(rx.State):
         else:
             self.opened_id = id
 
+    def clean_state(self):
+        """Resetea las FAQs al estado cerrado."""
+        self.opened_id = ""
+
 def faq_item(question: str, answer: str, id: str) -> rx.Component:
     is_open = (FaqState.opened_id == id)
     
