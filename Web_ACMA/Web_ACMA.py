@@ -15,6 +15,7 @@ from Web_ACMA.state import State
 from Web_ACMA.views.body.contact.form import solicitud_form 
 from Web_ACMA.views.body.contact.contact_cards import contact_cards
 from Web_ACMA.views.body.home.frecuent_questions import frecuent_questions
+from Web_ACMA.components.project_card import ProjectCardState
 
 
 # Web_ACMA.py
@@ -39,7 +40,8 @@ def index() -> rx.Component:
         spacing="0",
         width="100%",
         align_items="center",       
-        background_color="rgb(10, 10, 15)"
+        background_color="rgb(10, 10, 15)",
+        on_mount=ProjectCardState.clean_state
     )
 
 
@@ -55,7 +57,8 @@ def project() -> rx.Component:
         footer(),
         spacing="0",
         width="100%",
-        background_color="rgb(10, 10, 15)"
+        background_color="rgb(10, 10, 15)",
+        on_mount=ProjectCardState.clean_state
     )
 
 
@@ -71,6 +74,7 @@ def who_are_we() -> rx.Component:
         width="100%",
         align_items="center",
         background_color="rgb(10, 10, 15)",
+        on_mount=ProjectCardState.clean_state
     )
 
 
@@ -95,6 +99,7 @@ def contact() -> rx.Component:
         spacing="0",
         width="100%",
         background_color="rgb(10, 10, 15)", 
+        on_mount=ProjectCardState.clean_state
     )
 
 
@@ -119,6 +124,6 @@ app = rx.App(
 
 # Registrar páginas
 app.add_page(index, route="/")
-app.add_page(project, route="/project", title="Proyecto")
+app.add_page(project, route="/project", title="Proyecto", on_load=ProjectCardState.clean_state)
 app.add_page(who_are_we, route="/quienes-somos", title="Quiénes Somos")
 app.add_page(contact, route="/contact", title="Contacto")

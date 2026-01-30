@@ -13,15 +13,17 @@ from Web_ACMA.styles.views_style.body_style.projects_style.project_style import 
 
 class ProjectCardState(rx.State):
     """Estado global para controlar el acordeón de proyectos."""
-    # Guardamos solo el ID de la tarjeta abierta actualmente
     opened_id: str = ""
     
     def toggle_card(self, card_id: str):
-        """Si la tarjeta está abierta la cierra, si no, abre la nueva y cierra la anterior."""
         if self.opened_id == card_id:
             self.opened_id = ""
         else:
             self.opened_id = card_id
+
+    def clean_state(self):
+        """Resetea el ID sin lógica extra."""
+        self.opened_id = ""
 
 def project_card(card_id: str, image_url: str, title: str, description: str) -> rx.Component:
     # La tarjeta está expandida si su ID coincide con el del estado
