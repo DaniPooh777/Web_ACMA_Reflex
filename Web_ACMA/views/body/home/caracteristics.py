@@ -7,7 +7,7 @@ def caracteristics() -> rx.Component:
         
         rx.flex(
             caracteristics_card(
-                "Calidad intachable de los trabajos", 
+                "Calidad intachable", 
                 "Garantizamos recursos de máxima calidad profesional para tus clases.",
                 "shield" 
             ),

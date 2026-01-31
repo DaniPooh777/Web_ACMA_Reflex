@@ -55,19 +55,28 @@ def frecuent_questions() -> rx.Component:
     return rx.vstack(
         rx.heading("Preguntas Frecuentes", style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}),
         faq_item(
-            "¿Cuánto tiempo tarda en completarse un encargo?",
-            "El tiempo varía según la complejidad, pero generalmente entregamos en 5-10 días hábiles.",
+            "¿Podéis imprimir trabajos como pósters o documentos?",
+            "No. No está en nuestros servicios.",
             "q1"
         ),
         faq_item(
-            "¿Puedo solicitar modificaciones después de recibir el recurso?",
-            "Sí, ofrecemos una ronda de revisiones para asegurar que el contenido se ajuste perfectamente a tus necesidades.",
+            "¿Podéis realizar algúna manualidad?",
+            "No está dentro de nuestros servicios, solo trabajos digitales",
             "q2"
         ),
         faq_item(
-            "¿Qué información necesito proporcionar para solicitar un recurso?",
-            "Necesitamos conocer el tipo de recurso deseado, el tema específico, el nivel educativo y cualquier requisito especial de formato.",
+            "¿Qué información necesito proporcionar para solicitar un trabajo?",
+            """Necesitamos conocer el tipo de proyecto, qué quieres incluir, el estilo (opcional), 
+            la fecha de entrega y algún ejemplo de trabajos similares que tengas para orientarnos.""",
             "q3"
+        ),
+        faq_item(
+            "¿Qué tipos de trabajos digitales hacéis?",
+            """Hacemos una gran variedad de trabajos: pósters, documentos, presentaciones, juegos,
+            formularios, fotos, vídeos... Ahora estamos llevando a cabo una iniciativa para implementar
+            la programación como uno de nuestros múltiples servicios. ¡Puedes pedirnos que programemos 
+            algo para tu clase! Eso sí, llevará más tiempo que un encargo normal.""",
+            "q4"
         ),
         style=FAQ_CONTAINER_STYLE,
     )
