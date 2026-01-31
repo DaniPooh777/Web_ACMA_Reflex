@@ -29,7 +29,6 @@ TITLE_STYLE = dict(
 ROW_STYLE = dict(
     width="100%",
     padding_y="0.75rem",
-    border_bottom="1px solid rgba(255, 255, 255, 0.05)",
     align_items="center",
     spacing="3"
 )

@@ -15,19 +15,18 @@ def advantages_and_considerations() -> rx.Component:
             # Tabla de Beneficios
             rx.vstack(
                 rx.text("Beneficios", color="#0ef56e", **TITLE_STYLE),
-                table_row("check", "Recursos educativos a medida.", "#0ef56e"),
-                table_row("check", "Innovación pedagógica constante.", "#0ef56e"),
-                table_row("check", "Ahorro de tiempo para el docente.", "#0ef56e"),
-                table_row("check", "Soporte técnico especializado.", "#0ef56e"),
+                table_row("check", "Hacemos cualquier tipo de contenido digital.", "#0ef56e"),
+                table_row("check", "Trabajos de calidad.", "#0ef56e"),
+                table_row("check", "Pedir todos los cambios necesarios para su satisfacción.", "#0ef56e"),
+                table_row("check", "Respetamos las fechas límite.", "#0ef56e"),
                 **TABLE_CONTAINER_STYLE
             ),
             # Tabla de Consideraciones
             rx.vstack(
                 rx.text("Consideraciones", color="#f51b0b", **TITLE_STYLE),
-                table_row("x", "Requiere planificación previa.", "#f51b0b"),
-                table_row("x", "Curva de aprendizaje en nuevas herramientas.", "#f51b0b"),
-                table_row("x", "Dependencia de conectividad estable.", "#f51b0b"),
-                table_row("x", "Proceso de feedback iterativo.", "#f51b0b"),
+                table_row("x", "No realizamos manualidades.", "#f51b0b"),
+                table_row("x", "No imprimimos nada.", "#f51b0b"),
+                table_row("x", "No realizamos trabajos para consumo propio, solo para el cole.", "#f51b0b"),
                 **TABLE_CONTAINER_STYLE
             ),
             width="100%",
