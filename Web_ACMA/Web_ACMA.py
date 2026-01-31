@@ -18,6 +18,7 @@ from Web_ACMA.views.body.home.frecuent_questions import frecuent_questions
 from Web_ACMA.views.body.home.frecuent_questions import FaqState
 from Web_ACMA.components.project_card import ProjectCardState
 from Web_ACMA.views.body.home.advantages_and_considerations import advantages_and_considerations
+from Web_ACMA.views.body.projects.new_horizonts import new_horizonts
 
 
 # Web_ACMA.py
@@ -50,7 +51,6 @@ def index() -> rx.Component:
         ]
     )
 
-
 # Página Proyectos 
 def project() -> rx.Component:
     return rx.vstack(
@@ -59,7 +59,8 @@ def project() -> rx.Component:
                 "Proyectos Más Relevantes",
                 "Descubre algunos de los proyectos más destacados que hemos realizado para el profesorado."
             ),
-        projects(),  
+        projects(),
+        new_horizonts(),  
         footer(),
         spacing="0",
         width="100%",
@@ -69,7 +70,6 @@ def project() -> rx.Component:
             FaqState.clean_state          
         ]
     )
-
 
 # Página Quiénes Somos
 def who_are_we() -> rx.Component:
@@ -88,7 +88,6 @@ def who_are_we() -> rx.Component:
             FaqState.clean_state          
         ]
     )
-
 
 # Página Contacto
 def contact() -> rx.Component:
@@ -117,7 +116,6 @@ def contact() -> rx.Component:
         ]
     )
 
-
 # Configurar la app con estilos para animaciones
 app = rx.App(
     style={
@@ -139,6 +137,6 @@ app = rx.App(
 
 # Registrar páginas
 app.add_page(index, route="/")
-app.add_page(project, route="/project", title="Proyecto", on_load=ProjectCardState.clean_state)
+app.add_page(project, route="/project", title="Proyecto")
 app.add_page(who_are_we, route="/quienes-somos", title="Quiénes Somos")
 app.add_page(contact, route="/contact", title="Contacto")
