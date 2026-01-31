@@ -38,7 +38,7 @@ def collaborators() -> rx.Component:
             rx.flex(
                 collaborator_item(
                     "Marcos Asenjo González", 
-                    "Rol en ACMA", 
+                    "Co-formador en ACMA", 
                     """La informática ha evolucionado mucho en los últimos años y décadas, y en este mundo cada vez más digital 
                     aparece la necesidad de contar con equipos que ayuden a los docentes en esta tarea. Mi papel como co-formador 
                     en ACMA consiste en proveer a los trabajadores de ACMA de la formación en programación, redes y sistemas para 
