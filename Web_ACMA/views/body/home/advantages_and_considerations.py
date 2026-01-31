@@ -15,19 +15,19 @@ def advantages_and_considerations() -> rx.Component:
             # Tabla de Beneficios
             rx.vstack(
                 rx.text("Beneficios", color="#0ef56e", **TITLE_STYLE),
-                table_row("check-circle", "Recursos educativos a medida.", "#3b82f6"),
-                table_row("check-circle", "Innovación pedagógica constante.", "#3b82f6"),
-                table_row("check-circle", "Ahorro de tiempo para el docente.", "#3b82f6"),
-                table_row("check-circle", "Soporte técnico especializado.", "#3b82f6"),
+                table_row("check", "Recursos educativos a medida.", "#0ef56e"),
+                table_row("check", "Innovación pedagógica constante.", "#0ef56e"),
+                table_row("check", "Ahorro de tiempo para el docente.", "#0ef56e"),
+                table_row("check", "Soporte técnico especializado.", "#0ef56e"),
                 **TABLE_CONTAINER_STYLE
             ),
             # Tabla de Consideraciones
             rx.vstack(
                 rx.text("Consideraciones", color="#f51b0b", **TITLE_STYLE),
-                table_row("info", "Requiere planificación previa.", "#f59e0b"),
-                table_row("info", "Curva de aprendizaje en nuevas herramientas.", "#f59e0b"),
-                table_row("info", "Dependencia de conectividad estable.", "#f59e0b"),
-                table_row("info", "Proceso de feedback iterativo.", "#f59e0b"),
+                table_row("x", "Requiere planificación previa.", "#f51b0b"),
+                table_row("x", "Curva de aprendizaje en nuevas herramientas.", "#f51b0b"),
+                table_row("x", "Dependencia de conectividad estable.", "#f51b0b"),
+                table_row("x", "Proceso de feedback iterativo.", "#f51b0b"),
                 **TABLE_CONTAINER_STYLE
             ),
             width="100%",
