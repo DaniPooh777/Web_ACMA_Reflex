@@ -92,7 +92,7 @@ PROJECTS_SECTION_STYLE = {
 }
 
 PROJECTS_CONTAINER_STYLE = {
-    "padding": "4rem 2rem",
+    "padding_top": "4rem",
     "align_items": "center",
     "width": "100%",
 }
