@@ -118,6 +118,9 @@ def contact() -> rx.Component:
 
 # Configurar la app con estilos para animaciones
 app = rx.App(
+    head_components=[
+        rx.el.link(rel="icon", href="/Acma Logo 2025-2026.png")
+    ],
     style={
         "html": {
             "scroll_behavior": "smooth",
@@ -136,7 +139,7 @@ app = rx.App(
 )
 
 # Registrar páginas
-app.add_page(index, route="/")
-app.add_page(project, route="/project", title="Proyecto")
-app.add_page(who_are_we, route="/quienes-somos", title="Quiénes Somos")
-app.add_page(contact, route="/contact", title="Contacto")
+app.add_page(index, route="/", title="ACMA | Inicio")
+app.add_page(project, route="/project", title="ACMA | Proyecto")
+app.add_page(who_are_we, route="/quienes-somos", title="ACMA | Quiénes Somos")
+app.add_page(contact, route="/contact", title="ACMA | Contacto")
