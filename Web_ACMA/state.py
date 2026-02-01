@@ -48,22 +48,38 @@ class FormState(rx.State):
         descripcion = data.get("descripcion")
 
         # El cuerpo que me pediste (respetando tu estructura)
-        cuerpo_mail = (
-            f"------------------------\n"
-            f"|Datos Generales|\n"
-            f"------------------------\n"
-            f"Nombre: {nombre}\n"
-            f"Email: {email_cliente}\n"
-            f"Nivel Educativo: {nivel}\n\n"
-            f"-------------\n"
-            f"|Encargo|\n"
-            f"-------------\n"
-            f"Buenas equipo de ACMA,\n\n"
-            f"{descripcion}.\n\n"
-            f"Quiero que esté para el {fecha}.\n\n"
-            f"Muchas gracias por vuestro tiempo.\n\n"
-            f"{nombre}"
-        )
+        cuerpo_mail = f"""
+        <html>
+            <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;">
+                <div style="width: 100%; background-color: #f9f9f9; padding: 20px;">
+                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border: 1px solid #eeeeee; border-radius: 8px;">
+                        
+                        <div style="font-family: Arial, Helvetica, sans-serif; color: #333333; line-height: 1.6;">
+                            <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
+                                <p style="margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">
+                                    <b>-------------------------------</b><br>
+                                    <b>|   Datos Generales    |</b><br>
+                                    <b>-------------------------------</b>
+                                </p>
+                                <p style="margin: 5px 0; font-size: 16px;"><b>Nombre:</b> {nombre}</p>
+                                <p style="margin: 5px 0; font-size: 16px;"><b>Email:</b> {email_cliente}</p>
+                                <p style="margin: 5px 0; font-size: 16px;"><b>Nivel Educativo:</b> {nivel}</p>
+                                <p style="margin: 5px 0; font-size: 16px;"><b>Fecha de Entrega:</b> {fecha}</p>
+                            </div>
+
+                            <div style="margin-bottom: 20px;">
+                                <p style="font-size: 16px;">Buenas equipo de ACMA,</p>
+                                <pre style="font-size: 16px; font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word; margin: 0;">{descripcion}</pre>
+                                <p style="font-size: 16px;">Quiero que esté para el <b>{fecha}</b>.</p>
+                                <p style="font-size: 16px; margin-top: 30px;">Que la fuerza os acompañe.</p>
+                                <p style="font-size: 18px; color: #000;">{nombre}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </html>
+        """
 
         # Configuramos el mensaje
         msg = EmailMessage()
@@ -75,6 +91,7 @@ class FormState(rx.State):
         msg['To'] = "acma@alcobendas.manyanet.org"
         # Esto hace que cuando ACMA le dé a "Responder", le escriba al profe
         msg['Reply-To'] = email_cliente # Para que ACMA le responda directo al profe
+        msg.add_alternative(cuerpo_mail, subtype='html')
 
         # Adjuntamos los archivos uno por uno
         for ruta in self._rutas_temporales:
