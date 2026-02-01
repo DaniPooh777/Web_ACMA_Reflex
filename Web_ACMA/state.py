@@ -49,9 +49,17 @@ class FormState(rx.State):
 
         # El cuerpo que me pediste (respetando tu estructura)
         cuerpo_mail = (
+            f"------------------------\n"
+            f"|Datos Generales|\n"
+            f"------------------------\n"
+            f"Nombre: {nombre}\n"
+            f"Email: {email_cliente}\n"
+            f"Nivel Educativo: {nivel}\n\n"
+            f"-------------\n"
+            f"|Encargo|\n"
+            f"-------------\n"
             f"Buenas equipo de ACMA,\n\n"
-            f"Me llamo {nombre}, este es mi correo para que me contactéis {email_cliente} y soy profesor de {nivel}. "
-            f"{descripcion}."
+            f"{descripcion}.\n\n"
             f"Quiero que esté para el {fecha}.\n\n"
             f"Muchas gracias por vuestro tiempo.\n\n"
             f"{nombre}"
@@ -86,9 +94,6 @@ class FormState(rx.State):
             user = os.getenv("EMAIL_USER")
             password = os.getenv("EMAIL_PASS")
             
-            # DIAGNÓSTICO: Si esto imprime None en la terminal, el .env no carga.
-            print(f"DEBUG: Intentando login con {user}") 
-
             with smtplib.SMTP("smtp.gmail.com", 587) as server:
                 server.starttls()
                 server.login(user, password)
@@ -101,6 +106,7 @@ class FormState(rx.State):
         
         except Exception as e:
             return rx.window_alert(f"Error técnico: {str(e)}")
+
 
 class State(rx.State):
     """Estado global de la aplicación."""
