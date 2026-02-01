@@ -50,7 +50,8 @@ class FormState(rx.State):
         # El cuerpo que me pediste (respetando tu estructura)
         cuerpo_mail = (
             f"Buenas equipo de ACMA,\n\n"
-            f"Me llamo {nombre} y soy profesor de {nivel}. {descripcion}. "
+            f"Me llamo {nombre}, este es mi correo para que me contactéis {email_cliente} y soy profesor de {nivel}. "
+            f"{descripcion}."
             f"Quiero que esté para el {fecha}.\n\n"
             f"Muchas gracias por vuestro tiempo.\n\n"
             f"{nombre}"
@@ -59,9 +60,12 @@ class FormState(rx.State):
         # Configuramos el mensaje
         msg = EmailMessage()
         msg.set_content(cuerpo_mail)
-        msg['Subject'] = asunto
-        msg['From'] = os.getenv("EMAIL_USER") # Usamos el .env, seguridad ante todo
+        msg['Subject'] = f"Solicitud encargo: {asunto}"
+        # Ponemos el nombre del cliente pero el mail sigue siendo el de tu .env
+        # Así Google no te rebota el mail y vos ves quién es.
+        msg['From'] = f"{nombre} <{os.getenv('EMAIL_USER')}>" 
         msg['To'] = "acma@alcobendas.manyanet.org"
+        # Esto hace que cuando ACMA le dé a "Responder", le escriba al profe
         msg['Reply-To'] = email_cliente # Para que ACMA le responda directo al profe
 
         # Adjuntamos los archivos uno por uno
