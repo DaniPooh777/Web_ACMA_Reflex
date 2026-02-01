@@ -85,8 +85,8 @@ class FormState(rx.State):
                                 <p style="font-size: 16px;">Buenas equipo de ACMA,</p>
                                 <pre style="font-size: 16px; font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word; margin: 0;">{descripcion}</pre>
                                 <p style="font-size: 16px;">Quiero que esté para el <b>{fecha}</b>.</p>
-                                <p style="font-size: 16px; margin-top: 30px;">Que la fuerza os acompañe.</p>
-                                <p style="font-size: 18px; color: #000;">{nombre}</p>
+                                <p style="font-size: 16px;">Que la fuerza os acompañe.</p>
+                                <p style="font-size: 16px; color: #000;">{nombre}</p>
                             </div>
                         </div>
                     </div>
