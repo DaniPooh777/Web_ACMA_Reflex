@@ -20,7 +20,7 @@ def new_horizonts() -> rx.Component:
         rx.flex(
             # Tarjeta de texto
             rx.vstack(
-                rx.heading("Propuesta de innovación", style=INFO_TITLE_STYLE),
+                rx.heading("Propuesta de Innovación", style=INFO_TITLE_STYLE),
                 rx.text(
                     """A partir de este año, en ACMA, estamos abiertos a la idea de de expandirnos en el área de la
                     programación. Nuesto objetivo detrás de ello es de crear la posibilidad de poder desarrollar

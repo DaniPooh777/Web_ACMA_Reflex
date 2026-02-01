@@ -148,6 +148,7 @@ def solicitud_form() -> rx.Component:
         ),
         id="formulario-encargo", 
         on_submit=FormState.handle_submit,
+        reset_on_submit=True, # Limpia el texto de los inputs tras enviar
         width="100%",
         scroll_margin_top="100px",
         display="flex",
