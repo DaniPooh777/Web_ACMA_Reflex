@@ -13,6 +13,8 @@ class FormState(rx.State):
     # 2. Variables internas (rutas de los archivos en el servidor)
     _rutas_temporales: list[str] = []
 
+    nivel_seleccionado: str = ""
+
     async def handle_upload(self, files: list[rx.UploadFile]):
         """Esta función se dispara cuando el usuario suelta archivos"""
         for file in files:
@@ -30,6 +32,9 @@ class FormState(rx.State):
             # Guardamos la ruta para el mail
             self._rutas_temporales.append(ruta_final)
 
+    def set_nivel_seleccionado(self, value: str):
+        self.nivel_seleccionado = value
+
     def remove_file(self, file_name: str):
         """Para que el usuario pueda borrar un archivo de la lista"""
         if file_name in self.archivos_seleccionados:
@@ -39,13 +44,22 @@ class FormState(rx.State):
             self._rutas_temporales.pop(idx)
 
     async def handle_submit(self, data: dict):
-        """Caza los datos del form y manda el mail"""
+        """Caza los datos del form, limpia la UI al toque y manda el mail de fondo"""
+        # 1. CAPTURA DE DATOS
         nombre = data.get("nombre")
         email_cliente = data.get("email")
         nivel = data.get("nivel_educativo")
         asunto = data.get("asunto")
         fecha = data.get("fecha_entrega")
         descripcion = data.get("descripcion")
+
+        # 2. LIMPIEZA INMEDIATA (La magia del yield)
+        self.archivos_seleccionados = []
+        self._rutas_temporales = []
+        self.nivel_seleccionado = ""
+
+        # Esto fuerza a Reflex a actualizar el frontend AHORA mismo
+        yield
 
         # El cuerpo que me pediste (respetando tu estructura)
         cuerpo_mail = f"""
@@ -85,11 +99,8 @@ class FormState(rx.State):
         msg = EmailMessage()
         msg.set_content(cuerpo_mail)
         msg['Subject'] = f"Solicitud encargo: {asunto}"
-        # Ponemos el nombre del cliente pero el mail sigue siendo el de tu .env
-        # Así Google no te rebota el mail y vos ves quién es.
-        msg['From'] = f"{nombre} <{os.getenv('EMAIL_USER')}>" 
+        msg['From'] = f"{nombre} <{os.getenv('EMAIL_USER')}>" # Ponemos el nombre del cliente pero el mail sigue siendo el de tu .env // Así Google no te rebota el mail y vos ves quién es.
         msg['To'] = "acma@alcobendas.manyanet.org"
-        # Esto hace que cuando ACMA le dé a "Responder", le escriba al profe
         msg['Reply-To'] = email_cliente # Para que ACMA le responda directo al profe
         msg.add_alternative(cuerpo_mail, subtype='html')
 
@@ -97,32 +108,22 @@ class FormState(rx.State):
         for ruta in self._rutas_temporales:
             if os.path.exists(ruta):
                 with open(ruta, 'rb') as f:
-                    archivo_binario = f.read()
-                    nombre_archivo = os.path.basename(ruta)
                     msg.add_attachment(
-                        archivo_binario,
+                        f.read(),
                         maintype='application',
                         subtype='octet-stream',
-                        filename=nombre_archivo
+                        filename=os.path.basename(ruta)
                     )
 
         # El disparo final
-        try:
-            user = os.getenv("EMAIL_USER")
-            password = os.getenv("EMAIL_PASS")
-            
+        try:            
             with smtplib.SMTP("smtp.gmail.com", 587) as server:
                 server.starttls()
-                server.login(user, password)
+                server.login(os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"))
                 server.send_message(msg)
-            
-            # Limpiamos todo
-            self.archivos_seleccionados = []
-            self._rutas_temporales = []
-            return rx.window_alert("¡Enviado con éxito!")
         
         except Exception as e:
-            return rx.window_alert(f"Error técnico: {str(e)}")
+            yield rx.window_alert(f"Error al enviar: {str(e)}") # Si explota, por lo menos le avisamos
 
 
 class State(rx.State):

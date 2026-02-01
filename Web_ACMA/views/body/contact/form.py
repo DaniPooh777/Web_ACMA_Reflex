@@ -43,6 +43,8 @@ def solicitud_form() -> rx.Component:
                         ["Guardería", "Infantil", "Primaria", "Secundaria", "Bachillerato"],
                         placeholder="Selecciona el nivel...",
                         name="nivel_educativo",
+                        value=FormState.nivel_seleccionado, # Vinculación bidireccional
+                        on_change=FormState.set_nivel_seleccionado, # Actualiza el estado al cambiar
                         width="100%",
                         height="100%",
                         variant="ghost",
