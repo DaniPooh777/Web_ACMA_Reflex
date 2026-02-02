@@ -19,17 +19,22 @@ class FormState(rx.State):
         """Esta función se dispara cuando el usuario suelta archivos"""
         for file in files:
             upload_data = await file.read()
+
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            directorio_externo = os.path.join(base_dir, "archivos_externos_acma")
+
             # Creamos carpeta temporal si no existe
-            if not os.path.exists("uploads"):
-                os.makedirs("uploads")
+            if not os.path.exists(directorio_externo):
+                os.makedirs(directorio_externo)
             
-            ruta_final = os.path.join("uploads", file.filename)
+            nombre_limpio = file.filename.replace(" ", "_")
+            ruta_final = os.path.join(directorio_externo, nombre_limpio)
+
             with open(ruta_final, "wb") as f:
                 f.write(upload_data)
             
-            # Actualizamos la lista que ve el usuario
+            # Guardamos para la UI y para el mail
             self.archivos_seleccionados.append(file.filename)
-            # Guardamos la ruta para el mail
             self._rutas_temporales.append(ruta_final)
 
     def set_nivel_seleccionado(self, value: str):
@@ -45,21 +50,13 @@ class FormState(rx.State):
 
     async def handle_submit(self, data: dict):
         """Caza los datos del form, limpia la UI al toque y manda el mail de fondo"""
-        # 1. CAPTURA DE DATOS
+        # CAPTURA DE DATOS
         nombre = data.get("nombre")
         email_cliente = data.get("email")
         nivel = data.get("nivel_educativo")
         asunto = data.get("asunto")
         fecha = data.get("fecha_entrega")
-        descripcion = data.get("descripcion")
-
-        # 2. LIMPIEZA INMEDIATA (La magia del yield)
-        self.archivos_seleccionados = []
-        self._rutas_temporales = []
-        self.nivel_seleccionado = ""
-
-        # Esto fuerza a Reflex a actualizar el frontend AHORA mismo
-        yield
+        descripcion = data.get("descripcion")        
 
         # El cuerpo que me pediste (respetando tu estructura)
         cuerpo_mail = f"""
@@ -121,9 +118,14 @@ class FormState(rx.State):
                 server.starttls()
                 server.login(os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"))
                 server.send_message(msg)
+                
+                # LIMPIAMOS LOS ARCHIVOS    
+                self.archivos_seleccionados = []
+                self._rutas_temporales = []
+                self.nivel_seleccionado = ""
         
         except Exception as e:
-            yield rx.window_alert(f"Error al enviar: {str(e)}") # Si explota, por lo menos le avisamos
+            return rx.window_alert(f"Error al enviar: {str(e)}") # Si explota, por lo menos le avisamos
 
 
 class State(rx.State):
