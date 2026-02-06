@@ -4,8 +4,7 @@ assets/external/
 *.py[cod]
 __pycache__/
 .states
-.venv
+venv
 .env
 uploads_files
-uploads
 archivos_externos_acma

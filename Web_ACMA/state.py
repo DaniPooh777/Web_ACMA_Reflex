@@ -119,7 +119,12 @@ class FormState(rx.State):
                 server.login(os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"))
                 server.send_message(msg)
                 
-                # LIMPIAMOS LOS ARCHIVOS    
+                # LIMPIAMOS LA CARPETA
+                for ruta in self._rutas_temporales:
+                    if os.path.exists(ruta):
+                        os.remove(ruta)
+
+                # LIMPIAMOS LOS ARCHIVOS          
                 self.archivos_seleccionados = []
                 self._rutas_temporales = []
                 self.nivel_seleccionado = ""
