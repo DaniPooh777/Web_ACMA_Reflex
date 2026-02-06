@@ -69,7 +69,7 @@ class FormState(rx.State):
         fecha = data.get("fecha_entrega")
         descripcion = data.get("descripcion")        
 
-        # El cuerpo que me pediste (respetando tu estructura)
+        # --- 1. MAIL PARA EL EQUIPO (ACMA) ---
         cuerpo_mail = f"""
         <html>
             <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;">
@@ -114,39 +114,75 @@ class FormState(rx.State):
         </html>
         """
 
-        # Configuramos el mensaje
-        msg = EmailMessage()
-        msg.set_content(cuerpo_mail)
-        msg['Subject'] = f"Solicitud encargo: {asunto}"
-        msg['From'] = f"{nombre} <{os.getenv('EMAIL_USER')}>" # Ponemos el nombre del cliente pero el mail sigue siendo el de tu .env // Así Google no te rebota el mail y vos ves quién es.
-        msg['To'] = "acma@alcobendas.manyanet.org"
-        msg['Reply-To'] = email_cliente # Para que ACMA le responda directo al profe
-        msg.add_alternative(cuerpo_mail, subtype='html')
+        # Configuramos el mensaje para ACMA
+        msg_acma = EmailMessage()
+        msg_acma.set_content(cuerpo_mail)
+        msg_acma['Subject'] = f"Solicitud encargo: {asunto}"
+        msg_acma['From'] = f"{nombre} <{os.getenv('EMAIL_USER')}>" # Ponemos el nombre del cliente pero el mail sigue siendo el de tu .env // Así Google no te rebota el mail y vos ves quién es.
+        msg_acma['To'] = "acma@alcobendas.manyanet.org"
+        msg_acma['Reply-To'] = email_cliente # Para que ACMA le responda directo al profe
+        msg_acma.add_alternative(cuerpo_mail, subtype='html')
 
-        # Adjuntamos los archivos uno por uno
+        # --- 2. MAIL PARA EL CLIENTE (Copia amigable) ---
+        cuerpo_cliente = f"""
+        <html>
+            <body style="font-family: Arial, sans-serif; color: #333;">
+                <div style="max-width: 600px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+                    <h2 style="color: #3b82f6;">¡Hola {nombre}!</h2>
+                    <p>Hemos recibido correctamente tu solicitud para el proyecto: <strong>{asunto}</strong>.</p>
+                    <p>Nuestro equipo de ACMA lo revisará y se pondrá en contacto contigo pronto.</p>
+                    <hr>
+                    <p><strong>Resumen de tu pedido:</strong></p>
+                    <ul>
+                        <li><strong>Nivel:</strong> {nivel}</li>
+                        <li><strong>Fecha deseada:</strong> {fecha}</li>
+                    </ul>
+                    <p><strong>Tu descripción:</strong></p>
+                    <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #3b82f6;">
+                        {descripcion}
+                    </blockquote>
+                    <p style="font-size: 12px; color: #777;">Este es un mensaje automático, no es necesario que lo respondas. Que la fuerza te acompañe.</p>
+                </div>
+            </body>
+        </html>
+        """
+
+        # Configuramos el mensaje para el cliente
+        msg_cliente = EmailMessage()
+        msg_cliente['Subject'] = f"Confirmación de pedido: {asunto}"
+        msg_cliente['From'] = f"ACMA Manyanet <{os.getenv('EMAIL_USER')}>"
+        msg_cliente['To'] = email_cliente # El destinatario es el cliente
+        msg_cliente.add_alternative(cuerpo_cliente, subtype='html')
+
+
+        # Adjuntamos los archivos a AMBOS mensajes
         for ruta in self._rutas_temporales:
             if os.path.exists(ruta):
                 with open(ruta, 'rb') as f:
-                    msg.add_attachment(
-                        f.read(),
-                        maintype='application',
-                        subtype='octet-stream',
-                        filename=os.path.basename(ruta)
-                    )
+                    contenido_adjunto = f.read()
+                    nombre_archivo = os.path.basename(ruta)
+                    
+                    # Adjunto para ACMA
+                    msg_acma.add_attachment(contenido_adjunto, maintype='application', subtype='octet-stream', filename=nombre_archivo)
+                    # Adjunto para el Cliente
+                    msg_cliente.add_attachment(contenido_adjunto, maintype='application', subtype='octet-stream', filename=nombre_archivo)
 
         # El disparo final
         try:            
             with smtplib.SMTP("smtp.gmail.com", 587) as server:
                 server.starttls()
                 server.login(os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"))
-                server.send_message(msg)
+
+                # Mandamos los dos
+                server.send_message(msg_acma)
+                server.send_message(msg_cliente)
                 
-                # LIMPIAMOS LA CARPETA
+                # Limpiamos la carpeta
                 for ruta in self._rutas_temporales:
                     if os.path.exists(ruta):
                         os.remove(ruta)
 
-                # LIMPIAMOS LOS ARCHIVOS          
+                # Limpiamos los archivos         
                 self.archivos_seleccionados = []
                 self._rutas_temporales = []
                 self.nivel_seleccionado = ""
