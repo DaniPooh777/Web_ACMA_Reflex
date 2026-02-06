@@ -41,11 +41,22 @@ class FormState(rx.State):
         self.nivel_seleccionado = value
 
     def remove_file(self, file_name: str):
-        """Para que el usuario pueda borrar un archivo de la lista"""
+        # Borra el archivo de la UI, de la lógica y del DISCO.
         if file_name in self.archivos_seleccionados:
             idx = self.archivos_seleccionados.index(file_name)
+            
+            # 1. Recuperamos la ruta antes de sacarla de la lista
+            ruta_a_borrar = self._rutas_temporales[idx]
+            
+            # 2. Borramos el archivo físico
+            try:
+                if os.path.exists(ruta_a_borrar):
+                    os.remove(ruta_a_borrar)
+            except Exception as e:
+                print(f"Error al borrar archivo físico: {e}")
+            
+            # 3. Recién ahora limpiamos las listas de estado
             self.archivos_seleccionados.pop(idx)
-            # Borramos la ruta técnica también
             self._rutas_temporales.pop(idx)
 
     async def handle_submit(self, data: dict):
