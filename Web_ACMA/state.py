@@ -63,7 +63,7 @@ class FormState(rx.State):
         <html>
             <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;">
                 <div style="width: 100%; background-color: #f9f9f9; padding: 20px;">
-                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border: 1px solid #eeeeee; border-radius: 8px;">
+                    <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 30px; border: 1px solid #eeeeee; border-radius: 8px;">
                         
                         <div style="font-family: Arial, Helvetica, sans-serif; color: #333333; line-height: 1.6;">
                             <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
@@ -79,12 +79,24 @@ class FormState(rx.State):
                             </div>
 
                             <div style="margin-bottom: 20px;">
-                                <p style="font-size: 16px;">Buenas equipo de ACMA,</p>
+                                <p style="font-size: 16px;">Este es el encargo que nos han mandado, equipo de ACMA:</p>
                                 <pre style="font-size: 16px; font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word; margin: 0;">{descripcion}</pre>
-                                <p style="font-size: 16px;">Quiero que esté para el <b>{fecha}</b>.</p>
-                                <p style="font-size: 16px;">Que la fuerza os acompañe.</p>
-                                <p style="font-size: 16px; color: #000;">{nombre}</p>
                             </div>
+
+                            <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
+                                <p style="margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">
+                                    <b>----------------------------</b><br>
+                                    <b>|   Instrucciones    |</b><br>
+                                    <b>----------------------------</b>
+                                </p>
+                                <div style="margin-bottom: 20px;">
+                                    <p style="font-size: 16px;"><b>1º</b> No se responde el email. Este email solo sirve de intermediario entre el formulario y ACMA. Para responder al profesor es necesario pinchar en su correo presente en la sección de Datos Generales.</p>
+                                    <p style="font-size: 16px;"><b>2º</b> Es obligatorio usar un léxico formal pero a la vez cercano. Debemos dar una buena imagen hacia el profesorado pero con esa calidez que den ganas de estar con nosotros. Esto es con el objetivo de crear confianza y de nos confíen sus trabajos.</p>
+                                    <p style="font-size: 16px;"><b>3º</b> Es preciso una estructura clara y uniforme sobre los correos de ACMA. Repasad la estructura del email vista en el cole (buscad en Google). Debemos demostrar la profesionalidad de la empresa.</p>
+                                    <p style="font-size: 16px;"><b>Que la fuerza os acompañe.</b></p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
