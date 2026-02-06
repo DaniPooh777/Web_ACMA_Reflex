@@ -90,7 +90,7 @@ class FormState(rx.State):
                             </div>
 
                             <div style="margin-bottom: 20px;">
-                                <p style="font-size: 16px;">Este es el encargo que nos han mandado, equipo de ACMA:</p>
+                                <p style="font-size: 16px;"><b>Este es el encargo que nos han mandado, equipo de ACMA:</b></p>
                                 <pre style="font-size: 16px; font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word; margin: 0;">{descripcion}</pre>
                             </div>
 
@@ -134,14 +134,12 @@ class FormState(rx.State):
                     <hr>
                     <p><strong>Resumen de tu pedido:</strong></p>
                     <ul>
-                        <li><strong>Nivel:</strong> {nivel}</li>
-                        <li><strong>Fecha deseada:</strong> {fecha}</li>
+                        <li><strong>Nivel educativo:</strong> {nivel}</li>
+                        <li><strong>Fecha de entrega:</strong> {fecha}</li>
+                        <li><strong>Descripción:</strong> <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #3b82f6;">{descripcion}</blockquote></li>
                     </ul>
-                    <p><strong>Tu descripción:</strong></p>
-                    <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #3b82f6;">
-                        {descripcion}
-                    </blockquote>
-                    <p style="font-size: 12px; color: #777;">Este es un mensaje automático, no es necesario que lo respondas. Que la fuerza te acompañe.</p>
+                    
+                    <p style="font-size: 12px; color: #777;">Este es un mensaje automático, no es necesario que lo respondas. Que la fuerza te acompañe :)</p>
                 </div>
             </body>
         </html>
