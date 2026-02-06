@@ -90,9 +90,8 @@ class FormState(rx.State):
                                     <b>----------------------------</b>
                                 </p>
                                 <div style="margin-bottom: 20px;">
-                                    <p style="font-size: 16px;"><b>1º</b> No se responde el email. Este email solo sirve de intermediario entre el formulario y ACMA. Para responder al profesor es necesario pinchar en su correo presente en la sección de Datos Generales.</p>
-                                    <p style="font-size: 16px;"><b>2º</b> Es obligatorio usar un léxico formal pero a la vez cercano. Debemos dar una buena imagen hacia el profesorado pero con esa calidez que den ganas de estar con nosotros. Esto es con el objetivo de crear confianza y de nos confíen sus trabajos.</p>
-                                    <p style="font-size: 16px;"><b>3º</b> Es preciso una estructura clara y uniforme sobre los correos de ACMA. Repasad la estructura del email vista en el cole (buscad en Google). Debemos demostrar la profesionalidad de la empresa.</p>
+                                    <p style="font-size: 16px;"><b>1º</b> Es obligatorio usar un léxico formal pero a la vez cercano. Debemos dar una buena imagen hacia el profesorado pero con esa calidez que den ganas de estar con nosotros. Esto es con el objetivo de crear confianza y de nos confíen sus trabajos.</p>
+                                    <p style="font-size: 16px;"><b>2º</b> Es preciso una estructura clara y uniforme sobre los correos de ACMA. Repasad la estructura del email vista en el cole (buscad en Google). Debemos demostrar la profesionalidad de la empresa.</p>
                                     <p style="font-size: 16px;"><b>Que la fuerza os acompañe.</b></p>
                                 </div>
                             </div>
