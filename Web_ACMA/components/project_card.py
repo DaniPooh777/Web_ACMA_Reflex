@@ -1,4 +1,5 @@
 import reflex as rx
+from Web_ACMA.state import ProjectCardState
 from Web_ACMA.styles.views_style.body_style.projects_style.project_style import (
     CARD_STYLE,
     IMAGE_STYLE,
@@ -11,19 +12,6 @@ from Web_ACMA.styles.views_style.body_style.projects_style.project_style import 
     DESCRIPTION_TEXT_STYLE,
 )
 
-class ProjectCardState(rx.State):
-    """Estado global para controlar el acordeón de proyectos."""
-    opened_id: str = ""
-    
-    def toggle_card(self, card_id: str):
-        if self.opened_id == card_id:
-            self.opened_id = ""
-        else:
-            self.opened_id = card_id
-
-    def clean_state(self):
-        """Resetea el ID sin lógica extra."""
-        self.opened_id = ""
 
 def project_card(card_id: str, image_url: str, title: str, description: str) -> rx.Component:
     # La tarjeta está expandida si su ID coincide con el del estado

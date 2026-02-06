@@ -1,18 +1,7 @@
 import reflex as rx
 from Web_ACMA.styles.views_style.body_style.home_style.frecuent_questions_style import *
+from Web_ACMA.state import FaqState
 
-class FaqState(rx.State):
-    opened_id: str = ""
-
-    def toggle_faq(self, id: str):
-        if self.opened_id == id:
-            self.opened_id = ""
-        else:
-            self.opened_id = id
-
-    def clean_state(self):
-        """Resetea las FAQs al estado cerrado."""
-        self.opened_id = ""
 
 def faq_item(question: str, answer: str, id: str) -> rx.Component:
     is_open = (FaqState.opened_id == id)

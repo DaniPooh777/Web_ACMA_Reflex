@@ -204,3 +204,32 @@ class State(rx.State):
     
     def toggle_documentos(self):
         self.seccion_activa = "" if self.seccion_activa == "documentos" else "documentos"
+
+
+class FaqState(rx.State):
+    opened_id: str = ""
+
+    def toggle_faq(self, id: str):
+        if self.opened_id == id:
+            self.opened_id = ""
+        else:
+            self.opened_id = id
+
+    def clean_state(self):
+        """Resetea las FAQs al estado cerrado."""
+        self.opened_id = ""
+
+
+class ProjectCardState(rx.State):
+    """Estado global para controlar el acordeón de proyectos."""
+    opened_id: str = ""
+    
+    def toggle_card(self, card_id: str):
+        if self.opened_id == card_id:
+            self.opened_id = ""
+        else:
+            self.opened_id = card_id
+
+    def clean_state(self):
+        """Resetea el ID sin lógica extra."""
+        self.opened_id = ""
