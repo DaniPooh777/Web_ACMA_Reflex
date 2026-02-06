@@ -20,8 +20,8 @@ class FormState(rx.State):
         for file in files:
             upload_data = await file.read()
 
-            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            directorio_externo = os.path.join(base_dir, "archivos_externos_acma")
+            directorio_externo = rx.get_upload_dir()
+
 
             # Creamos carpeta temporal si no existe
             if not os.path.exists(directorio_externo):

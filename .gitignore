@@ -6,5 +6,5 @@ __pycache__/
 .states
 venv
 .env
-uploads_files
+uploaded_files
 archivos_externos_acma
