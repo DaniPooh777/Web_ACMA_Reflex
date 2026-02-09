@@ -12,33 +12,78 @@ class FormState(rx.State):
     _rutas_temporales: list[str] = []
     nivel_seleccionado: str = ""
 
-    # 2. Variable para el mail y validación
+    # 2. Variables para validación reactiva
     email_valor: str = ""
     email_tocado: bool = False
+    
+    nombre_valor: str = ""
+    nombre_tocado: bool = False
+    
+    asunto_valor: str = ""
+    asunto_tocado: bool = False
+    
+    fecha_valor: str = ""
+    fecha_tocado: bool = False
 
-    # --- SETTERS EXPLÍCITOS (Para evitar el DeprecationWarning) ---
+    descripcion_valor: str = ""
+    descripcion_tocado: bool = False
+
+    # --- SETTERS Y MARCADORES ---
     def set_email_valor(self, valor: str):
-        """Setter explícito para el email."""
         self.email_valor = valor
 
-    def marcar_email_tocado(self):
-        """Se dispara cuando el usuario sale del input"""
+    def marcar_email_tocado(self, _=None):
         self.email_tocado = True
 
+    def set_nombre_valor(self, valor: str):
+        self.nombre_valor = valor
+
+    def marcar_nombre_tocado(self, _=None):
+        self.nombre_tocado = True
+
+    def set_asunto_valor(self, valor: str):
+        self.asunto_valor = valor
+
+    def marcar_asunto_tocado(self, _=None):
+        self.asunto_tocado = True
+
+    def set_fecha_valor(self, valor: str):
+        self.fecha_valor = valor
+
+    def marcar_fecha_tocado(self, _=None):
+        self.fecha_tocado = True
+
+    def set_descripcion_valor(self, valor: str):
+        self.descripcion_valor = valor
+
+    def marcar_descripcion_tocado(self, _=None):
+        self.descripcion_tocado = True
+
     def set_nivel_seleccionado(self, value: str):
-        """Setter explícito para el nivel educativo."""
         self.nivel_seleccionado = value
 
     # --- COMPUTED VARS ---
     @rx.var
     def mostrar_error_email(self) -> bool:
-        """
-        Solo mostramos error si el usuario ya 'tocó' el campo 
-        Y el dominio es incorrecto.
-        """
         if not self.email_tocado:
             return False
         return not self.email_valor.lower().endswith("@alcobendas.manyanet.org")
+
+    @rx.var
+    def error_nombre(self) -> bool:
+        return self.nombre_tocado and len(self.nombre_valor.strip()) == 0
+
+    @rx.var
+    def error_asunto(self) -> bool:
+        return self.asunto_tocado and len(self.asunto_valor.strip()) == 0
+
+    @rx.var
+    def error_fecha(self) -> bool:
+        return self.fecha_tocado and len(self.fecha_valor.strip()) == 0
+    
+    @rx.var
+    def error_descripcion(self) -> bool:
+        return self.descripcion_tocado and len(self.descripcion_valor.strip()) == 0
 
     # --- LÓGICA DE ARCHIVOS ---
     async def handle_upload(self, files: list[rx.UploadFile]):
@@ -58,208 +103,115 @@ class FormState(rx.State):
             self._rutas_temporales.append(ruta_final)
 
     def remove_file(self, file_name: str):
-        # Borra el archivo de la UI, de la lógica y del DISCO.
         if file_name in self.archivos_seleccionados:
             idx = self.archivos_seleccionados.index(file_name)
-            
-            # 1. Recuperamos la ruta antes de sacarla de la lista
             ruta_a_borrar = self._rutas_temporales[idx]
-            
-            # 2. Borramos el archivo físico
             try:
                 if os.path.exists(ruta_a_borrar):
                     os.remove(ruta_a_borrar)
             except Exception as e:
                 print(f"Error al borrar archivo físico: {e}")
-            
-            # 3. Recién ahora limpiamos las listas de estado
             self.archivos_seleccionados.pop(idx)
             self._rutas_temporales.pop(idx)
 
     def limpiar_validacion(self):
-        """Resetea el estado de validación al cargar la página."""
+        # Reset de booleanos
         self.email_tocado = False
+        self.nombre_tocado = False
+        self.asunto_tocado = False
+        self.fecha_tocado = False
+        self.descripcion_tocado = False
+        # Reset de valores (opcional, si querés que el texto también desaparezca)
         self.email_valor = ""
+        self.nombre_valor = ""
+        self.asunto_valor = ""
+        self.fecha_valor = ""
+        self.descripcion_valor = ""
+        self.nivel_seleccionado = ""
     
     # --- ENVÍO DE FORMULARIO ---
     async def handle_submit(self, data: dict):
-        """Caza los datos del form, valida el dominio y manda el mail"""
-        email_cliente = data.get("email") #
-        
-        # CAPTURA DE DATOS
-        nombre = data.get("nombre")
         email_cliente = data.get("email")
+        nombre = data.get("nombre")
         nivel = data.get("nivel_educativo")
         asunto = data.get("asunto")
         fecha = data.get("fecha_entrega")
         descripcion = data.get("descripcion")       
 
-        # VALIDACIÓN DEL DOMINIO
         dominio_permitido = "@alcobendas.manyanet.org"
         if not email_cliente.lower().endswith(dominio_permitido):
             return rx.window_alert(f"Acceso denegado. Usá tu mail de {dominio_permitido}") 
 
-        # --- 1. MAIL PARA EL EQUIPO (ACMA) ---
         cuerpo_mail = f"""
         <html>
             <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;">
                 <div style="width: 100%; background-color: #f9f9f9; padding: 20px;">
                     <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 30px; border: 1px solid #eeeeee; border-radius: 8px;">
-                        
                         <div style="font-family: Arial, Helvetica, sans-serif; color: #333333; line-height: 1.6;">
                             <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
-                                <p style="margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">
-                                    <b>-------------------------------</b><br>
-                                    <b>|   Datos Generales    |</b><br>
-                                    <b>-------------------------------</b>
-                                </p>
                                 <p style="margin: 5px 0; font-size: 16px;"><b>Nombre:</b> {nombre}</p>
                                 <p style="margin: 5px 0; font-size: 16px;"><b>Email:</b> {email_cliente}</p>
                                 <p style="margin: 5px 0; font-size: 16px;"><b>Nivel Educativo:</b> {nivel}</p>
                                 <p style="margin: 5px 0; font-size: 16px;"><b>Fecha de Entrega:</b> {fecha}</p>
                             </div>
-
                             <div style="margin-bottom: 20px;">
-                                <p style="font-size: 16px;"><b>Este es el encargo que nos han mandado, equipo de ACMA:</b></p>
                                 <pre style="font-size: 16px; font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word; margin: 0;">{descripcion}</pre>
                             </div>
-
-                            <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
-                                <p style="margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">
-                                    <b>----------------------------</b><br>
-                                    <b>|   Instrucciones    |</b><br>
-                                    <b>----------------------------</b>
-                                </p>
-                                <div style="margin-bottom: 20px;">
-                                    <p style="font-size: 16px;"><b>1º</b> Es obligatorio usar un léxico formal pero a la vez cercano. Debemos dar una buena imagen hacia el profesorado pero con esa calidez que den ganas de estar con nosotros. Esto es con el objetivo de crear confianza y de nos confíen sus trabajos.</p>
-                                    <p style="font-size: 16px;"><b>2º</b> Es preciso una estructura clara y uniforme sobre los correos de ACMA. Repasad la estructura del email vista en el cole (buscad en Google). Debemos demostrar la profesionalidad de la empresa.</p>
-                                    <p style="font-size: 16px;"><b>Que la fuerza os acompañe.</b></p>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </body>
         </html>
         """
-
-        # Configuramos el mensaje para ACMA
         msg_acma = EmailMessage()
         msg_acma.set_content(cuerpo_mail)
         msg_acma['Subject'] = f"Solicitud encargo: {asunto}"
-        msg_acma['From'] = f"{nombre} <{os.getenv('EMAIL_USER')}>" # Ponemos el nombre del cliente pero el mail sigue siendo el de tu .env // Así Google no te rebota el mail y vos ves quién es.
+        msg_acma['From'] = f"{nombre} <{os.getenv('EMAIL_USER')}>"
         msg_acma['To'] = "acma@alcobendas.manyanet.org"
-        msg_acma['Reply-To'] = email_cliente # Para que ACMA le responda directo al profe
+        msg_acma['Reply-To'] = email_cliente
         msg_acma.add_alternative(cuerpo_mail, subtype='html')
 
-        # --- 2. MAIL PARA EL CLIENTE (Copia amigable) ---
-        cuerpo_cliente = f"""
-        <html>
-            <body style="font-family: Arial, sans-serif; color: #333;">
-                <div style="max-width: 600px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
-                    <h2 style="color: #3b82f6;">¡Hola {nombre}!</h2>
-                    <p>Hemos recibido correctamente tu solicitud para el proyecto: <strong>{asunto}</strong>.</p>
-                    <p>Nuestro equipo de ACMA lo revisará y se pondrá en contacto contigo pronto.</p>
-                    <hr>
-                    <p><strong>Resumen de tu pedido:</strong></p>
-                    <ul>
-                        <li><strong>Nivel educativo:</strong> {nivel}</li>
-                        <li><strong>Fecha de entrega:</strong> {fecha}</li>
-                        <li><strong>Descripción:</strong> <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #3b82f6;">{descripcion}</blockquote></li>
-                    </ul>
-                    
-                    <p style="font-size: 12px; color: #777;">Este es un mensaje automático, no es necesario que lo respondas. Que la fuerza te acompañe :)</p>
-                </div>
-            </body>
-        </html>
-        """
-
-        # Configuramos el mensaje para el cliente
         msg_cliente = EmailMessage()
         msg_cliente['Subject'] = f"Confirmación de pedido: {asunto}"
         msg_cliente['From'] = f"ACMA Manyanet <{os.getenv('EMAIL_USER')}>"
-        msg_cliente['To'] = email_cliente # El destinatario es el cliente
-        msg_cliente.add_alternative(cuerpo_cliente, subtype='html')
+        msg_cliente['To'] = email_cliente
+        msg_cliente.add_alternative("Tu pedido ha sido recibido.", subtype='html')
 
-
-        # Adjuntamos los archivos a AMBOS mensajes
         for ruta in self._rutas_temporales:
             if os.path.exists(ruta):
                 with open(ruta, 'rb') as f:
                     contenido_adjunto = f.read()
                     nombre_archivo = os.path.basename(ruta)
-                    
-                    # Adjunto para ACMA
                     msg_acma.add_attachment(contenido_adjunto, maintype='application', subtype='octet-stream', filename=nombre_archivo)
-                    # Adjunto para el Cliente
                     msg_cliente.add_attachment(contenido_adjunto, maintype='application', subtype='octet-stream', filename=nombre_archivo)
 
-        # El disparo final
         try:            
             with smtplib.SMTP("smtp.gmail.com", 587) as server:
                 server.starttls()
                 server.login(os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"))
-
-                # Mandamos los dos
                 server.send_message(msg_acma)
                 server.send_message(msg_cliente)
-                
-                # Limpiamos la carpeta
                 for ruta in self._rutas_temporales:
-                    if os.path.exists(ruta):
-                        os.remove(ruta)
-
-                # Limpiamos los archivos         
+                    if os.path.exists(ruta): os.remove(ruta)
                 self.archivos_seleccionados = []
                 self._rutas_temporales = []
                 self.nivel_seleccionado = ""
-        
         except Exception as e:
-            return rx.window_alert(f"Error al enviar: {str(e)}") # Si explota, por lo menos le avisamos
-
+            return rx.window_alert(f"Error al enviar: {str(e)}")
 
 class State(rx.State):
-    """Estado global de la aplicación."""
     seccion_activa: str = ""
-    
-    def toggle_posters(self):
-        self.seccion_activa = "" if self.seccion_activa == "posters" else "posters"
-    
-    def toggle_presentaciones(self):
-        self.seccion_activa = "" if self.seccion_activa == "presentaciones" else "presentaciones"
-    
-    def toggle_cuestionarios(self):
-        self.seccion_activa = "" if self.seccion_activa == "cuestionarios" else "cuestionarios"
-    
-    def toggle_documentos(self):
-        self.seccion_activa = "" if self.seccion_activa == "documentos" else "documentos"
-
+    def toggle_posters(self): self.seccion_activa = "" if self.seccion_activa == "posters" else "posters"
+    def toggle_presentaciones(self): self.seccion_activa = "" if self.seccion_activa == "presentaciones" else "presentaciones"
+    def toggle_cuestionarios(self): self.seccion_activa = "" if self.seccion_activa == "cuestionarios" else "cuestionarios"
+    def toggle_documentos(self): self.seccion_activa = "" if self.seccion_activa == "documentos" else "documentos"
 
 class FaqState(rx.State):
     opened_id: str = ""
-
-    def toggle_faq(self, id: str):
-        if self.opened_id == id:
-            self.opened_id = ""
-        else:
-            self.opened_id = id
-
-    def clean_state(self):
-        """Resetea las FAQs al estado cerrado."""
-        self.opened_id = ""
-
+    def toggle_faq(self, id: str): self.opened_id = "" if self.opened_id == id else id
+    def clean_state(self): self.opened_id = ""
 
 class ProjectCardState(rx.State):
-    """Estado global para controlar el acordeón de proyectos."""
     opened_id: str = ""
-    
-    def toggle_card(self, card_id: str):
-        if self.opened_id == card_id:
-            self.opened_id = ""
-        else:
-            self.opened_id = card_id
-
-    def clean_state(self):
-        """Resetea el ID sin lógica extra."""
-        self.opened_id = ""
+    def toggle_card(self, card_id: str): self.opened_id = "" if self.opened_id == card_id else card_id
+    def clean_state(self): self.opened_id = ""

@@ -13,15 +13,33 @@ from Web_ACMA.styles.views_style.body_style.contact_style.form_style import (
     COLOR_BORDER_CONTAINER
 )
 
-def input_field(label: str, placeholder: str, name: str, type: str = "text") -> rx.Component:
+def input_field(label: str, placeholder: str, name: str, valor: rx.Var, error_cond: rx.Var, on_blur_fn, on_change_fn, type: str = "text") -> rx.Component:
     return rx.vstack(
         rx.text(label, **LABEL_STYLE),
         rx.input(
             name=name,
             placeholder=placeholder,
+            value=valor,
+            on_change=on_change_fn,
+            on_blur=on_blur_fn,
             type=type,
-            style=INPUT_STYLE, #
-
+            style={
+                **INPUT_STYLE,
+                "border": rx.cond(
+                    error_cond,
+                    "1px solid #ef4444 !important",
+                    f"1px solid {COLOR_BORDER_INPUT}"
+                ),
+            },
+            on_key_down=lambda e: rx.cond(
+                e == "Enter",
+                rx.event.prevent_default,
+                rx.console_log("Tecla ignorada")
+            ),
+        ),
+        rx.cond(
+            error_cond,
+            rx.text("Este campo es obligatorio", color="#ef4444", font_size="0.75rem"),
         ),
         width="100%",
         align_items="start",
@@ -33,32 +51,36 @@ def solicitud_form() -> rx.Component:
         rx.vstack(
             rx.heading("Solicita un nuevo encargo", size="6", margin_bottom="0.5rem"),
             
-            input_field("Nombre", "Tu nombre completo", "nombre"),
+            input_field(
+                "Nombre", "Tu nombre completo", "nombre",
+                valor=FormState.nombre_valor,
+                error_cond=FormState.error_nombre,
+                on_blur_fn=FormState.marcar_nombre_tocado,
+                on_change_fn=FormState.set_nombre_valor
+            ),
 
             rx.vstack(
                 rx.text("Email", **LABEL_STYLE),
                 rx.input(
                     name="email",
-                    placeholder="tu@alcobendas.manyanet.org",
+                    placeholder="ejemplo@alcobendas.manyanet.org",
                     type="email",
+                    value=FormState.email_valor,
                     on_change=FormState.set_email_valor,
-                    on_blur=FormState.marcar_email_tocado, # <--- LA CLAVE
+                    on_blur=FormState.marcar_email_tocado, 
+                    on_key_down=lambda e: rx.cond(e == "Enter", rx.event.prevent_default, rx.console_log("")),
                     style={
                         **INPUT_STYLE,
                         "border": rx.cond(
-                            FormState.mostrar_error_email, # Usamos la nueva lógica
+                            FormState.mostrar_error_email,
                             "1px solid #ef4444 !important",
                             f"1px solid {COLOR_BORDER_INPUT}"
                         ),
                     },
                 ),
                 rx.cond(
-                    FormState.mostrar_error_email, # Solo aparece al salir de la casilla
-                    rx.text(
-                        "Usá tu correo institucional (@alcobendas.manyanet.org)", 
-                        color="#ef4444", 
-                        font_size="0.75rem"
-                    ),
+                    FormState.mostrar_error_email,
+                    rx.text("Usa tu correo del centro", color="#ef4444", font_size="0.75rem"),
                 ),
                 width="100%",
                 align_items="start",
@@ -114,8 +136,20 @@ def solicitud_form() -> rx.Component:
                 spacing="1",
             ),
 
-            input_field(label="Asunto", placeholder="Dale un nombre al encargo", name="asunto"),
-            input_field(label="Fecha de Entrega", placeholder="Indica cuándo lo necesitas (ej. 12/04/2026)", name="fecha_entrega"),
+            input_field(
+                "Asunto", "Dale un nombre al encargo", "asunto",
+                valor=FormState.asunto_valor,
+                error_cond=FormState.error_asunto,
+                on_blur_fn=FormState.marcar_asunto_tocado,
+                on_change_fn=FormState.set_asunto_valor
+            ),
+            input_field(
+                "Fecha de Entrega", "Indica cuándo lo necesitas", "fecha_entrega",
+                valor=FormState.fecha_valor,
+                error_cond=FormState.error_fecha,
+                on_blur_fn=FormState.marcar_fecha_tocado,
+                on_change_fn=FormState.set_fecha_valor
+            ),
 
             rx.vstack(
                 rx.text("Descripción del Encargo", **LABEL_STYLE),
@@ -127,6 +161,9 @@ def solicitud_form() -> rx.Component:
                         width="100%",
                         min_height="160px",
                         background_color="transparent", 
+                        value=FormState.descripcion_valor,
+                        on_change=FormState.set_descripcion_valor,
+                        on_blur=FormState.marcar_descripcion_tocado, 
                         style={
                             "border": "none",
                             "padding_bottom": "3rem",
@@ -144,10 +181,19 @@ def solicitud_form() -> rx.Component:
                         **UPLOAD_CLEAN_STYLE
                     ),
                     position="relative",
-                    border=f"1px solid {COLOR_BORDER_INPUT}", 
+                    border=rx.cond(
+                        FormState.error_descripcion,
+                        "1px solid #ef4444 !important",
+                        f"1px solid {COLOR_BORDER_INPUT}"
+                    ),
                     background_color=COLOR_INPUT_BG,
                     border_radius="8px",
                     width="100%",
+                ),
+
+                rx.cond(
+                    FormState.error_descripcion,
+                    rx.text("La descripción es obligatoria", color="#ef4444", font_size="0.75rem"),
                 ),
                 
                 # LISTA DE ARCHIVOS (Fuera del recuadro)
