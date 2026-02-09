@@ -98,7 +98,11 @@ def solicitud_form() -> rx.Component:
                         width="100%",
                         min_height="160px",
                         background_color="transparent", 
-                        style={"border": "none"},
+                        style={
+                            "border": "none",
+                            "padding_bottom": "3rem",
+                            "padding_right": "1rem"
+                        },
                     ),
                     rx.upload(
                         rx.hstack(
@@ -117,7 +121,7 @@ def solicitud_form() -> rx.Component:
                     width="100%",
                 ),
                 
-                # LISTA DE ARCHIVOS (Fuera del recuadro, tal cual la imagen)
+                # LISTA DE ARCHIVOS (Fuera del recuadro)
                 rx.vstack(
                     rx.foreach(
                         FormState.archivos_seleccionados,
