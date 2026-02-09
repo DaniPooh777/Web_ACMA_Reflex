@@ -142,27 +142,52 @@ class FormState(rx.State):
         if not email_cliente.lower().endswith(dominio_permitido):
             return rx.window_alert(f"Acceso denegado. Usá tu mail de {dominio_permitido}") 
 
+        # --- 2. MAIL PARA EL ACMA ---
         cuerpo_mail = f"""
         <html>
             <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;">
                 <div style="width: 100%; background-color: #f9f9f9; padding: 20px;">
                     <div style="max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 30px; border: 1px solid #eeeeee; border-radius: 8px;">
+                        
                         <div style="font-family: Arial, Helvetica, sans-serif; color: #333333; line-height: 1.6;">
                             <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
+                                <p style="margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">
+                                    <b>-------------------------------</b><br>
+                                    <b>|   Datos Generales    |</b><br>
+                                    <b>-------------------------------</b>
+                                </p>
                                 <p style="margin: 5px 0; font-size: 16px;"><b>Nombre:</b> {nombre}</p>
                                 <p style="margin: 5px 0; font-size: 16px;"><b>Email:</b> {email_cliente}</p>
                                 <p style="margin: 5px 0; font-size: 16px;"><b>Nivel Educativo:</b> {nivel}</p>
                                 <p style="margin: 5px 0; font-size: 16px;"><b>Fecha de Entrega:</b> {fecha}</p>
                             </div>
+
                             <div style="margin-bottom: 20px;">
+                                <p style="font-size: 16px;"><b>Este es el encargo que nos han mandado, equipo de ACMA:</b></p>
                                 <pre style="font-size: 16px; font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word; margin: 0;">{descripcion}</pre>
                             </div>
+
+                            <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
+                                <p style="margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">
+                                    <b>----------------------------</b><br>
+                                    <b>|   Instrucciones    |</b><br>
+                                    <b>----------------------------</b>
+                                </p>
+                                <div style="margin-bottom: 20px;">
+                                    <p style="font-size: 16px;"><b>1º</b> Es obligatorio usar un léxico formal pero a la vez cercano. Debemos dar una buena imagen hacia el profesorado pero con esa calidez que den ganas de estar con nosotros. Esto es con el objetivo de crear confianza y de nos confíen sus trabajos.</p>
+                                    <p style="font-size: 16px;"><b>2º</b> Es preciso una estructura clara y uniforme sobre los correos de ACMA. Repasad la estructura del email vista en el cole (buscad en Google). Debemos demostrar la profesionalidad de la empresa.</p>
+                                    <p style="font-size: 16px;"><b>Que la fuerza os acompañe.</b></p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </body>
         </html>
         """
+
+        # Configuramos el mensaje para ACMA
         msg_acma = EmailMessage()
         msg_acma.set_content(cuerpo_mail)
         msg_acma['Subject'] = f"Solicitud encargo: {asunto}"
@@ -171,31 +196,67 @@ class FormState(rx.State):
         msg_acma['Reply-To'] = email_cliente
         msg_acma.add_alternative(cuerpo_mail, subtype='html')
 
+        # --- 2. MAIL PARA EL CLIENTE (Copia amigable) ---
+        cuerpo_cliente = f"""
+        <html>
+            <body style="font-family: Arial, sans-serif; color: #333;">
+                <div style="max-width: 600px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
+                    <h2 style="color: #3b82f6;">¡Hola {nombre}!</h2>
+                    <p>Hemos recibido correctamente tu solicitud para el proyecto: <strong>{asunto}</strong>.</p>
+                    <p>Nuestro equipo de ACMA lo revisará y se pondrá en contacto contigo pronto.</p>
+                    <hr>
+                    <p><strong>Resumen de tu pedido:</strong></p>
+                    <ul>
+                        <li><strong>Nivel educativo:</strong> {nivel}</li>
+                        <li><strong>Fecha de entrega:</strong> {fecha}</li>
+                        <li><strong>Descripción:</strong> <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #3b82f6;">{descripcion}</blockquote></li>
+                    </ul>
+                    
+                    <p style="font-size: 12px; color: #777;">Este es un mensaje automático, no es necesario que lo respondas. Que la fuerza te acompañe :)</p>
+                </div>
+            </body>
+        </html>
+        """
+
+        # Configuramos el mensaje para el cliente
         msg_cliente = EmailMessage()
         msg_cliente['Subject'] = f"Confirmación de pedido: {asunto}"
         msg_cliente['From'] = f"ACMA Manyanet <{os.getenv('EMAIL_USER')}>"
-        msg_cliente['To'] = email_cliente
-        msg_cliente.add_alternative("Tu pedido ha sido recibido.", subtype='html')
+        msg_cliente['To'] = email_cliente # El destinatario es el cliente
+        msg_cliente.add_alternative(cuerpo_cliente, subtype='html')
 
+
+        # Adjuntamos los archivos a AMBOS mensajes
         for ruta in self._rutas_temporales:
             if os.path.exists(ruta):
                 with open(ruta, 'rb') as f:
                     contenido_adjunto = f.read()
                     nombre_archivo = os.path.basename(ruta)
+                    
+                    # Adjunto para ACMA
                     msg_acma.add_attachment(contenido_adjunto, maintype='application', subtype='octet-stream', filename=nombre_archivo)
+                    # Adjunto para el Cliente
                     msg_cliente.add_attachment(contenido_adjunto, maintype='application', subtype='octet-stream', filename=nombre_archivo)
 
         try:            
             with smtplib.SMTP("smtp.gmail.com", 587) as server:
                 server.starttls()
                 server.login(os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"))
+
+                # Mandamos los dos
                 server.send_message(msg_acma)
                 server.send_message(msg_cliente)
+                
+                # Limpiamos la carpeta
                 for ruta in self._rutas_temporales:
-                    if os.path.exists(ruta): os.remove(ruta)
+                    if os.path.exists(ruta):
+                        os.remove(ruta)
+
+                # Limpiamos los archivos         
                 self.archivos_seleccionados = []
                 self._rutas_temporales = []
                 self.nivel_seleccionado = ""
+
         except Exception as e:
             return rx.window_alert(f"Error al enviar: {str(e)}")
 
