@@ -28,6 +28,8 @@ class FormState(rx.State):
     descripcion_valor: str = ""
     descripcion_tocado: bool = False
 
+    nivel_tocado: bool = False
+
     # --- SETTERS Y MARCADORES ---
     def set_email_valor(self, valor: str):
         self.email_valor = valor
@@ -62,6 +64,20 @@ class FormState(rx.State):
     def set_nivel_seleccionado(self, value: str):
         self.nivel_seleccionado = value
 
+    def set_nivel_seleccionado(self, value: str):
+        self.nivel_seleccionado = value
+        # Si seleccionó algo, ya no hay error, así que lo marcamos como tocado
+        self.nivel_tocado = True
+
+    def manejar_cierre_menu(self, abierto: bool):
+        # 'abierto' es un booleano que manda Reflex. 
+        # Si es False, es porque el menú se cerró (el usuario eligió o hizo clic afuera)
+        if not abierto:
+            self.nivel_tocado = True
+
+    def tocar_nivel(self, _=None):
+        self.nivel_tocado = True
+
     # --- COMPUTED VARS ---
     @rx.var
     def mostrar_error_email(self) -> bool:
@@ -84,6 +100,11 @@ class FormState(rx.State):
     @rx.var
     def error_descripcion(self) -> bool:
         return self.descripcion_tocado and len(self.descripcion_valor.strip()) == 0
+    
+    @rx.var
+    def error_nivel(self) -> bool:
+        # Si fue tocado y no seleccionó nada (está el placeholder)
+        return self.nivel_tocado and (not self.nivel_seleccionado or self.nivel_seleccionado == "")
 
     # --- LÓGICA DE ARCHIVOS ---
     async def handle_upload(self, files: list[rx.UploadFile]):
@@ -121,6 +142,7 @@ class FormState(rx.State):
         self.asunto_tocado = False
         self.fecha_tocado = False
         self.descripcion_tocado = False
+        self.nivel_tocado = False
         # Reset de valores (opcional, si querés que el texto también desaparezca)
         self.email_valor = ""
         self.nombre_valor = ""

@@ -95,7 +95,8 @@ def solicitud_form() -> rx.Component:
                         placeholder="Selecciona el nivel...",
                         name="nivel_educativo",
                         value=FormState.nivel_seleccionado, # Vinculación bidireccional
-                        on_change=FormState.set_nivel_seleccionado, # Actualiza el estado al cambiar
+                        on_change=lambda v: FormState.set_nivel_seleccionado(v),
+                        on_open_change=FormState.manejar_cierre_menu,
                         width="100%",
                         height="100%",
                         variant="ghost",
@@ -122,7 +123,11 @@ def solicitud_form() -> rx.Component:
                         },
                     ),
                     background_color=COLOR_INPUT_BG,
-                    border=f"2px solid {COLOR_BORDER_INPUT}",
+                    border=rx.cond(
+                        FormState.error_nivel,
+                        "1px solid #ef4444 !important",
+                        f"2px solid {COLOR_BORDER_INPUT}"
+                    ),
                     border_radius="8px",
                     width="100%",
                     height="2.8rem",
@@ -130,6 +135,10 @@ def solicitud_form() -> rx.Component:
                     display="flex",
                     align_items="center",
                     overflow="hidden",
+                ),
+                rx.cond(
+                    FormState.error_nivel,
+                    rx.text("Este campo es obligatorio", color="#ef4444", font_size="0.75rem"),
                 ),
                 width="100%", 
                 align_items="stretch",
