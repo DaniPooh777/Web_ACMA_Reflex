@@ -34,7 +34,36 @@ def solicitud_form() -> rx.Component:
             rx.heading("Solicita un nuevo encargo", size="6", margin_bottom="0.5rem"),
             
             input_field("Nombre", "Tu nombre completo", "nombre"),
-            input_field("Email", "tu@email.com", "email", type="email"),
+
+            rx.vstack(
+                rx.text("Email", **LABEL_STYLE),
+                rx.input(
+                    name="email",
+                    placeholder="tu@alcobendas.manyanet.org",
+                    type="email",
+                    on_change=FormState.set_email_valor,
+                    on_blur=FormState.marcar_email_tocado, # <--- LA CLAVE
+                    style={
+                        **INPUT_STYLE,
+                        "border": rx.cond(
+                            FormState.mostrar_error_email, # Usamos la nueva lógica
+                            "1px solid #ef4444 !important",
+                            f"1px solid {COLOR_BORDER_INPUT}"
+                        ),
+                    },
+                ),
+                rx.cond(
+                    FormState.mostrar_error_email, # Solo aparece al salir de la casilla
+                    rx.text(
+                        "Usá tu correo institucional (@alcobendas.manyanet.org)", 
+                        color="#ef4444", 
+                        font_size="0.75rem"
+                    ),
+                ),
+                width="100%",
+                align_items="start",
+                spacing="1",
+            ),
 
             rx.vstack(
                 rx.text("Nivel Educativo", **LABEL_STYLE),

@@ -7,23 +7,44 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class FormState(rx.State):
-    # 1. Variables para la UI (lo que ve el usuario)
+    # 1. Variables para la UI y archivos
     archivos_seleccionados: list[str] = []
-    
-    # 2. Variables internas (rutas de los archivos en el servidor)
     _rutas_temporales: list[str] = []
-
     nivel_seleccionado: str = ""
 
+    # 2. Variable para el mail y validación
+    email_valor: str = ""
+    email_tocado: bool = False
+
+    # --- SETTERS EXPLÍCITOS (Para evitar el DeprecationWarning) ---
+    def set_email_valor(self, valor: str):
+        """Setter explícito para el email."""
+        self.email_valor = valor
+
+    def marcar_email_tocado(self):
+        """Se dispara cuando el usuario sale del input"""
+        self.email_tocado = True
+
+    def set_nivel_seleccionado(self, value: str):
+        """Setter explícito para el nivel educativo."""
+        self.nivel_seleccionado = value
+
+    # --- COMPUTED VARS ---
+    @rx.var
+    def mostrar_error_email(self) -> bool:
+        """
+        Solo mostramos error si el usuario ya 'tocó' el campo 
+        Y el dominio es incorrecto.
+        """
+        if not self.email_tocado:
+            return False
+        return not self.email_valor.lower().endswith("@alcobendas.manyanet.org")
+
+    # --- LÓGICA DE ARCHIVOS ---
     async def handle_upload(self, files: list[rx.UploadFile]):
-        """Esta función se dispara cuando el usuario suelta archivos"""
         for file in files:
             upload_data = await file.read()
-
             directorio_externo = rx.get_upload_dir()
-
-
-            # Creamos carpeta temporal si no existe
             if not os.path.exists(directorio_externo):
                 os.makedirs(directorio_externo)
             
@@ -33,12 +54,8 @@ class FormState(rx.State):
             with open(ruta_final, "wb") as f:
                 f.write(upload_data)
             
-            # Guardamos para la UI y para el mail
             self.archivos_seleccionados.append(file.filename)
             self._rutas_temporales.append(ruta_final)
-
-    def set_nivel_seleccionado(self, value: str):
-        self.nivel_seleccionado = value
 
     def remove_file(self, file_name: str):
         # Borra el archivo de la UI, de la lógica y del DISCO.
@@ -59,15 +76,28 @@ class FormState(rx.State):
             self.archivos_seleccionados.pop(idx)
             self._rutas_temporales.pop(idx)
 
+    def limpiar_validacion(self):
+        """Resetea el estado de validación al cargar la página."""
+        self.email_tocado = False
+        self.email_valor = ""
+    
+    # --- ENVÍO DE FORMULARIO ---
     async def handle_submit(self, data: dict):
-        """Caza los datos del form, limpia la UI al toque y manda el mail de fondo"""
+        """Caza los datos del form, valida el dominio y manda el mail"""
+        email_cliente = data.get("email") #
+        
         # CAPTURA DE DATOS
         nombre = data.get("nombre")
         email_cliente = data.get("email")
         nivel = data.get("nivel_educativo")
         asunto = data.get("asunto")
         fecha = data.get("fecha_entrega")
-        descripcion = data.get("descripcion")        
+        descripcion = data.get("descripcion")       
+
+        # VALIDACIÓN DEL DOMINIO
+        dominio_permitido = "@alcobendas.manyanet.org"
+        if not email_cliente.lower().endswith(dominio_permitido):
+            return rx.window_alert(f"Acceso denegado. Usá tu mail de {dominio_permitido}") 
 
         # --- 1. MAIL PARA EL EQUIPO (ACMA) ---
         cuerpo_mail = f"""

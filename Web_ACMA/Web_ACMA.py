@@ -11,7 +11,7 @@ from Web_ACMA.views.body.who_are_we.information import information
 from Web_ACMA.views.body.who_are_we.collaborators import collaborators 
 from Web_ACMA.views.body.who_are_we.founder import founder
 from Web_ACMA.views.body.projects.projects import projects
-from Web_ACMA.state import State 
+from Web_ACMA.state import *
 from Web_ACMA.views.body.contact.form import solicitud_form 
 from Web_ACMA.views.body.contact.contact_cards import contact_cards
 from Web_ACMA.views.body.home.frecuent_questions import frecuent_questions
@@ -47,7 +47,8 @@ def index() -> rx.Component:
         background_color="rgb(10, 10, 15)",
         on_mount=[
             ProjectCardState.clean_state, 
-            FaqState.clean_state          
+            FaqState.clean_state,
+            FormState.limpiar_validacion          
         ]
     )
 
@@ -67,7 +68,8 @@ def project() -> rx.Component:
         background_color="rgb(10, 10, 15)",
         on_mount=[
             ProjectCardState.clean_state, 
-            FaqState.clean_state          
+            FaqState.clean_state,
+            FormState.limpiar_validacion          
         ]
     )
 
@@ -85,7 +87,8 @@ def who_are_we() -> rx.Component:
         background_color="rgb(10, 10, 15)",
         on_mount=[
             ProjectCardState.clean_state, 
-            FaqState.clean_state          
+            FaqState.clean_state,
+            FormState.limpiar_validacion         
         ]
     )
 
@@ -112,7 +115,8 @@ def contact() -> rx.Component:
         background_color="rgb(10, 10, 15)", 
         on_mount=[
             ProjectCardState.clean_state, 
-            FaqState.clean_state          
+            FaqState.clean_state,
+            FormState.limpiar_validacion         
         ]
     )
 
