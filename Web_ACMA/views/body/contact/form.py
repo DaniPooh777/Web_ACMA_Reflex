@@ -49,7 +49,7 @@ def input_field(label: str, placeholder: str, name: str, valor: rx.Var, error_co
 def alerta_formulario_incompleto() -> rx.Component:
     return rx.alert_dialog.root(
         rx.alert_dialog.content(
-            rx.alert_dialog.title("¡Para el carro, fiera!"),
+            rx.alert_dialog.title("¡Para el carro, fiera! ⛔️"),
             rx.alert_dialog.description(
                 "¡No quieras pasarte de listo! Completa todo el formulario.",
             ),
@@ -64,9 +64,32 @@ def alerta_formulario_incompleto() -> rx.Component:
         open=FormState.dialogo_abierto, # Vinculado al estado
     )
 
+def alerta_exito() -> rx.Component:
+    return rx.alert_dialog.root(
+        rx.alert_dialog.content(
+            rx.alert_dialog.title("¡Encargo en camino! 🚀"),
+            rx.alert_dialog.description(
+                "Tu solicitud ha sido enviada correctamente. Revisá tu gmail (y el spam por las dudas) porque te mandamos una copia.",
+            ),
+            rx.flex(
+                rx.alert_dialog.action(
+                    rx.button(
+                        "Perfecto", 
+                        on_click=FormState.cerrar_dialogo_exito,
+                        color_scheme="blue",
+                    ),
+                ),
+                justify="end",
+                margin_top="1rem",
+            ),
+        ),
+        open=FormState.dialogo_exito_abierto,
+    )
+
 def solicitud_form() -> rx.Component:
     return rx.fragment(
         alerta_formulario_incompleto(),
+        alerta_exito(),
         rx.form(
             rx.vstack(
                 rx.heading("Solicita un nuevo encargo", size="6", margin_bottom="0.5rem"),

@@ -31,6 +31,7 @@ class FormState(rx.State):
     nivel_tocado: bool = False
 
     dialogo_abierto: bool = False
+    dialogo_exito_abierto: bool = False
 
     # --- SETTERS Y MARCADORES ---
     def set_email_valor(self, valor: str):
@@ -82,6 +83,12 @@ class FormState(rx.State):
 
     def cerrar_dialogo(self):
         self.dialogo_abierto = False
+
+    def abrir_dialogo_exito(self):
+        self.dialogo_exito_abierto = True
+
+    def cerrar_dialogo_exito(self):
+        self.dialogo_exito_abierto = False
 
     # --- COMPUTED VARS ---
     @rx.var
@@ -272,7 +279,7 @@ class FormState(rx.State):
             <body style="font-family: Arial, sans-serif; color: #333;">
                 <div style="max-width: 600px; margin: 0 auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
                     <h2 style="color: #3b82f6;">¡Hola {nombre}!</h2>
-                    <p>Hemos recibido correctamente tu solicitud para el proyecto: <strong>{asunto}</strong>.</p>
+                    <p>Hemos recibido correctamente tu solicitud para el proyecto: <strong>{asunto}</strong></p>
                     <p>Nuestro equipo de ACMA lo revisará y se pondrá en contacto contigo pronto.</p>
                     <hr>
                     <p><strong>Resumen de tu pedido:</strong></p>
@@ -293,7 +300,7 @@ class FormState(rx.State):
         msg_cliente['Subject'] = f"Confirmación de pedido: {asunto}"
         msg_cliente['From'] = f"ACMA Manyanet <{os.getenv('EMAIL_USER')}>"
         msg_cliente['To'] = email_cliente # El destinatario es el cliente
-        msg_acma['Reply-To'] = "acma@alcobendas.manyanet.org"
+        msg_cliente['Reply-To'] = "acma@alcobendas.manyanet.org"
         msg_cliente.add_alternative(cuerpo_cliente, subtype='html')
 
 
@@ -324,6 +331,7 @@ class FormState(rx.State):
                         os.remove(ruta)
 
                 self.limpiar_validacion()
+                self.abrir_dialogo_exito()
 
         except Exception as e:
             return rx.window_alert(f"Error al enviar: {str(e)}")
