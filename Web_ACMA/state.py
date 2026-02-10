@@ -286,7 +286,7 @@ class FormState(rx.State):
                     <ul>
                         <li><strong>Nivel educativo:</strong> {nivel}</li>
                         <li><strong>Fecha de entrega:</strong> {fecha}</li>
-                        <li><strong>Descripción:</strong> <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #3b82f6;">{descripcion}</blockquote></li>
+                        <li><strong>Descripción:</strong> <blockquote style="background: #f4f4f4; padding: 10px; border-left: 5px solid #3b82f6; white-space: pre-wrap; word-wrap: break-word;">{descripcion}</blockquote></li>
                     </ul>
                     
                     <p style="font-size: 12px; color: #777;">Este es un mensaje automático, no es necesario que lo respondas. Que la fuerza te acompañe :)</p>
