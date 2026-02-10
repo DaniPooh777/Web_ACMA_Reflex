@@ -293,6 +293,7 @@ class FormState(rx.State):
         msg_cliente['Subject'] = f"Confirmación de pedido: {asunto}"
         msg_cliente['From'] = f"ACMA Manyanet <{os.getenv('EMAIL_USER')}>"
         msg_cliente['To'] = email_cliente # El destinatario es el cliente
+        msg_acma['Reply-To'] = "acma@alcobendas.manyanet.org"
         msg_cliente.add_alternative(cuerpo_cliente, subtype='html')
 
 
