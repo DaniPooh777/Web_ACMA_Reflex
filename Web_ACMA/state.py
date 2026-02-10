@@ -10,7 +10,6 @@ class FormState(rx.State):
     # 1. Variables para la UI y archivos
     archivos_seleccionados: list[str] = []
     _rutas_temporales: list[str] = []
-    nivel_seleccionado: str = ""
 
     # 2. Variables para validación reactiva
     email_valor: str = ""
@@ -28,7 +27,10 @@ class FormState(rx.State):
     descripcion_valor: str = ""
     descripcion_tocado: bool = False
 
+    nivel_seleccionado: str = ""
     nivel_tocado: bool = False
+
+    dialogo_abierto: bool = False
 
     # --- SETTERS Y MARCADORES ---
     def set_email_valor(self, valor: str):
@@ -63,9 +65,6 @@ class FormState(rx.State):
 
     def set_nivel_seleccionado(self, value: str):
         self.nivel_seleccionado = value
-
-    def set_nivel_seleccionado(self, value: str):
-        self.nivel_seleccionado = value
         # Si seleccionó algo, ya no hay error, así que lo marcamos como tocado
         self.nivel_tocado = True
 
@@ -77,6 +76,12 @@ class FormState(rx.State):
 
     def tocar_nivel(self, _=None):
         self.nivel_tocado = True
+
+    def abrir_dialogo(self):
+        self.dialogo_abierto = True
+
+    def cerrar_dialogo(self):
+        self.dialogo_abierto = False
 
     # --- COMPUTED VARS ---
     @rx.var
@@ -105,6 +110,44 @@ class FormState(rx.State):
     def error_nivel(self) -> bool:
         # Si fue tocado y no seleccionó nada (está el placeholder)
         return self.nivel_tocado and (not self.nivel_seleccionado or self.nivel_seleccionado == "")
+    
+    @rx.var
+    def formulario_invalido(self) -> bool:
+        # Verificamos que todos los campos tengan contenido y que NO haya errores activos
+        # Usamos strip() para que no nos engañen con puros espacios en blanco, ¡ponete las pilas!
+        campos_vacios = (
+            len(self.nombre_valor.strip()) == 0 or
+            len(self.email_valor.strip()) == 0 or
+            len(self.asunto_valor.strip()) == 0 or
+            len(self.fecha_valor.strip()) == 0 or
+            len(self.descripcion_valor.strip()) == 0 or
+            self.nivel_seleccionado == ""
+        )
+        
+        # También chequeamos que no existan errores de validación (como el dominio del email)
+        hay_errores = (
+            self.mostrar_error_email or 
+            self.error_nombre or 
+            self.error_asunto or 
+            self.error_fecha or 
+            self.error_descripcion or 
+            self.error_nivel
+        )
+
+        return campos_vacios or hay_errores
+    
+    @rx.var
+    def formulario_completo(self) -> bool:
+        # Verificamos que todo esté lleno y sin errores
+        return (
+            len(self.nombre_valor.strip()) > 0 and
+            len(self.email_valor.strip()) > 0 and
+            not self.mostrar_error_email and
+            len(self.asunto_valor.strip()) > 0 and
+            len(self.fecha_valor.strip()) > 0 and
+            len(self.descripcion_valor.strip()) > 0 and
+            self.nivel_seleccionado != ""
+        )
 
     # --- LÓGICA DE ARCHIVOS ---
     async def handle_upload(self, files: list[rx.UploadFile]):
@@ -152,17 +195,17 @@ class FormState(rx.State):
         self.nivel_seleccionado = ""
     
     # --- ENVÍO DE FORMULARIO ---
-    async def handle_submit(self, data: dict):
+    async def handle_submit(self, data: dict):        
         email_cliente = data.get("email")
         nombre = data.get("nombre")
         nivel = data.get("nivel_educativo")
         asunto = data.get("asunto")
         fecha = data.get("fecha_entrega")
         descripcion = data.get("descripcion")       
-
-        dominio_permitido = "@alcobendas.manyanet.org"
-        if not email_cliente.lower().endswith(dominio_permitido):
-            return rx.window_alert(f"Acceso denegado. Usá tu mail de {dominio_permitido}") 
+        
+        if not self.formulario_completo:
+            self.abrir_dialogo()
+            return
 
         # --- 2. MAIL PARA EL ACMA ---
         cuerpo_mail = f"""
