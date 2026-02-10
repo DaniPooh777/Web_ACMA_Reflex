@@ -179,20 +179,25 @@ class FormState(rx.State):
             self._rutas_temporales.pop(idx)
 
     def limpiar_validacion(self):
-        # Reset de booleanos
-        self.email_tocado = False
-        self.nombre_tocado = False
-        self.asunto_tocado = False
-        self.fecha_tocado = False
-        self.descripcion_tocado = False
-        self.nivel_tocado = False
-        # Reset de valores (opcional, si querés que el texto también desaparezca)
-        self.email_valor = ""
+        # Limpiamos los valores de los campos
         self.nombre_valor = ""
+        self.email_valor = ""
         self.asunto_valor = ""
         self.fecha_valor = ""
         self.descripcion_valor = ""
         self.nivel_seleccionado = ""
+        
+        # ¡CRUCIAL! Reseteamos los estados de "tocado" para que no salten errores
+        self.nombre_tocado = False
+        self.email_tocado = False
+        self.asunto_tocado = False
+        self.fecha_tocado = False
+        self.descripcion_tocado = False
+        self.nivel_tocado = False
+        
+        # Limpiamos archivos si corresponde
+        self.archivos_seleccionados = []
+        self._rutas_temporales = []
     
     # --- ENVÍO DE FORMULARIO ---
     async def handle_submit(self, data: dict):        
@@ -317,10 +322,7 @@ class FormState(rx.State):
                     if os.path.exists(ruta):
                         os.remove(ruta)
 
-                # Limpiamos los archivos         
-                self.archivos_seleccionados = []
-                self._rutas_temporales = []
-                self.nivel_seleccionado = ""
+                self.limpiar_validacion()
 
         except Exception as e:
             return rx.window_alert(f"Error al enviar: {str(e)}")

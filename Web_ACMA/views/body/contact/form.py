@@ -49,7 +49,7 @@ def input_field(label: str, placeholder: str, name: str, valor: rx.Var, error_co
 def alerta_formulario_incompleto() -> rx.Component:
     return rx.alert_dialog.root(
         rx.alert_dialog.content(
-            rx.alert_dialog.title("¡Bancá un poco, fiera!"),
+            rx.alert_dialog.title("¡Para el carro, fiera!"),
             rx.alert_dialog.description(
                 "¡No quieras pasarte de listo! Completa todo el formulario.",
             ),
