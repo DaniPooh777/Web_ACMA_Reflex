@@ -194,7 +194,7 @@ class FormState(rx.State):
         self.descripcion_valor = ""
         self.nivel_seleccionado = ""
         
-        # ¡CRUCIAL! Reseteamos los estados de "tocado" para que no salten errores
+        # Reseteamos los estados de "tocado" para que no salten errores
         self.nombre_tocado = False
         self.email_tocado = False
         self.asunto_tocado = False
