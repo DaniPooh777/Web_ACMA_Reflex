@@ -202,6 +202,7 @@ def solicitud_form() -> rx.Component:
                         name="fecha_entrega",
                         min=FormState.fecha_minima,
                         on_change=FormState.set_fecha_valor,
+                        on_blur=FormState.marcar_fecha_tocado,
                         style={
                             **INPUT_STYLE,
                             "width": "100%",
@@ -213,7 +214,7 @@ def solicitud_form() -> rx.Component:
                         },
                     ),
                     rx.cond(
-                        FormState.error_nivel,
+                        FormState.error_fecha,
                         rx.text("Este campo es obligatorio", color="#ef4444", font_size="0.75rem"),
                     ),
                     width="100%",

@@ -128,11 +128,13 @@ class FormState(rx.State):
 
     @rx.var
     def error_fecha(self) -> bool:
-        # Validación extra por si el usuario es un hacker de morondanga
-        if not self.fecha_tocado or not self.fecha_valor:
+        # Si no se tocó, no mostramos error (para no asustar al entrar)
+        if not self.fecha_tocado:
             return False
-        # Si la fecha elegida es menor a hoy, saltamos el error
-        return self.fecha_valor < date.today().isoformat()
+        # Si se tocó y está vacío O la fecha es pasada, hay error
+        import datetime
+        hoy = datetime.date.today().isoformat()
+        return not self.fecha_valor or self.fecha_valor < hoy
     
     @rx.var
     def formulario_invalido(self) -> bool:
