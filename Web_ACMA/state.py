@@ -3,6 +3,7 @@ import smtplib
 import os
 from email.message import EmailMessage
 from dotenv import load_dotenv
+from datetime import date
 
 load_dotenv()
 
@@ -52,8 +53,10 @@ class FormState(rx.State):
     def marcar_asunto_tocado(self, _=None):
         self.asunto_tocado = True
 
-    def set_fecha_valor(self, valor: str):
-        self.fecha_valor = valor
+    def set_fecha_valor(self, date_str: str):
+        # El DatePicker de Reflex devuelve la fecha en formato string (ISO)
+        self.fecha_valor = date_str
+        self.fecha_tocado = True
 
     def marcar_fecha_tocado(self, _=None):
         self.fecha_tocado = True
@@ -117,6 +120,19 @@ class FormState(rx.State):
     def error_nivel(self) -> bool:
         # Si fue tocado y no seleccionó nada (está el placeholder)
         return self.nivel_tocado and (not self.nivel_seleccionado or self.nivel_seleccionado == "")
+    
+    @rx.var
+    def fecha_minima(self) -> str:
+        # Retorna hoy en formato ISO (AAAA-MM-DD) que es lo que entiende el input date
+        return date.today().isoformat()
+
+    @rx.var
+    def error_fecha(self) -> bool:
+        # Validación extra por si el usuario es un hacker de morondanga
+        if not self.fecha_tocado or not self.fecha_valor:
+            return False
+        # Si la fecha elegida es menor a hoy, saltamos el error
+        return self.fecha_valor < date.today().isoformat()
     
     @rx.var
     def formulario_invalido(self) -> bool:

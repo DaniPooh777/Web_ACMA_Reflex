@@ -195,12 +195,30 @@ def solicitud_form() -> rx.Component:
                     on_blur_fn=FormState.marcar_asunto_tocado,
                     on_change_fn=FormState.set_asunto_valor
                 ),
-                input_field(
-                    "Fecha de Entrega", "Indica cuándo lo necesitas", "fecha_entrega",
-                    valor=FormState.fecha_valor,
-                    error_cond=FormState.error_fecha,
-                    on_blur_fn=FormState.marcar_fecha_tocado,
-                    on_change_fn=FormState.set_fecha_valor
+                rx.vstack(
+                    rx.text("Fecha de Entrega", **LABEL_STYLE),
+                    rx.input(
+                        type="date", # Esto activa el calendario nativo del navegador que es muy intuitivo
+                        name="fecha_entrega",
+                        min=FormState.fecha_minima,
+                        on_change=FormState.set_fecha_valor,
+                        style={
+                            **INPUT_STYLE,
+                            "width": "100%",
+                            "border": rx.cond(
+                                FormState.error_fecha,
+                                "1px solid #ef4444 !important",
+                                f"1px solid {COLOR_BORDER_INPUT}"
+                            ),
+                        },
+                    ),
+                    rx.cond(
+                        FormState.error_nivel,
+                        rx.text("Este campo es obligatorio", color="#ef4444", font_size="0.75rem"),
+                    ),
+                    width="100%",
+                    align_items="start",
+                    spacing="1",
                 ),
 
                 rx.vstack(
