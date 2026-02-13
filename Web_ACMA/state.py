@@ -4,6 +4,7 @@ import os
 from email.message import EmailMessage
 from dotenv import load_dotenv
 from datetime import date
+import datetime
 
 load_dotenv()
 
@@ -33,6 +34,8 @@ class FormState(rx.State):
 
     dialogo_abierto: bool = False
     dialogo_exito_abierto: bool = False
+
+    cargando: bool = False
 
     # --- SETTERS Y MARCADORES ---
     def set_email_valor(self, valor: str):
@@ -107,10 +110,6 @@ class FormState(rx.State):
     @rx.var
     def error_asunto(self) -> bool:
         return self.asunto_tocado and len(self.asunto_valor.strip()) == 0
-
-    @rx.var
-    def error_fecha(self) -> bool:
-        return self.fecha_tocado and len(self.fecha_valor.strip()) == 0
     
     @rx.var
     def error_descripcion(self) -> bool:
@@ -132,7 +131,6 @@ class FormState(rx.State):
         if not self.fecha_tocado:
             return False
         # Si se tocó y está vacío O la fecha es pasada, hay error
-        import datetime
         hoy = datetime.date.today().isoformat()
         return not self.fecha_valor or self.fecha_valor < hoy
     
@@ -225,7 +223,16 @@ class FormState(rx.State):
         self._rutas_temporales = []
     
     # --- ENVÍO DE FORMULARIO ---
-    async def handle_submit(self, data: dict):        
+    async def handle_submit(self, data: dict): 
+        # 1. VALIDACIÓN PRIMERO
+        if not self.formulario_completo:
+            self.abrir_dialogo()
+            return
+
+        # 2. SI ESTÁ TODO OK, RECIÉN AHÍ CARGAMOS
+        self.cargando = True     
+        yield
+          
         email_cliente = data.get("email")
         nombre = data.get("nombre")
         nivel = data.get("nivel_educativo")
@@ -352,7 +359,9 @@ class FormState(rx.State):
                 self.abrir_dialogo_exito()
 
         except Exception as e:
-            return rx.window_alert(f"Error al enviar: {str(e)}")
+            yield rx.window_alert(f"Error al enviar: {str(e)}")
+        finally:
+            self.cargando = False # PASE LO QUE PASE, liberamos el botón
 
 class State(rx.State):
     seccion_activa: str = ""

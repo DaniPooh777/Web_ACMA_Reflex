@@ -295,7 +295,16 @@ def solicitud_form() -> rx.Component:
                     spacing="1",
                 ),
                 
-                rx.button("Enviar Solicitud", type="submit", **SUBMIT_BUTTON_STYLE),
+                rx.button(
+                    rx.cond(
+                        FormState.cargando,
+                        rx.spinner(size="2"),
+                        "Enviar Solicitud"
+                    ),
+                    type="submit",
+                    disabled=FormState.cargando, # No permitas clicks extra, boludo
+                    **SUBMIT_BUTTON_STYLE
+                ),
                 **FORM_CONTAINER_STYLE,
             ),
             id="formulario-encargo", 
