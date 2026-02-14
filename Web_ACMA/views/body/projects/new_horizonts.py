@@ -27,7 +27,7 @@ def new_horizonts() -> rx.Component:
                     proyectos más personalizados para aquellas tareas más complejas que crear una presentación
                     interactiva en Genially. Un claro ejemplo de ello es esta página web. Fue creada por el 
                     colaborador principal de ACMA Daniel González, cuya visión es que ACMA sea más accesible y
-                    y entendible para todos los profesores independientemente de si es de Guardería o de Bachillerato.
+                    entendible para todos los profesores independientemente de si es de Guardería o de Bachillerato.
                     Por esta razón, consideramos la importancia de intentar establecer en ACMA la programación como
                     uno de nuestros servicios fijos para así poder mejorar la enseñanza con proyectos personalizados
                     para las necesidades de cada profesor.""",
