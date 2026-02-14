@@ -2,7 +2,17 @@ import reflex as rx
 from Web_ACMA.components.information_card import information_card
 from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style import WHO_ARE_WE_CONTAINER_STYLE, ORDER_CARD_STYLE
 
+# ==========================================
+# VISTA: SECCIÓN TARJETAS PARA QUIÉNES SOMOS
+# ==========================================
+"""En lugar de meter 200 líneas en una sola función, usamos el patrón de 
+   "Sub-componentes". Esto hace que el código sea testeable y legible."""
+
 def information() -> rx.Component:
+    """
+    Representa el bloque de texto principal de la sección.
+    Usamos una vstack (Vertical Stack) para mantener el flujo de lectura.
+    """
     return rx.vstack(
         # Tarjeta superior (Quiénes Somos)
         information_card(

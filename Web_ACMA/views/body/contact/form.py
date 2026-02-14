@@ -69,7 +69,7 @@ def alerta_exito() -> rx.Component:
         rx.alert_dialog.content(
             rx.alert_dialog.title("¡Encargo en camino! 🚀"),
             rx.alert_dialog.description(
-                "Tu solicitud ha sido enviada correctamente. Revisá tu gmail (y el spam por las dudas) porque te mandamos una copia.",
+                "Tu solicitud ha sido enviada correctamente. Revisa tu gmail (y el spam por si las dudas) porque te mandaremos una copia.",
             ),
             rx.flex(
                 rx.alert_dialog.action(
@@ -196,7 +196,7 @@ def solicitud_form() -> rx.Component:
                     on_change_fn=FormState.set_asunto_valor
                 ),
                 rx.vstack(
-                    rx.text("Fecha de Entrega", **LABEL_STYLE),
+                    rx.text("Fecha de Entrega Deseada", **LABEL_STYLE),
                     rx.input(
                         type="date", # Esto activa el calendario nativo del navegador que es muy intuitivo
                         name="fecha_entrega",

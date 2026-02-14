@@ -25,7 +25,7 @@ def new_horizonts() -> rx.Component:
                     """A partir de este año, en ACMA, estamos abiertos a la idea de de expandirnos en el área de la
                     programación. Nuesto objetivo detrás de ello es de crear la posibilidad de poder desarrollar
                     proyectos más personalizados para aquellas tareas más complejas que crear una presentación
-                    interactiva en Genially. Un claro ejemplo de ello es esta propia página web. Fue creada por el 
+                    interactiva en Genially. Un claro ejemplo de ello es esta página web. Fue creada por el 
                     colaborador principal de ACMA Daniel González, cuya visión es que ACMA sea más accesible y
                     y entendible para todos los profesores independientemente de si es de Guardería o de Bachillerato.
                     Por esta razón, consideramos la importancia de intentar establecer en ACMA la programación como

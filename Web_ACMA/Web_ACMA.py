@@ -1,5 +1,6 @@
 import reflex as rx
 from rxconfig import config
+from Web_ACMA.state import *
 from Web_ACMA.components.navbar import navbar
 from Web_ACMA.views.header.header import header
 from Web_ACMA.views.body.home.problems_solutions import problem_solutions
@@ -11,7 +12,6 @@ from Web_ACMA.views.body.who_are_we.information import information
 from Web_ACMA.views.body.who_are_we.collaborators import collaborators 
 from Web_ACMA.views.body.who_are_we.founder import founder
 from Web_ACMA.views.body.projects.projects import projects
-from Web_ACMA.state import *
 from Web_ACMA.views.body.contact.form import solicitud_form 
 from Web_ACMA.views.body.contact.contact_cards import contact_cards
 from Web_ACMA.views.body.home.frecuent_questions import frecuent_questions

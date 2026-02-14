@@ -1,5 +1,4 @@
 import reflex as rx
-import assets
 from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style import (
     FOUNDER_SECTION_CONTAINER,
     FOUNDER_IMAGE_STYLE,
@@ -10,6 +9,9 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
     INFO_SUBTITTLE_STYLE
 )
 
+# ===========================
+# VISTA: SECCIÓN DEL FUNDADOR
+# ===========================
 
 def founder() -> rx.Component:
     return rx.center(
