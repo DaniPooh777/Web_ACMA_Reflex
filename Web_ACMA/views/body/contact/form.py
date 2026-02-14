@@ -165,11 +165,17 @@ def solicitud_form() -> rx.Component:
                                 },
                             },
                         ),
-                        background_color=COLOR_INPUT_BG,
+                        background_color=rx.color_mode_cond(
+                            light="white",
+                            dark=COLOR_INPUT_BG
+                        ),
                         border=rx.cond(
                             FormState.error_nivel,
                             "1px solid #ef4444 !important",
-                            f"2px solid {COLOR_BORDER_INPUT}"
+                            rx.color_mode_cond(
+                                light=f"2px solid {rx.color('mauve', 6)}",
+                                dark=f"2px solid {COLOR_BORDER_INPUT}"
+                            ),
                         ),
                         border_radius="8px",
                         width="100%",
@@ -236,7 +242,6 @@ def solicitud_form() -> rx.Component:
                             on_change=FormState.set_descripcion_valor,
                             on_blur=FormState.marcar_descripcion_tocado, 
                             style={
-                                "border": "none",
                                 "padding_bottom": "3rem",
                                 "padding_right": "1rem"
                             },
@@ -255,10 +260,16 @@ def solicitud_form() -> rx.Component:
                         border=rx.cond(
                             FormState.error_descripcion,
                             "1px solid #ef4444 !important",
-                            f"1px solid {COLOR_BORDER_INPUT}"
+                            f"2px solid {rx.color_mode_cond(
+                                light=f"1px solid {rx.color('mauve', 6)}",
+                                dark=f"5px solid {COLOR_BORDER_INPUT}"
+                            ),}"
                         ),
-                        background_color=COLOR_INPUT_BG,
-                        border_radius="8px",
+                        background_color=rx.color_mode_cond(
+                            light="white",
+                            dark=COLOR_INPUT_BG
+                        ),
+                        border_radius="10px",
                         width="100%",
                     ),
 
@@ -272,7 +283,7 @@ def solicitud_form() -> rx.Component:
                         rx.foreach(
                             FormState.archivos_seleccionados,
                             lambda file: rx.hstack(
-                                rx.text(file, font_size="0.85rem", color="white"),
+                                rx.text(file, font_size="0.85rem", color=rx.color("mauve", 12),),
                                 rx.spacer(),
                                 rx.icon(
                                     tag="x", 
@@ -283,7 +294,10 @@ def solicitud_form() -> rx.Component:
                                 ),
                                 width="100%",
                                 padding_y="0.5rem",
-                                border_bottom=f"1px solid {COLOR_BORDER_CONTAINER}",
+                                border_bottom=rx.color_mode_cond(
+                                    light=f"2px solid {rx.color('mauve', 6)}",
+                                    dark=f"2px solid {COLOR_BORDER_INPUT}"
+                                )
                             )
                         ),
                         align_items="start",

@@ -16,21 +16,24 @@ NAVBAR_STYLE = {
     "width": "100%",
     "padding_x": "2rem",
     "padding_y": "1rem",
-    "background_color": "rgba(17, 24, 39, 0.8)",
+    "background_color": rx.color_mode_cond(
+        light="rgba(255, 255, 255, 0.8)", # Un blanco transparente para el modo claro
+        dark="rgba(17, 24, 39, 0.8)"      # El color exacto que vos querés para el oscuro
+    ),
+    "border_bottom": f"1px solid {rx.color('mauve', 4)}",
     "backdrop_filter": "blur(10px)",
-    "border_bottom": "1px solid rgba(255, 255, 255, 0.1)",
     "align_items": "center",
     "justify_content": "space-between", 
 }
 
 # Estilos para los links de navegación
 NAV_LINK_STYLE = {
-    "color": "rgb(156, 163, 175)",
+    "color": rx.color("mauve", 12),
     "text_decoration": "none",
     "font_size": "0.9rem",
     "font_weight": "500",
     "_hover": {
-        "color": "rgb(59, 130, 246)",  # Azul cuando pasás el mouse
+        "color": rx.color("accent", 9),  # Azul cuando pasás el mouse
         "transition": "0.3s",
     },
 }
