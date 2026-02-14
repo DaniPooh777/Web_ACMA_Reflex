@@ -37,7 +37,8 @@ def founder() -> rx.Component:
                         """ACMA nació bajo el respaldo de Jefatura de Estudios como un proyecto innovador dentro de la optativa Ciencias de la Computación. 
                         Nuestra misión es doble: facilitar la labor docente con materiales de alta calidad y ofrecer al alumno una experiencia laboral real 
                         sin añadir carga lectiva a la PAU. Aquí entrenamos el rigor profesional ayudando a nuestros profesores.""",
-                        style=INFO_TEXT_STYLE
+                        style=INFO_TEXT_STYLE,
+                        text_align="justify"
                     ),
                     style=FOUNDER_TEXT_CARD_STYLE,
                     align_items="start",

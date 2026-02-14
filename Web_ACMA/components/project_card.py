@@ -42,6 +42,7 @@ def project_card(card_id: str, image_url: str, title: str, description: str) -> 
                     opacity=rx.cond(is_expanded, "1", "0"),
                     transition="max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out",
                     overflow="hidden",
+                    text_align="justify"
                 ),
                 **CONTENT_CONTAINER_STYLE,
                 width="100%",

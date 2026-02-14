@@ -92,6 +92,7 @@ COLLABORATOR_SECTION_CONTAINER = {
     "display": "flex",
     "flex_direction": ["column", "row"], # Columna en mobile, fila en desktop
     "align_items": "center",
+    "text_align": "center",
     "justify_content": "center",
     "gap": "2rem",
     "padding_y": "2rem",

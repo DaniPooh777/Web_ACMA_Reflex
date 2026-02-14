@@ -33,6 +33,7 @@ def faq_item(question: str, answer: str, id: str) -> rx.Component:
                 opacity=rx.cond(is_open, "1", "0"),
             ),
             style=FAQ_ITEM_INNER_STYLE,
+            text_align="justify"
         ),
         # Hitbox total: el click está en la tarjeta
         on_click=lambda: FaqState.toggle_faq(id),

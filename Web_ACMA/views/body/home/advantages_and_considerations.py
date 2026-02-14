@@ -33,6 +33,7 @@ def advantages_and_considerations() -> rx.Component:
             justify="center",
             flex_wrap="wrap",
             gap="2rem",
+            text_align="justify"
         ),
         **SECTION_CONTAINER_STYLE
     )

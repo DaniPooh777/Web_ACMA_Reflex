@@ -18,7 +18,7 @@ def collaborator_item(name: str, role: str, description: str, img_src: str) -> r
         rx.vstack(
             rx.heading(name, style=INFO_TITLE_STYLE),
             rx.text(role, style=INFO_SUBTITTLE_STYLE),
-            rx.text(description, style=INFO_TEXT_STYLE),
+            rx.text(description, style=INFO_TEXT_STYLE, text_align="justify"),
             style=FOUNDER_TEXT_CARD_STYLE,
             align_items="start",
             width="100%",
@@ -51,10 +51,10 @@ def collaborators() -> rx.Component:
                     "Integrante y creador de la página web de ACMA", 
                     """Pieza clave en ACMA, no solo es el fundador de esta web, sino un integrante excepcional que ha elevado 
                     la calidad de nuestros trabajos. Su visión técnica nos llevó a GitHub, creando el espacio donde compartimos 
-                    nuestro código creado en los múltiples proyectos que trabajamos, destacando el videojuego ROGUETHON que creé. 
+                    nuestros códigos creados en los múltiples proyectos que trabajamos, destacando el videojuego ROGUETHON que creó. 
                     Además, su labor publicitaria (¡especialmente en Primaria!) ha sido vital para generar esa confianza 
                     y cercanía que hoy nos une con los profesores.""",
-                    "favicon.ico"
+                    "Foto Daniel.jpeg"
                 ),
                 style=COLLABORATOR_SECTION_CONTAINER,
             ),

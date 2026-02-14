@@ -9,7 +9,7 @@ def information_card(tittle: str, text: str, width: str = "100%") -> rx.Componen
     return rx.vstack(
         rx.heading(tittle, style=INFO_TITLE_STYLE),
         rx.text(text, style=INFO_TEXT_STYLE),
-        style={**INFO_CARD_STYLE, "width": width},
+        style={**INFO_CARD_STYLE, "width": width, "text_align":"justify"},
         align_items="center", 
         padding="2.5rem",     
     )

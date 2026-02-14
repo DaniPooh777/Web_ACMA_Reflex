@@ -36,6 +36,7 @@ def new_horizonts() -> rx.Component:
                 style={**FOUNDER_TEXT_CARD_STYLE, "flex": "1"}, # Forzamos que crezca
                 align_items="start",
                 justify_content="center",
+                text_align="justify"
             ),
             # Imagen a la derecha
             rx.image(
