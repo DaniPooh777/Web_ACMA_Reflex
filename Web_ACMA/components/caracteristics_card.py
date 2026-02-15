@@ -1,6 +1,7 @@
 import reflex as rx
 from Web_ACMA.styles.views_style.body_style.contact_style.contact_cards_style import *
 
+"""Esta es la plantilla para crear las tarjetas de características"""
 def caracteristics_card(tittle: str, text: str, icon: str) -> rx.Component:
     return rx.vstack(
         rx.box(

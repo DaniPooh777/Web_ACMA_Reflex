@@ -2,20 +2,24 @@ import reflex as rx
 from Web_ACMA.styles.views_style.body_style.home_style.frecuent_questions_style import *
 from Web_ACMA.state import FaqState
 
+# =========
+# COMPONENT
+# =========
 
+"""Esta es la plantilla para crear las tarjetas desplegables de preguntas frecuentes"""
 def faq_item(question: str, answer: str, id: str) -> rx.Component:
-    is_open = (FaqState.opened_id == id)
+    is_open = (FaqState.opened_id == id) 
     
     return rx.box(
         rx.vstack(
-            # Header
+            # Título: es la pregunta
             rx.hstack(
                 rx.text(question, style=FAQ_QUESTION_STYLE),
                 rx.icon(
                     tag="chevron-down",
                     size=20,
                     color="rgb(59, 130, 246)",
-                    # Animación del icono también suave
+                    # Animación del icono suave
                     transform=rx.cond(is_open, "rotate(180deg)", "rotate(0deg)"),
                     transition="transform 0.6s ease-in-out",
                 ),
@@ -24,26 +28,33 @@ def faq_item(question: str, answer: str, id: str) -> rx.Component:
                 width="100%",
             ),
             
-            # Contenedor de la Respuesta (El "túnel")
+            # Contenedor desplegable: es la respuesta
             rx.box(
                 rx.text(answer, style=FAQ_ANSWER_STYLE),
                 style=FAQ_ANSWER_ANIMATION_STYLE,
-                # Usamos valores fijos para que el CSS pueda interpolar
                 max_height=rx.cond(is_open, "300px", "0px"),
                 opacity=rx.cond(is_open, "1", "0"),
             ),
             style=FAQ_ITEM_INNER_STYLE,
             text_align="justify"
         ),
-        # Hitbox total: el click está en la tarjeta
-        on_click=lambda: FaqState.toggle_faq(id),
+        
+        on_click=lambda: FaqState.toggle_faq(id), # Hitbox total: el click está en TODA la tarjeta
         style=FAQ_CARD_STYLE,
         margin_bottom="1rem",
     )
 
+# ===============
+# VISTA PRINCIPAL
+#================
+
+"""Esta función se encarga de dar estructura a la sección de preguntas frecuentes"""
 def frecuent_questions() -> rx.Component:
     return rx.vstack(
+        # Título de la sección
         rx.heading("Preguntas Frecuentes", style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}),
+
+        # Tarjetas pregunta + respuesta
         faq_item(
             "¿Podéis imprimir trabajos como pósters o documentos?",
             "No. No está en nuestros servicios.",

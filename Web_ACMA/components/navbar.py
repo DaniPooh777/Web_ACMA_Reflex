@@ -6,6 +6,7 @@ from Web_ACMA.styles.components_style.navbar_style import (
     NAV_CENTER_HSTACK_STYLE # 
 )
 
+"""Esta es la plantilla para crear la navbar"""
 def navbar() -> rx.Component:
     return rx.hstack(
         # Bloque Izquierdo: Logo
@@ -22,7 +23,7 @@ def navbar() -> rx.Component:
             spacing="3",
         ),
         
-        # Bloque Central: Los links ahora son ABSOLUTOS respecto al centro
+        # Bloque Central: Links 
         rx.hstack(
             rx.link("Inicio", href="/", **NAV_LINK_STYLE),
             rx.link("Proyectos", href="/project", **NAV_LINK_STYLE),

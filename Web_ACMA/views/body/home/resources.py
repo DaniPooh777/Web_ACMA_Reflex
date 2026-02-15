@@ -2,13 +2,13 @@ import reflex as rx
 from Web_ACMA.components.resources_types_card import resources_type_card
 from Web_ACMA.components.problem_card import problem_card
 from Web_ACMA.components.example_resource_type_card import example_resources_type_card
-from Web_ACMA.styles.components_style.resources_type_card_style import RESOURCES_GRID_STYLE, HEADER_TITLE_STYLE # Importá el estilo
+from Web_ACMA.styles.components_style.resources_type_card_style import RESOURCES_GRID_STYLE, HEADER_TITLE_STYLE 
 
+# Esta función se encarga de dar estructura a la sección de ejemplos de recursos que ACMA puede realizar
 def resources() -> rx.Component:
-    # Importamos State dentro de la función para evitar importación circular 
-    from Web_ACMA.Web_ACMA import State
-    
+    from Web_ACMA.Web_ACMA import State # Importamos State dentro de la función para evitar importación circular 
     return rx.vstack(
+        # Título de la sección
         rx.heading("Recursos a tu Alcance", 
                    style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}
                 ),

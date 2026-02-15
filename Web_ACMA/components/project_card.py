@@ -12,17 +12,24 @@ from Web_ACMA.styles.views_style.body_style.projects_style.project_style import 
     DESCRIPTION_TEXT_STYLE,
 )
 
-
+"""Esta es la plantilla para crear las tarjetas desplegables de los proyectos destacados de ACMA"""
 def project_card(card_id: str, image_url: str, title: str, description: str) -> rx.Component:
-    # La tarjeta está expandida si su ID coincide con el del estado
-    is_expanded = (ProjectCardState.opened_id == card_id)
+    is_expanded = (ProjectCardState.opened_id == card_id) # La tarjeta está expandida si su ID coincide con el del estado
     
     return rx.box(
+        # Tarjeta desplegable
         rx.vstack(
-            rx.image(src=image_url, **IMAGE_STYLE),
+            # Imagen del trabajo
+            rx.image(src=image_url, **IMAGE_STYLE), 
+
+            # El resto de la tarjeta
             rx.box(
+                # Sección de la tarjeta sin desplegar
                 rx.hstack(
+                    # Título del proyecto
                     rx.heading(title, **TITLE_STYLE),
+
+                    # Icono flecha ^ que rota cuando la tarjeta de abre 
                     rx.icon(
                         tag="chevron-down",
                         **ICON_STYLE,
@@ -32,7 +39,10 @@ def project_card(card_id: str, image_url: str, title: str, description: str) -> 
                     **HEADER_STYLE,
                     width="100%",
                 ),
+
+                # Sección de la tarjeta desplegada
                 rx.box(
+                    # Texto de la tarjeta desplegada
                     rx.text(
                         rx.text("Descripción: ", **DESCRIPTION_LABEL_STYLE),
                         rx.text(description, **DESCRIPTION_TEXT_STYLE),

@@ -13,30 +13,44 @@ from Web_ACMA.styles.views_style.body_style.contact_style.form_style import (
     COLOR_BORDER_CONTAINER
 )
 
+# =========
+# COMPONENT
+# =========
+
+"""Es la plantilla de la casilla para aquello que se necesita escribir en el formulario"""
 def input_field(label: str, placeholder: str, name: str, valor: rx.Var, error_cond: rx.Var, on_blur_fn, on_change_fn, type: str = "text") -> rx.Component:
     return rx.vstack(
+        # Título de la casilla
         rx.text(label, **LABEL_STYLE),
+
+        # La casilla
         rx.input(
             name=name,
-            placeholder=placeholder,
+            placeholder=placeholder, # Es el textito clarito dentro de la casilla que desaparece cuando escribes en la casilla 
             value=valor,
-            on_change=on_change_fn,
-            on_blur=on_blur_fn,
+            on_change=on_change_fn, # Detecta cambios en tiempo real
+            on_blur=on_blur_fn, # Detecta cuando el usuario sale del componente
             type=type,
+
+            # Da estilo al borde de la casilla cuando está normal y cuando falta el elemento en ella
             style={
                 **INPUT_STYLE,
                 "border": rx.cond(
                     error_cond,
-                    "1px solid #ef4444 !important",
-                    f"1px solid {COLOR_BORDER_INPUT}"
+                    "1px solid #ef4444 !important", # Color rojo advertencia
+                    f"1px solid {COLOR_BORDER_INPUT}" # Color normal casilla
                 ),
             },
+
+            # Ignora la tecla ENTER para evitar que se envíe el formulario
             on_key_down=lambda e: rx.cond(
                 e == "Enter",
                 rx.event.prevent_default,
                 rx.console_log("Tecla ignorada")
             ),
         ),
+
+        # Condicional que activa el texto rojo debajo de la casilla cuando no la has completado y has salido de ella.
         rx.cond(
             error_cond,
             rx.text("Este campo es obligatorio", color="#ef4444", font_size="0.75rem"),
@@ -46,10 +60,15 @@ def input_field(label: str, placeholder: str, name: str, valor: rx.Var, error_co
         spacing="1",
     )
 
+# =========
+# COMPONENT
+# =========
+
+"""Es la plantilla del popup que sale cuando tratas de enviar el formulario sin haberlo completado por completo"""
 def alerta_formulario_incompleto() -> rx.Component:
     return rx.alert_dialog.root(
         rx.alert_dialog.content(
-            rx.alert_dialog.title("¡Para el carro, fiera! ⛔️"),
+            rx.alert_dialog.title("⛔️ ¡Para el carro, fiera! ⛔️"),
             rx.alert_dialog.description(
                 "¡No quieras pasarte de listo! Completa todo el formulario.",
             ),
@@ -64,10 +83,15 @@ def alerta_formulario_incompleto() -> rx.Component:
         open=FormState.dialogo_abierto, # Vinculado al estado
     )
 
+# =========
+# COMPONENT
+# =========
+
+"""Es la plantilla del popup que sale cuando el formulario se ha enviado exitosamente"""
 def alerta_exito() -> rx.Component:
     return rx.alert_dialog.root(
         rx.alert_dialog.content(
-            rx.alert_dialog.title("¡Encargo en camino! 🚀"),
+            rx.alert_dialog.title("🚀 ¡Encargo en camino! 🚀"),
             rx.alert_dialog.description(
                 "Tu solicitud ha sido enviada correctamente. Revisa tu gmail (y el spam por si las dudas) porque te mandaremos una copia.",
             ),
@@ -86,14 +110,24 @@ def alerta_exito() -> rx.Component:
         open=FormState.dialogo_exito_abierto,
     )
 
+# ===============
+# VISTA PRINCIPAL
+# ===============
+
+"""Esta función se encarga de dar estructura a la sección del formulario"""
 def solicitud_form() -> rx.Component:
     return rx.fragment(
+        # Los dos popups
         alerta_formulario_incompleto(),
         alerta_exito(),
+
+        # El formulario en sí
         rx.form(
             rx.vstack(
+                # Título de la sección
                 rx.heading("Solicita un nuevo encargo", size="6", margin_bottom="0.5rem"),
                 
+                # Casilla del nombre
                 input_field(
                     "Nombre", "Tu nombre completo", "nombre",
                     valor=FormState.nombre_valor,
@@ -101,7 +135,8 @@ def solicitud_form() -> rx.Component:
                     on_blur_fn=FormState.marcar_nombre_tocado,
                     on_change_fn=FormState.set_nombre_valor
                 ),
-
+                
+                # Casilla del email
                 rx.vstack(
                     rx.text("Email", **LABEL_STYLE),
                     rx.input(
@@ -129,7 +164,8 @@ def solicitud_form() -> rx.Component:
                     align_items="start",
                     spacing="1",
                 ),
-
+                
+                # Casilla del nivel eduacativo
                 rx.vstack(
                     rx.text("Nivel Educativo", **LABEL_STYLE),
                     rx.box(
@@ -137,7 +173,7 @@ def solicitud_form() -> rx.Component:
                             ["Guardería", "Infantil", "Primaria", "Secundaria", "Bachillerato"],
                             placeholder="Selecciona el nivel...",
                             name="nivel_educativo",
-                            value=FormState.nivel_seleccionado, # Vinculación bidireccional
+                            value=FormState.nivel_seleccionado, 
                             on_change=lambda v: FormState.set_nivel_seleccionado(v),
                             on_open_change=FormState.manejar_cierre_menu,
                             width="100%",
@@ -187,7 +223,8 @@ def solicitud_form() -> rx.Component:
                     align_items="stretch",
                     spacing="1",
                 ),
-
+                
+                # Casilla del asunto del encargo
                 input_field(
                     "Asunto", "Dale un nombre al encargo", "asunto",
                     valor=FormState.asunto_valor,
@@ -195,6 +232,8 @@ def solicitud_form() -> rx.Component:
                     on_blur_fn=FormState.marcar_asunto_tocado,
                     on_change_fn=FormState.set_asunto_valor
                 ),
+
+                # Casilla de la fecha de entrega
                 rx.vstack(
                     rx.text("Fecha de Entrega Deseada", **LABEL_STYLE),
                     rx.input(
@@ -221,7 +260,8 @@ def solicitud_form() -> rx.Component:
                     align_items="start",
                     spacing="1",
                 ),
-
+                
+                # Casilla de la descripción del encargo
                 rx.vstack(
                     rx.text("Descripción del Encargo", **LABEL_STYLE),
                     # RECUADRO DE TEXTO (Solo el área de escritura y el botón)
@@ -241,6 +281,8 @@ def solicitud_form() -> rx.Component:
                                 "padding_right": "1rem"
                             },
                         ),
+
+                        # Botón de adjuntar archivos
                         rx.upload(
                             rx.hstack(
                                 rx.icon(tag="upload", size=16),
@@ -267,7 +309,7 @@ def solicitud_form() -> rx.Component:
                         rx.text("La descripción es obligatoria", color="#ef4444", font_size="0.75rem"),
                     ),
                     
-                    # LISTA DE ARCHIVOS (Fuera del recuadro)
+                    # Lista de archivos adjuntados
                     rx.vstack(
                         rx.foreach(
                             FormState.archivos_seleccionados,
@@ -295,14 +337,15 @@ def solicitud_form() -> rx.Component:
                     spacing="1",
                 ),
                 
+                # Botón de enviar formulario
                 rx.button(
                     rx.cond(
                         FormState.cargando,
-                        rx.spinner(size="2"),
+                        rx.spinner(size="2"), # Para que el usuario sepa que se está enviando el formulario
                         "Enviar Solicitud"
                     ),
                     type="submit",
-                    disabled=FormState.cargando, # No permitas clicks extra, boludo
+                    disabled=FormState.cargando, # No permitir clicks extra
                     **SUBMIT_BUTTON_STYLE
                 ),
                 **FORM_CONTAINER_STYLE,

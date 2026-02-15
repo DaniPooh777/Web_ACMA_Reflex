@@ -1,9 +1,9 @@
 import reflex as rx
 from Web_ACMA.styles.components_style.resources_type_card_style import RESOURCE_CARD_STYLE
 
-def example_resources_type_card(url: str) -> rx.Component:
-    # Creamos una copia para no romper el estilo original de las otras tarjetas
-    custom_style = RESOURCE_CARD_STYLE.copy()
+"""Esta es la plantilla para crear la tarjeta de visualización de la sección de ejemplos de trabajos que ACMA puede realizar"""
+def example_resources_type_card(url: str) -> rx.Component:    
+    custom_style = RESOURCE_CARD_STYLE.copy() # Creamos una copia para no romper el estilo original de las otras tarjetas
     custom_style.update({
         "width": ["100%", "550px"],
         "height": "auto",
@@ -12,13 +12,17 @@ def example_resources_type_card(url: str) -> rx.Component:
         "_hover": {},
     })
 
+    # Tarjeta de visualización
     return rx.vstack(
+        # Título
         rx.text(
             "Visualización", 
             color="rgb(59, 130, 246)", 
             font_weight="bold", 
             font_size="1.1rem"
         ),
+
+        # Sección imagen
         rx.box(
             rx.image(
                 src=url,

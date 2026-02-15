@@ -1,13 +1,12 @@
 import reflex as rx
 from Web_ACMA.components.project_card import project_card
-from Web_ACMA.views.header.header import header
 from Web_ACMA.styles.views_style.body_style.projects_style.project_style import (
     PROJECTS_CONTAINER_STYLE,
     CARDS_FLEX_STYLE,
     PROJECTS_SECTION_STYLE
 )
 
-
+# Esta función se encarga de dar estructura a la sección de los distintos proyectos destacados de ACMA.
 def projects() -> rx.Component:
     return rx.box(
         rx.vstack(

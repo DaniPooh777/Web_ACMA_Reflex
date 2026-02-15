@@ -1,6 +1,7 @@
 import reflex as rx
 from Web_ACMA.styles.views_style.body_style.home_style.problem_solutions_style import PROBLEM_CARD_STYLE
 
+"""Esta es la plantilla para crear la tarjeta de problema-solución"""
 def problem_card(tittle_1: str, text_1: str, tittle_2: str, text_2: str) -> rx.Component:
     return rx.vstack(
         # Sección Problema

@@ -1,10 +1,13 @@
 import reflex as rx
 from Web_ACMA.components.caracteristics_card import *
 
+# Esta función se encarga de dar estructura a la sección de características importantes de ACMA
 def caracteristics() -> rx.Component:
     return rx.vstack(
+        # Título de la sección 
         rx.heading("Tu Clase, Impulsada por la Calidad", style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}),
         
+        # Tarjetas
         rx.flex(
             caracteristics_card(
                 "Calidad intachable", 

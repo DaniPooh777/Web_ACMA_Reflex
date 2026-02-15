@@ -6,6 +6,7 @@ from Web_ACMA.styles.components_style.footer_style import (
     FOOTER_COPYRIGHT_STYLE
 )
 
+"""Esta es la plantilla para crear el footer"""
 def footer() -> rx.Component:
     year = datetime.now().year
 
@@ -39,6 +40,7 @@ def footer() -> rx.Component:
             max_width="1100px",
         ),
         
+        # Bloque inferior: Copyright
         rx.text(
             f"© {year} ACMA. Agencia de Contenido Manyanet Alcobendas.",
             **FOOTER_COPYRIGHT_STYLE

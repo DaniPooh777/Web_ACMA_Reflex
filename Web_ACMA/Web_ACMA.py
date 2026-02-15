@@ -21,7 +21,7 @@ from Web_ACMA.views.body.home.advantages_and_considerations import advantages_an
 from Web_ACMA.views.body.projects.new_horizonts import new_horizonts
 
 
-# Web_ACMA.py
+# Página Inicio
 def index() -> rx.Component:
     return rx.vstack(
         navbar(),
@@ -45,6 +45,8 @@ def index() -> rx.Component:
         width="100%",
         align_items="center",       
         background_color="rgb(10, 10, 15)",
+
+        # Para resetear a sus valores iniciales
         on_mount=[
             ProjectCardState.clean_state, 
             FaqState.clean_state,
@@ -57,8 +59,8 @@ def project() -> rx.Component:
     return rx.vstack(
         navbar(),
         header(
-                "Proyectos Más Relevantes",
-                "Descubre algunos de los proyectos más destacados que hemos realizado para el profesorado."
+            "Proyectos Más Relevantes",
+            "Descubre algunos de los proyectos más destacados que hemos realizado para el profesorado."
             ),
         projects(),
         new_horizonts(),  
@@ -77,7 +79,10 @@ def project() -> rx.Component:
 def who_are_we() -> rx.Component:
     return rx.vstack(
         navbar(),
-        header("Profundizando en ACMA", "Conocé a los que ensucian las manos."),
+        header(
+            "Profundizando en ACMA", 
+            "Conocé a los que ensucian las manos."
+        ),
         information(), 
         founder(),     
         collaborators(),

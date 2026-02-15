@@ -9,6 +9,11 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
     INFO_SUBTITTLE_STYLE
 )
 
+# ==========
+# COMPONENTE
+# ==========
+
+# Es la plantilla para crear tarjetas de colaborador (imagen + tarjeta con texto)
 def collaborator_item(name: str, role: str, description: str, img_src: str) -> rx.Component:
     return rx.vstack(
         # Imagen arriba
@@ -28,6 +33,11 @@ def collaborator_item(name: str, role: str, description: str, img_src: str) -> r
         width="100%",
     )
 
+# =========================================
+# VISTA PRINCIPAL: SECCIÓN DE COLABORADORES
+# =========================================
+
+# Esta sección se encarga de organizar el layout de los colaboradores.
 def collaborators() -> rx.Component:
     return rx.center(
         rx.vstack(

@@ -5,6 +5,7 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
     INFO_TEXT_STYLE
 )
 
+"""Esta es la plantilla para crear la tarjeta de información"""
 def information_card(tittle: str, text: str, width: str = "100%") -> rx.Component:
     return rx.vstack(
         rx.heading(tittle, style=INFO_TITLE_STYLE),

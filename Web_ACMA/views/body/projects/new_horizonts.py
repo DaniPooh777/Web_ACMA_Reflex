@@ -1,7 +1,5 @@
 import reflex as rx
-from Web_ACMA.styles.views_style.body_style.projects_style.new_horizonts_style import (
-    HEADER_TITLE_STYLE
-)
+from Web_ACMA.styles.views_style.body_style.projects_style.new_horizonts_style import HEADER_TITLE_STYLE
 from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style import (
     FOUNDER_SECTION_CONTAINER,
     FOUNDER_IMAGE_STYLE,
@@ -10,13 +8,16 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
     INFO_TEXT_STYLE,
 )
 
+# Esta función se encarga de dar estructura a la sección de Nuevos Horizontes solicitada por Marcos :)
 def new_horizonts() -> rx.Component:
     return rx.vstack(
+        # Título
         rx.heading(
             "Nuevos Horizontes", 
             style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}
         ),
         
+        # Tarjeta + imagen
         rx.flex(
             # Tarjeta de texto
             rx.vstack(
@@ -43,7 +44,6 @@ def new_horizonts() -> rx.Component:
                 src="Código ACMA.png", 
                 style={**FOUNDER_IMAGE_STYLE, "width": "400px", "height": "400px"} 
             ),
-            # IMPORTANTE: Forzamos el ancho a 1200px para alinear con proyectos
             style={
                 **FOUNDER_SECTION_CONTAINER, 
                 "max_width": "1150px", 

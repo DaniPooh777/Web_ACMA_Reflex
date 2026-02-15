@@ -6,6 +6,7 @@ from Web_ACMA.styles.components_style.resources_type_card_style import (
     RESOURCE_TEXT_STYLE 
 )
 
+"""Esta es la plantilla para crear tarjetas clickables de los ejemplos de trabajos que podemos hacer"""
 def resources_type_card(text: str, icon: str, on_click: Callable) -> rx.Component:
     return rx.vstack(
         rx.box(

@@ -9,10 +9,7 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
     INFO_SUBTITTLE_STYLE
 )
 
-# ===========================
-# VISTA: SECCIÓN DEL FUNDADOR
-# ===========================
-
+# Esta función se encarga de dar estructura a la sección del fundador de ACMA
 def founder() -> rx.Component:
     return rx.center(
         rx.vstack(

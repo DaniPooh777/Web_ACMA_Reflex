@@ -6,6 +6,7 @@ from Web_ACMA.styles.views_style.body_style.contact_style.contact_cards_style im
     CARD_LINK_STYLE
 )
 
+"""Esta es la plantilla para crear la tarjeta de contacto (email) de ACMA"""
 def caracteristics_card_link(tittle: str, text: str, icon: str, link: str) -> rx.Component:
     return rx.vstack(
         rx.box(
