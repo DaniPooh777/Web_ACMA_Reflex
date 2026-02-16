@@ -125,7 +125,7 @@ def solicitud_form() -> rx.Component:
         rx.form(
             rx.vstack(
                 # Título de la sección
-                rx.heading("Solicita un nuevo encargo", size="6", margin_bottom="0.5rem"),
+                rx.heading("Solicita un nuevo encargo", size="6", margin_bottom="0.5rem", color="#ffffff"),
                 
                 # Casilla del nombre
                 input_field(
@@ -141,7 +141,7 @@ def solicitud_form() -> rx.Component:
                     rx.text("Email", **LABEL_STYLE),
                     rx.input(
                         name="email",
-                        placeholder="ejemplo@alcobendas.manyanet.org",
+                        placeholder="Tu email del centro",
                         type="email",
                         value=FormState.email_valor,
                         on_change=FormState.set_email_valor,
@@ -240,6 +240,7 @@ def solicitud_form() -> rx.Component:
                         type="date", # Esto activa el calendario nativo del navegador que es muy intuitivo
                         name="fecha_entrega",
                         min=FormState.fecha_minima,
+                        color="#ffffff",
                         on_change=FormState.set_fecha_valor,
                         on_blur=FormState.marcar_fecha_tocado,
                         style={
@@ -269,6 +270,7 @@ def solicitud_form() -> rx.Component:
                         rx.text_area(
                             name="descripcion",
                             placeholder="Describe detalladamente el encargo...",
+                            color="#ffffff",
                             width="100%",
                             min_height="160px",
                             background_color="transparent", 

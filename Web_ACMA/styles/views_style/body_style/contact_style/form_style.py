@@ -22,10 +22,10 @@ FORM_CONTAINER_STYLE = {
 INPUT_STYLE = {
     "width": "100%",
     "height": "2.8rem",
-    "background_color": COLOR_INPUT_BG, #
-    "border": f"1px solid {COLOR_BORDER_INPUT}", #
-    "color": "white", #
-    "border_radius": "8px", #
+    "background_color": COLOR_INPUT_BG, 
+    "border": f"1px solid {COLOR_BORDER_INPUT}", 
+    "color": "#ffffff", 
+    "border_radius": "8px", 
     "outline": "none !important",
     "transition": "all 0.2s ease-in-out",
     
@@ -37,14 +37,14 @@ INPUT_STYLE = {
     
     "_autofill": {
         "transition": "background-color 5000s ease-in-out 0s",
-        "text_fill_color": "white",
+        "text_fill_color": "#ffffff",
     }, #
 }
 
 LABEL_STYLE = {
     "font_size": "0.9rem",
     "font_weight": "600",
-    "color": "white",
+    "color": "#ffffff",
 }
 
 ATTACH_STYLE = {
@@ -60,7 +60,7 @@ SUBMIT_BUTTON_STYLE = {
     "width": "100%",
     "height": "3.2rem",
     "background_color": COLOR_ACCENT,
-    "color": "white",
+    "color": "#ffffff",
     "font_weight": "bold",
     "border_radius": "8px",
     "margin_top": "1rem",

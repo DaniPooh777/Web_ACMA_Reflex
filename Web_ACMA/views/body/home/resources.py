@@ -30,7 +30,8 @@ def resources() -> rx.Component:
                         size="7",
                         padding_bottom="1rem",
                         padding_top="1rem",
-                        align="center"
+                        align="center",
+                        color="#ffffff"
                     ),
                 rx.flex(
                     problem_card(
@@ -64,7 +65,8 @@ def resources() -> rx.Component:
                         size="7",
                         padding_bottom="1rem",
                         padding_top="1rem",
-                        align="center"
+                        align="center",
+                        color="#ffffff"
                     ),
                 rx.flex(
                     problem_card(
@@ -98,7 +100,8 @@ def resources() -> rx.Component:
                         size="7",
                         padding_bottom="1rem",
                         padding_top="1rem",
-                        align="center"
+                        align="center",
+                        color="#ffffff"
                     ),
                 rx.flex(
                     problem_card(
@@ -132,7 +135,8 @@ def resources() -> rx.Component:
                         size="7",
                         padding_bottom="1rem",
                         padding_top="1rem",
-                        align="center"
+                        align="center",
+                        color="#ffffff"
                     ),
                 rx.flex(
                     problem_card(

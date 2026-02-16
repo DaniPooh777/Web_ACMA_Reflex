@@ -3,7 +3,7 @@ import reflex as rx
 HEADER_TITLE_STYLE = {
     "font_size": "4rem",
     "font_weight": "800",
-    "color": "white",
+    "color": "#ffffff",
     "line_height": "1.1",
     "margin_bottom": "1rem",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
