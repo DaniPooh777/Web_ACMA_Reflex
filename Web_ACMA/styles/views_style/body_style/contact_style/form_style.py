@@ -28,7 +28,10 @@ INPUT_STYLE = {
     "border_radius": "8px", 
     "outline": "none !important",
     "transition": "all 0.2s ease-in-out",
-    
+    "_placeholder": {
+        "color": "rgba(255, 255, 255, 0.5)", 
+    },
+
     "& fieldset": { "border": "none" }, 
     "&:focus-within": {
         "border": f"0.5px solid {COLOR_ACCENT} !important", # Forzamos el azul

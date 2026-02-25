@@ -127,6 +127,7 @@ def contact() -> rx.Component:
 
 # Configurar la app con estilos para animaciones
 app = rx.App(
+    theme=rx.theme(appearance="dark"),
     head_components=[
         rx.el.link(rel="icon", href="/Acma Logo 2025-2026.png")
     ],
