@@ -1,9 +1,5 @@
 import reflex as rx
-from Web_ACMA.styles.views_style.header_style.header_style import (
-    HEADER_CONTAINER_STYLE,
-    HEADER_TITLE_STYLE,
-    HEADER_TEXT_STYLE
-)
+from Web_ACMA.styles.views_style.header_style.header_style import *
 
 # Es la plantilla para crear para crear los títulos de cada página.
 def header(tittle: str, text: str) -> rx.Component:
