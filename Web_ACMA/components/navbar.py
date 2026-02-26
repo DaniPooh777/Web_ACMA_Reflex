@@ -34,8 +34,7 @@ def navbar() -> rx.Component:
             style=NAV_CENTER_HSTACK_STYLE, 
         ),
 
-        
-
+        # Bloque Derecho: Botón
         rx.hstack(
             rx.color_mode.button(),
             # Bloque Derecho: Botón
