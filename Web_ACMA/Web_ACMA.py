@@ -1,6 +1,7 @@
 import reflex as rx
 from rxconfig import config
 from Web_ACMA.state import *
+from Web_ACMA.styles.colors import *
 from Web_ACMA.components.navbar import navbar
 from Web_ACMA.views.header.header import header
 from Web_ACMA.views.body.home.problems_solutions import problem_solutions
@@ -44,7 +45,10 @@ def index() -> rx.Component:
         spacing="0",
         width="100%",
         align_items="center",       
-        background_color="rgb(10, 10, 15)",
+        background_color=rx.color_mode_cond(
+            light=SOFT_PAPER, # Ese crema/sepia que definiste
+            dark=DARK_PAPER   # El azul casi negro
+        ),
 
         # Para resetear a sus valores iniciales
         on_mount=[
@@ -67,7 +71,10 @@ def project() -> rx.Component:
         footer(),
         spacing="0",
         width="100%",
-        background_color="rgb(10, 10, 15)",
+        background_color=rx.color_mode_cond(
+            light=SOFT_PAPER, # Ese crema/sepia que definiste
+            dark=DARK_PAPER   # El azul casi negro
+        ),
         on_mount=[
             ProjectCardState.clean_state, 
             FaqState.clean_state,
@@ -89,7 +96,10 @@ def who_are_we() -> rx.Component:
         footer(),
         width="100%",
         align_items="center",
-        background_color="rgb(10, 10, 15)",
+        background_color=rx.color_mode_cond(
+            light=SOFT_PAPER, # Ese crema/sepia que definiste
+            dark=DARK_PAPER   # El azul casi negro
+        ),
         on_mount=[
             ProjectCardState.clean_state, 
             FaqState.clean_state,
@@ -117,7 +127,10 @@ def contact() -> rx.Component:
         footer(),
         spacing="0",
         width="100%",
-        background_color="rgb(10, 10, 15)", 
+        background_color=rx.color_mode_cond(
+            light=SOFT_PAPER, # Ese crema/sepia que definiste
+            dark=DARK_PAPER   # El azul casi negro
+        ), 
         on_mount=[
             ProjectCardState.clean_state, 
             FaqState.clean_state,

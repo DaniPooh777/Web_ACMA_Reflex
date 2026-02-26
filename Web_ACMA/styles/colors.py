@@ -7,7 +7,7 @@ DARK_NAVBAR = "rgba(17, 24, 39, 0.8)"
 DARK_INPUT = "rgb(20, 24, 33)"
 DARK_TEXT_MAIN = "white"
 DARK_TEXT_SECONDARY = "rgb(156, 163, 175)"
-DARK_BORDER = "rgba(255, 255, 255)"
+DARK_BORDER = "rgba(255, 255, 255, 0.1)"
 
 # --- MODO SEPIA / SOFT ---
 SOFT_PAPER = "rgb(245, 242, 235)"        

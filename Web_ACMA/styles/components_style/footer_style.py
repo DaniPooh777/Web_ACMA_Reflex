@@ -4,7 +4,6 @@ FOOTER_CONTAINER_STYLE = {
     "width": "100%",
     "padding_x": "2rem",
     "padding_y": "2rem",
-    "background_color": "rgb(10, 10, 15)", 
     "border_top": "2px solid rgba(255, 255, 255, 0.05)",
     "align_items": "center",
 }
