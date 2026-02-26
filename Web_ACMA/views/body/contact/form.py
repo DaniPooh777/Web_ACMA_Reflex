@@ -1,16 +1,13 @@
 import reflex as rx
 from Web_ACMA.state import FormState
+from Web_ACMA.styles.colors import *
 from Web_ACMA.styles.views_style.body_style.contact_style.form_style import (
     FORM_CONTAINER_STYLE, 
     INPUT_STYLE, 
     LABEL_STYLE, 
-    COLOR_BORDER_INPUT,
     ATTACH_STYLE,
     SUBMIT_BUTTON_STYLE,
-    UPLOAD_CLEAN_STYLE,
-    COLOR_INPUT_BG,
-    COLOR_BORDER_INPUT,
-    COLOR_BORDER_CONTAINER
+    UPLOAD_CLEAN_STYLE
 )
 
 # =========
@@ -37,8 +34,11 @@ def input_field(label: str, placeholder: str, name: str, valor: rx.Var, error_co
                 **INPUT_STYLE,
                 "border": rx.cond(
                     error_cond,
-                    "1px solid #ef4444 !important", # Color rojo advertencia
-                    f"1px solid {COLOR_BORDER_INPUT}" # Color normal casilla
+                    "1px solid #ef4444 !important",
+                    rx.color_mode_cond(
+                        light=f"1px solid {SOFT_BORDER}",
+                        dark=f"1px solid {DARK_BORDER}"
+                    )
                 ),
             },
 
@@ -152,7 +152,10 @@ def solicitud_form() -> rx.Component:
                             "border": rx.cond(
                                 FormState.mostrar_error_email,
                                 "1px solid #ef4444 !important",
-                                f"1px solid {COLOR_BORDER_INPUT}"
+                                rx.color_mode_cond(
+                                    light=f"1px solid {SOFT_BORDER}",
+                                    dark=f"1px solid {DARK_BORDER}"
+                                )
                             ),
                         },
                     ),
@@ -180,7 +183,7 @@ def solicitud_form() -> rx.Component:
                             height="100%",
                             variant="ghost",
                             style={
-                                "color": "white",
+                                "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark=DARK_TEXT_MAIN),
                                 "width": "100%",
                                 "& .rt-SelectTrigger": {
                                     "background_color": "transparent !important",
@@ -191,21 +194,19 @@ def solicitud_form() -> rx.Component:
                                     "padding": "0 1rem",
                                     "cursor": "pointer",
                                 },
-                                # Mantenemos el bloqueo de color para que no se ponga azul/gris
-                                "& .rt-SelectTrigger:hover": {
-                                    "background_color": "transparent !important",
-                                },
-                                "& .rt-SelectTrigger:focus": {
-                                    "background_color": "transparent !important",
-                                    "box_shadow": "none !important",
-                                },
                             },
                         ),
-                        background_color=COLOR_INPUT_BG,
+                        background_color=rx.color_mode_cond(
+                            light=SOFT_INPUT,
+                            dark=DARK_INPUT
+                        ),
                         border=rx.cond(
                             FormState.error_nivel,
                             "1px solid #ef4444 !important",
-                            f"2px solid {COLOR_BORDER_INPUT}"
+                            rx.color_mode_cond(
+                                light=f"2px solid {SOFT_BORDER}",
+                                dark=f"2px solid {DARK_BORDER}"
+                            ),
                         ),
                         border_radius="8px",
                         width="100%",
@@ -249,7 +250,10 @@ def solicitud_form() -> rx.Component:
                             "border": rx.cond(
                                 FormState.error_fecha,
                                 "1px solid #ef4444 !important",
-                                f"1px solid {COLOR_BORDER_INPUT}"
+                                rx.color_mode_cond(
+                                    light=f"1px solid {SOFT_BORDER}",
+                                    dark=f"1px solid {DARK_BORDER}"
+                                )
                             ),
                         },
                     ),
@@ -278,9 +282,9 @@ def solicitud_form() -> rx.Component:
                             on_change=FormState.set_descripcion_valor,
                             on_blur=FormState.marcar_descripcion_tocado, 
                             style={
-                                "border": "none",
                                 "padding_bottom": "3rem",
-                                "padding_right": "1rem"
+                                "padding_right": "1rem",
+                                "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark=DARK_TEXT_MAIN),
                             },
                         ),
 
@@ -299,10 +303,16 @@ def solicitud_form() -> rx.Component:
                         border=rx.cond(
                             FormState.error_descripcion,
                             "1px solid #ef4444 !important",
-                            f"1px solid {COLOR_BORDER_INPUT}"
+                            rx.color_mode_cond(
+                                light=f"1px solid {SOFT_BORDER}",
+                                dark=f"1px solid {DARK_BORDER}"
+                            )
                         ),
-                        background_color=COLOR_INPUT_BG,
-                        border_radius="8px",
+                        background_color=rx.color_mode_cond(
+                            light=SOFT_INPUT,
+                            dark=DARK_INPUT
+                        ),
+                        border_radius="10px",
                         width="100%",
                     ),
 
@@ -316,18 +326,21 @@ def solicitud_form() -> rx.Component:
                         rx.foreach(
                             FormState.archivos_seleccionados,
                             lambda file: rx.hstack(
-                                rx.text(file, font_size="0.85rem", color="white"),
+                                rx.text(file, font_size="0.85rem", color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark=DARK_TEXT_MAIN)),
                                 rx.spacer(),
                                 rx.icon(
                                     tag="x", 
                                     size=14, 
-                                    color="gray", 
+                                    color=rx.color_mode_cond(light=SOFT_TEXT_SECONDARY, dark=DARK_TEXT_SECONDARY),
                                     cursor="pointer",
                                     on_click=FormState.remove_file(file) 
                                 ),
                                 width="100%",
                                 padding_y="0.5rem",
-                                border_bottom=f"1px solid {COLOR_BORDER_CONTAINER}",
+                                border_bottom=rx.color_mode_cond(
+                                    light=f"1px solid {SOFT_BORDER}",
+                                    dark=f"1px solid {DARK_BORDER}"
+                                )
                             )
                         ),
                         align_items="start",

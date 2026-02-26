@@ -22,8 +22,14 @@ PROBLEMS_GRID_STYLE = {
 
 # La tarjeta física: Fondo oscuro y borde sutil
 PROBLEM_CARD_STYLE = {
-    "background_color": "rgba(17, 24, 39, 0.5)", # El tono oscuro de la imagen
-    "border": "1px solid rgba(255, 255, 255, 0.1)", # Borde casi invisible
+    "background_color": rx.color_mode_cond(
+        light="rgb(238, 234, 225)",
+        dark="rgba(17, 24, 39, 0.5)"
+    ),
+    "border": rx.color_mode_cond(
+        light="1px solid rgba(45, 42, 38, 0.08)",
+        dark="1px solid rgba(255, 255, 255, 0.1)"
+    ),
     "padding": "2rem",
     "border_radius": "16px",
     "width": ["100%", "100%", "50%", "550px"],

@@ -5,6 +5,7 @@ from Web_ACMA.styles.components_style.navbar_style import (
     NAV_BUTTON_STYLE,
     NAV_CENTER_HSTACK_STYLE # 
 )
+from Web_ACMA.state import FormState
 
 """Esta es la plantilla para crear la navbar"""
 def navbar() -> rx.Component:
@@ -14,7 +15,7 @@ def navbar() -> rx.Component:
             rx.link(
                 rx.hstack(
                     rx.avatar(src="Acma Logo 2025-2026.png", size="3"),
-                    rx.text("ACMA", font_weight="bold", color="white", font_size="1.2rem"),
+                    rx.text("ACMA", font_weight="bold", color=rx.color("mauve", 12), font_size="1.2rem"),
                     align_items="center",
                 ),                    
                 href="/",
@@ -32,15 +33,20 @@ def navbar() -> rx.Component:
             spacing="6",
             style=NAV_CENTER_HSTACK_STYLE, 
         ),
+
         
-        # Bloque Derecho: Botón
-        rx.link(
-            rx.button(
-                "Nuevo encargo",
-                **NAV_BUTTON_STYLE
-            ),
-            href="/contact#formulario-encargo",
-            text_decoration="none",
+
+        rx.hstack(
+            rx.color_mode.button(),
+            # Bloque Derecho: Botón
+            rx.link(
+                rx.button(
+                    "Nuevo encargo",
+                    **NAV_BUTTON_STYLE
+                ),
+                href="/contact#formulario-encargo",
+                text_decoration="none",
+            )
         ),
 
         **NAVBAR_STYLE

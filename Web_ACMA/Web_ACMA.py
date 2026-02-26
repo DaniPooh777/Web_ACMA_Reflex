@@ -145,7 +145,14 @@ app = rx.App(
                 "transform": "translateY(0)",
             },
         },
-    }
+    },
+    theme=rx.theme(
+        appearance="inherit", 
+        has_background=True,
+        radius="large",
+        accent_color="blue",
+    ),
+    
 )
 
 # Registrar páginas
