@@ -1,4 +1,5 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 
 # Contenedor principal de la sección
 SOLUTIONS_CONTAINER_STYLE = {
@@ -23,12 +24,12 @@ PROBLEMS_GRID_STYLE = {
 # La tarjeta física: Fondo oscuro y borde sutil
 PROBLEM_CARD_STYLE = {
     "background_color": rx.color_mode_cond(
-        light="rgb(238, 234, 225)",
+        light=SOFT_PAPER_SOFT,  
         dark="rgba(17, 24, 39, 0.5)"
     ),
     "border": rx.color_mode_cond(
-        light="1px solid rgba(45, 42, 38, 0.08)",
-        dark="1px solid rgba(255, 255, 255, 0.1)"
+        light=f"1px solid {SOFT_BORDER}",
+        dark=f"1px solid {DARK_BORDER}"
     ),
     "padding": "2rem",
     "border_radius": "16px",
