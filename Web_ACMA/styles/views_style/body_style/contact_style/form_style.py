@@ -1,23 +1,17 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 
-COLOR_BG_DARK = "rgb(10, 10, 15)"
-COLOR_CARD_BG = "rgba(17, 24, 39, 0.5)"
-COLOR_BORDER_INPUT = "rgba(255, 255, 255, 0.2)"
-COLOR_BORDER_CONTAINER = "rgba(255, 255, 255, 0.1)"
-COLOR_ACCENT = "rgb(59, 130, 246)" 
-COLOR_INPUT_BG = "rgb(20, 24, 33)" 
-COLOR_TEXT_GRAY = "rgb(156, 163, 175)"
 
 FORM_CONTAINER_STYLE = {
     "width": "100%",
     "max_width": "824px",
     "background_color": rx.color_mode_cond(
-        light=rx.color("mauve", 3),
-        dark=COLOR_CARD_BG
+        light=SOFT_PAPER_SOFT, 
+        dark=DARK_PAPER_SOFT
     ),
     "border": rx.color_mode_cond(
-        light=f"1px solid {rx.color('mauve', 4)}",
-        dark=f"1px solid {COLOR_BORDER_CONTAINER}"
+        light=f"1px solid {SOFT_BORDER}",
+        dark=f"1px solid {DARK_BORDER}"
     ),
     "padding": "2rem",
     "border_radius": "12px",
@@ -29,16 +23,16 @@ INPUT_STYLE = {
     "width": "100%",
     "height": "2.8rem",
     "background_color": rx.color_mode_cond(
-        light="white",
-        dark=COLOR_INPUT_BG
-    ),
-    "border": rx.color_mode_cond(
-        light=f"1px solid {rx.color('mauve', 6)}",
-        dark=f"1px solid {COLOR_BORDER_INPUT}"
+        light=SOFT_INPUT,
+        dark=DARK_INPUT
     ),
     "color": rx.color_mode_cond(
-        light="black",
-        dark="white"
+        light=SOFT_TEXT_MAIN,
+        dark=DARK_TEXT_MAIN
+    ),
+    "border": rx.color_mode_cond(
+        light=f"1px solid {SOFT_BORDER}",
+        dark=f"1px solid {DARK_BORDER}"
     ),
     "border_radius": "8px", 
     "outline": "none !important",
@@ -46,22 +40,22 @@ INPUT_STYLE = {
     
     "& fieldset": { "border": "none" }, 
     "&:focus-within": {
-        "border": f"0.5px solid {COLOR_ACCENT} !important", # Forzamos el azul
-        "box_shadow": f"0 0 0 1px {COLOR_ACCENT} !important",
+        "border": f"0.5px solid {ACCENT_BLUE} !important",
+        "box_shadow": f"0 0 0 1px {ACCENT_BLUE} !important",
     },
     
     "_autofill": {
         "transition": "background-color 5000s ease-in-out 0s",
-        "text_fill_color": "white",
-    }, #
+        "text_fill_color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark=DARK_TEXT_MAIN),
+    },
 }
 
 LABEL_STYLE = {
     "font_size": "0.9rem",
     "font_weight": "600",
     "color": rx.color_mode_cond(
-        light=rx.color("mauve", 12),
-        dark="white"
+        light=SOFT_TEXT_MAIN,
+        dark=DARK_TEXT_MAIN
     ),
 }
 
@@ -69,16 +63,18 @@ ATTACH_STYLE = {
     "position": "absolute",
     "bottom": "0.75rem",
     "right": "0.75rem",
-    "color": COLOR_TEXT_GRAY,
+    "color": rx.color_mode_cond(light=SOFT_TEXT_SECONDARY, dark=DARK_TEXT_SECONDARY),
     "z_index": "10",
-    "_hover": {"color": rx.color('mauve', 12), "cursor": "pointer"
+    "_hover": {
+        "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark=DARK_TEXT_MAIN), 
+        "cursor": "pointer"
     },
 }
 
 SUBMIT_BUTTON_STYLE = {
     "width": "100%",
     "height": "3.2rem",
-    "background_color": COLOR_ACCENT,
+    "background_color": ACCENT_BLUE,
     "color": "white",
     "font_weight": "bold",
     "border_radius": "8px",

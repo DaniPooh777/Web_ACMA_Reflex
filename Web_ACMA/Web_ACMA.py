@@ -146,6 +146,7 @@ app = rx.App(
         radius="large",
         accent_color="blue",
     ),
+    
 )
 
 # Registrar páginas
