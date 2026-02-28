@@ -125,7 +125,15 @@ def solicitud_form() -> rx.Component:
         rx.form(
             rx.vstack(
                 # Título de la sección
-                rx.heading("Solicita un nuevo encargo", size="6", margin_bottom="0.5rem", color="#ffffff"),
+                rx.heading(
+                    "Solicita un nuevo encargo", 
+                    size="6", 
+                    margin_bottom="0.5rem", 
+                    color=rx.color_mode_cond(
+                        light=SOFT_TEXT_MAIN,
+                        dark=DARK_TEXT_MAIN
+                    ),
+                ),
                 
                 # Casilla del nombre
                 input_field(
@@ -204,7 +212,7 @@ def solicitud_form() -> rx.Component:
                             FormState.error_nivel,
                             "1px solid #ef4444 !important",
                             rx.color_mode_cond(
-                                light=f"2px solid {SOFT_BORDER}",
+                                light=f"2px solid {"rgba(45, 42, 38, 0.25)"}",
                                 dark=f"2px solid {DARK_BORDER}"
                             ),
                         ),
@@ -241,7 +249,10 @@ def solicitud_form() -> rx.Component:
                         type="date", # Esto activa el calendario nativo del navegador que es muy intuitivo
                         name="fecha_entrega",
                         min=FormState.fecha_minima,
-                        color="#ffffff",
+                        color=rx.color_mode_cond(
+                            light=SOFT_TEXT_SECONDARY,
+                            dark=DARK_TEXT_SECONDARY
+                        ),
                         on_change=FormState.set_fecha_valor,
                         on_blur=FormState.marcar_fecha_tocado,
                         style={

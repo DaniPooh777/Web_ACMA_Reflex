@@ -44,15 +44,24 @@ CARD_LINK_STYLE = {
 SCHEDULE_CARD_STYLE = {
     "width": "100%", 
     "max_width": "824px", 
-    "background_color": "rgba(17, 24, 39, 0.5)",
-    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "background_color": rx.color_mode_cond(
+        light=SOFT_PAPER_SOFT, 
+        dark=DARK_PAPER_SOFT,
+    ), 
+    "border": rx.color_mode_cond(
+        light="1 pixel solid {SOFT_TEXT_MAIN}", 
+        dark="1 pixel solid {DARK_TEXT_MAIN}",
+    ), 
     "padding": "2rem",
     "border_radius": "12px",
     "margin_top": "0rem",
 }
 
 INNER_SCHEDULE_STYLE = {
-    "background_color": "rgba(255, 255, 255, 0.03)",
+    "background_color": rx.color_mode_cond(
+        light="rgba(0, 0, 0, 0.03)", 
+        dark="rgba(255, 255, 255, 0.03)"
+    ),
     "padding": "1.5rem",
     "border_radius": "8px",
     "width": "100%",
