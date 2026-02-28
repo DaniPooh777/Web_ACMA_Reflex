@@ -1,5 +1,6 @@
 import reflex as rx
 from datetime import datetime
+from Web_ACMA.styles.colors import *
 from Web_ACMA.styles.components_style.footer_style import (
     FOOTER_CONTAINER_STYLE,
     FOOTER_NAV_LINK_STYLE,
@@ -17,7 +18,11 @@ def footer() -> rx.Component:
                 rx.link(
                     rx.hstack(
                         rx.avatar(src="Acma Logo 2025-2026.png", size="3"),
-                        rx.text("ACMA", font_weight="bold", color="white", font_size="1.2rem"),
+                        rx.text(
+                            "ACMA", 
+                            font_weight="bold", 
+                            color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
+                            font_size="1.2rem"),
                         align_items="center",
                     ),                    
                     href="/",
