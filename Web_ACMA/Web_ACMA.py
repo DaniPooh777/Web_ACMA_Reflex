@@ -88,7 +88,7 @@ def who_are_we() -> rx.Component:
         navbar(),
         header(
             "Profundizando en ACMA", 
-            "Conocé a los que ensucian las manos."
+            "Conoce a los que ensucian las manos."
         ),
         information(), 
         founder(),     

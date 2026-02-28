@@ -22,8 +22,14 @@ ORDER_CARD_STYLE = {
  
 INFO_CARD_STYLE = {
     "width": "100%",
-    "background_color": "rgba(17, 24, 39, 0.5)",
-    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "background_color": rx.color_mode_cond(
+                light=SOFT_PAPER_SOFT, 
+                dark="rgba(17, 24, 39, 0.5)"
+            ),
+    "border": rx.color_mode_cond(
+        light=f"1px solid {SOFT_BORDER}",
+        dark="1px solid rgba(255, 255, 255, 0.1)"
+    ),
     "padding": "3.5rem 2.5rem",
     "border_radius": "12px",
     "text_align": "center",
