@@ -1,9 +1,10 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 
 HEADER_TITLE_STYLE = {
     "font_size": "4rem",
     "font_weight": "800",
-    "color": "#ffffff",
+    "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
     "line_height": "1.1",
     "margin_bottom": "1rem",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
@@ -25,8 +26,14 @@ RESOURCES_GRID_STYLE = {
 RESOURCE_CARD_STYLE = {
     "width": ["100%", "265px"], # Responsive: full en mobile, fijo en desktop
     "height": "140px",
-    "background_color": "rgba(17, 24, 39, 0.5)",
-    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "background_color": rx.color_mode_cond(
+        light=SOFT_PAPER_SOFT, # El gris/crema suave de tus tokens
+        dark="rgba(17, 24, 39, 0.5)"
+    ),
+    "border": rx.color_mode_cond(
+        light=f"1px solid {SOFT_BORDER}",
+        dark=f"1px solid {DARK_BORDER}"
+    ),
     "border_radius": "12px",
     "display": "flex",
     "flex_direction": "column",
@@ -35,8 +42,11 @@ RESOURCE_CARD_STYLE = {
     "transition": "all 0.3s ease-in-out",
     "cursor": "pointer",
     "_hover": {
-        "background_color": "rgba(30, 41, 59, 0.8)",
-        "border_color": "rgb(59, 130, 246)", # El azul de ACMA
+        "background_color": rx.color_mode_cond(
+            light=SOFT_PAPER_SOFT, 
+            dark="rgba(30, 41, 59, 0.8)"
+        ),
+        "border_color": ACCENT_BLUE,
     },
 }
 
@@ -54,5 +64,8 @@ RESOURCE_ICON_STYLE = {
 RESOURCE_TEXT_STYLE = {
     "font_size": "1.1rem",
     "font_weight": "600",
-    "color": "white",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_MAIN, 
+        dark="white"
+    ),
 }

@@ -46,8 +46,8 @@ def index() -> rx.Component:
         width="100%",
         align_items="center",       
         background_color=rx.color_mode_cond(
-            light=SOFT_PAPER, # Ese crema/sepia que definiste
-            dark=DARK_PAPER   # El azul casi negro
+            light=SOFT_PAPER, 
+            dark=DARK_PAPER   
         ),
 
         # Para resetear a sus valores iniciales
@@ -72,8 +72,8 @@ def project() -> rx.Component:
         spacing="0",
         width="100%",
         background_color=rx.color_mode_cond(
-            light=SOFT_PAPER, # Ese crema/sepia que definiste
-            dark=DARK_PAPER   # El azul casi negro
+            light=SOFT_PAPER, 
+            dark=DARK_PAPER   
         ),
         on_mount=[
             ProjectCardState.clean_state, 
@@ -97,8 +97,8 @@ def who_are_we() -> rx.Component:
         width="100%",
         align_items="center",
         background_color=rx.color_mode_cond(
-            light=SOFT_PAPER, # Ese crema/sepia que definiste
-            dark=DARK_PAPER   # El azul casi negro
+            light=SOFT_PAPER, 
+            dark=DARK_PAPER   
         ),
         on_mount=[
             ProjectCardState.clean_state, 
@@ -128,8 +128,8 @@ def contact() -> rx.Component:
         spacing="0",
         width="100%",
         background_color=rx.color_mode_cond(
-            light=SOFT_PAPER, # Ese crema/sepia que definiste
-            dark=DARK_PAPER   # El azul casi negro
+            light=SOFT_PAPER, 
+            dark=DARK_PAPER   
         ), 
         on_mount=[
             ProjectCardState.clean_state, 
@@ -138,7 +138,7 @@ def contact() -> rx.Component:
         ]
     )
 
-# Configurar la app con estilos para animaciones
+# Configuración de la app con estilos para animaciones
 app = rx.App(
     head_components=[
         rx.el.link(rel="icon", href="/Acma Logo 2025-2026.png")

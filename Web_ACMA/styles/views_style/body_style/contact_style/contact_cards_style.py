@@ -1,10 +1,17 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 
 CONTACT_CARD_STYLE = {
     "width": ["100%", "100%", "50%", "550px"], 
     "max_width": "830px", 
-    "background_color": "rgba(17, 24, 39, 0.5)",
-    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "background_color": rx.color_mode_cond(
+        light=SOFT_PAPER_SOFT,  
+        dark="rgba(17, 24, 39, 0.5)"
+    ),
+    "border": rx.color_mode_cond(
+        light=f"1px solid {SOFT_BORDER}", 
+        dark="1px solid rgba(255, 255, 255, 0.1)"
+    ),
     "padding": "2rem",
     "border_radius": "12px",
     "transition": "all 0.3s ease",
@@ -21,7 +28,10 @@ ICON_CONTAINER_STYLE = {
 }
 
 CARD_TITLE_STYLE = {
-    "color": "white",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_MAIN, 
+        dark="white"
+    ),
     "size": "6",
 }
 
@@ -52,7 +62,10 @@ INNER_SCHEDULE_STYLE = {
 HEADER_TITLE_STYLE = {
     "font_size": "4rem",
     "font_weight": "800",
-    "color": "white",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_MAIN, 
+        dark="white"
+    ),
     "line_height": "1.1",
     "margin_bottom": "1rem",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 

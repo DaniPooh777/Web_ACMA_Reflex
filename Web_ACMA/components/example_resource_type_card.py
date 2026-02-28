@@ -1,4 +1,5 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 from Web_ACMA.styles.components_style.resources_type_card_style import RESOURCE_CARD_STYLE
 
 """Esta es la plantilla para crear la tarjeta de visualización de la sección de ejemplos de trabajos que ACMA puede realizar"""
@@ -17,7 +18,7 @@ def example_resources_type_card(url: str) -> rx.Component:
         # Título
         rx.text(
             "Visualización", 
-            color="rgb(59, 130, 246)", 
+            color=ACCENT_BLUE,
             font_weight="bold", 
             font_size="1.1rem"
         ),
@@ -33,7 +34,10 @@ def example_resources_type_card(url: str) -> rx.Component:
                 border_radius="8px",
             ),
             padding="1rem",
-            background="rgba(255, 255, 255, 0.03)",
+            background=rx.color_mode_cond(
+                light="rgba(0, 0, 0, 0.03)", 
+                dark="rgba(255, 255, 255, 0.03)"
+            ),
             border_radius="12px",
             width="100%",
         ),

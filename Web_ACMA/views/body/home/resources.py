@@ -1,4 +1,5 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 from Web_ACMA.components.resources_types_card import resources_type_card
 from Web_ACMA.components.problem_card import problem_card
 from Web_ACMA.components.example_resource_type_card import example_resources_type_card
@@ -31,7 +32,7 @@ def resources() -> rx.Component:
                         padding_bottom="1rem",
                         padding_top="1rem",
                         align="center",
-                        color="#ffffff"
+                        color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
                     ),
                 rx.flex(
                     problem_card(
@@ -66,7 +67,7 @@ def resources() -> rx.Component:
                         padding_bottom="1rem",
                         padding_top="1rem",
                         align="center",
-                        color="#ffffff"
+                        color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
                     ),
                 rx.flex(
                     problem_card(
@@ -101,7 +102,7 @@ def resources() -> rx.Component:
                         padding_bottom="1rem",
                         padding_top="1rem",
                         align="center",
-                        color="#ffffff"
+                        color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
                     ),
                 rx.flex(
                     problem_card(
@@ -136,7 +137,7 @@ def resources() -> rx.Component:
                         padding_bottom="1rem",
                         padding_top="1rem",
                         align="center",
-                        color="#ffffff"
+                        color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
                     ),
                 rx.flex(
                     problem_card(
