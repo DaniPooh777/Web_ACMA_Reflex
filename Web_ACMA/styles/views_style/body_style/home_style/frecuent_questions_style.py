@@ -1,3 +1,6 @@
+import reflex as rx
+from Web_ACMA.styles.colors import *
+
 FAQ_CONTAINER_STYLE = {
     "width": "100%",
     "max_width": "824px",
@@ -7,15 +10,24 @@ FAQ_CONTAINER_STYLE = {
 
 FAQ_CARD_STYLE = {
     "width": "100%",
-    "background_color": "rgba(17, 24, 39, 0.5)",
-    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "background_color": rx.color_mode_cond(
+        light=SOFT_PAPER_SOFT, 
+        dark="rgba(17, 24, 39, 0.5)"
+    ),
+    "border": rx.color_mode_cond(
+        light=f"1px solid {SOFT_BORDER}", 
+        dark="1px solid rgba(255, 255, 255, 0.1)"
+    ),
     "border_radius": "12px",
     "overflow": "hidden",
     "transition": "all 0.3s ease-in-out",
     "cursor": "pointer",
     "_hover": {
-        "border_color": "rgba(59, 130, 246, 0.5)",
-        "background_color": "rgba(17, 24, 39, 0.7)",
+        "border_color": ACCENT_BLUE, 
+        "background_color": rx.color_mode_cond(
+            light="rgba(238, 234, 225, 0.7)", 
+            dark="rgba(17, 24, 39, 0.7)"
+        ),
     },
 }
 
@@ -28,7 +40,10 @@ FAQ_ITEM_INNER_STYLE = {
 }
 
 FAQ_QUESTION_STYLE = {
-    "color": "white",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_MAIN,
+        dark="white"
+    ),
     "font_weight": "600",
     "font_size": "1.1rem",
     "user_select": "none",
@@ -41,16 +56,19 @@ FAQ_ANSWER_ANIMATION_STYLE = {
 }
 
 FAQ_ANSWER_STYLE = {
-    "color": "rgb(156, 163, 175)",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_SECONDARY, 
+        dark="rgb(156, 163, 175)"
+    ),
     "font_size": "1rem",
     "line_height": "1.6",
-    "padding_top": "1rem", # El padding vive ACÁ adentro
+    "padding_top": "1rem", 
 }
 
 HEADER_TITLE_STYLE = {
     "font_size": "4rem",
     "font_weight": "800",
-    "color": "white",
+    "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"), 
     "line_height": "1.1",
     "margin_bottom": "1rem",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
