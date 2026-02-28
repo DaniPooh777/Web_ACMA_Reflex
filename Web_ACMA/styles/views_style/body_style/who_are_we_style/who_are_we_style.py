@@ -1,4 +1,5 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 
 # Contenedor principal de la sección
 WHO_ARE_WE_CONTAINER_STYLE = {
@@ -43,7 +44,10 @@ INFO_SUBTITTLE_STYLE = {
 }
 
 INFO_TEXT_STYLE = {
-    "color": "rgb(156, 163, 175)",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_SECONDARY, 
+        dark=DARK_TEXT_SECONDARY,
+    ),
     "font_size": "1rem",
     "line_height": "1.6",
 }
@@ -70,8 +74,14 @@ FOUNDER_IMAGE_STYLE = {
 
 FOUNDER_TEXT_CARD_STYLE = {
     "flex": "1",
-    "background_color": "rgba(17, 24, 39, 0.5)",
-    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "background_color": rx.color_mode_cond(
+                light=SOFT_PAPER_SOFT, 
+                dark="rgba(17, 24, 39, 0.5)"
+            ),
+    "border": rx.color_mode_cond(
+        light=f"1px solid {SOFT_BORDER}",
+        dark="1px solid rgba(255, 255, 255, 0.1)"
+    ),
     "padding": "3rem",
     "border_radius": "15px",
     "text_align": "left",

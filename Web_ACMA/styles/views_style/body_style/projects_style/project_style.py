@@ -1,16 +1,23 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 
 # Estilos para la tarjeta de proyecto
 CARD_STYLE = {
     "width": "100%",
     "max_width": "360px", 
-    "background": "rgb(17, 24, 39)",
+    "background_color": rx.color_mode_cond(
+        light=SOFT_PAPER_SOFT, 
+        dark="rgba(17, 24, 39, 0.5)"
+    ),
     "border_radius": "12px",
     "overflow": "hidden",
-    "border": "1px solid rgba(255, 255, 255, 0.1)",
+    "border": rx.color_mode_cond(
+        light=f"1px solid {SOFT_BORDER}",
+        dark="1px solid rgba(255, 255, 255, 0.1)"
+    ),
     "transition": "all 0.3s ease",
     "_hover": {
-        "border": "1px solid rgb(59, 130, 246)", 
+        "border": "1.5px solid rgb(59, 130, 246)", 
     }
 }
 
@@ -32,7 +39,10 @@ IMAGE_STYLE = {
 
 # Estilos para el contenedor de contenido
 CONTENT_CONTAINER_STYLE = {
-    "background": "rgb(17, 24, 39)",
+    "background_color": rx.color_mode_cond(
+        light=SOFT_PAPER_SOFT, 
+        dark="rgba(17, 24, 39, 0.5)"
+    ),
     "display": "flex",
     "flex_direction": "column",
 }
@@ -50,7 +60,10 @@ HEADER_STYLE = {
 # Estilos para el título
 TITLE_STYLE = {
     "size": "6",
-    "color": "white",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_MAIN, 
+        dark="white"
+    ),
     "weight": "medium",
 }
 
@@ -83,7 +96,10 @@ DESCRIPTION_LABEL_STYLE = {
 # Estilos para el texto de descripción
 DESCRIPTION_TEXT_STYLE = {
     "as_": "span",
-    "color": "rgb(229, 231, 235)",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_SECONDARY, 
+        dark=DARK_TEXT_SECONDARY
+    ),
 }
 
 # Estilos para la sección de proyectos
