@@ -9,7 +9,11 @@ from Web_ACMA.styles.views_style.body_style.home_style.advantages_and_considerat
 def table_row(icon: str, text: str, icon_color: str) -> rx.Component:
     return rx.hstack(
         rx.icon(tag=icon, color=icon_color, size=20),
-        rx.text(text, color="#E2E8F0", font_size="0.95rem"),
+        rx.text(
+            text, 
+            color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="#E2E8F0"), 
+            font_size="0.95rem"
+        ),
         **ROW_STYLE
     )
 

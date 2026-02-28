@@ -1,4 +1,5 @@
 import reflex as rx
+from Web_ACMA.styles.colors import *
 
 # Contenedor principal de la sección
 SECTION_CONTAINER_STYLE = dict(
@@ -14,8 +15,14 @@ TABLE_CONTAINER_STYLE = dict(
     width=["95%", "90%", "45%"], # Responsive: full en mobile, mitad en desktop
     border_radius="15px",
     padding="1.5rem",
-    border="1px solid rgba(255, 255, 255, 0.1)",
-    background="rgba(17, 24, 39, 0.5)",
+    background=rx.color_mode_cond(
+        light=SOFT_PAPER_SOFT, 
+        dark="rgba(17, 24, 39, 0.5)"
+    ),
+    border=rx.color_mode_cond(
+        light=f"1px solid {SOFT_BORDER}",
+        dark="1px solid rgba(255, 255, 255, 0.1)"
+    ),
 )
 
 # Títulos de las tablas
@@ -36,7 +43,7 @@ ROW_STYLE = dict(
 HEADER_TITLE_STYLE = {
     "font_size": "4rem",
     "font_weight": "800",
-    "color": "white",
+    "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
     "line_height": "1.1",
     "margin_bottom": "1rem",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
