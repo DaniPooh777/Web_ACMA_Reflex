@@ -21,6 +21,7 @@ def founder() -> rx.Component:
                 # Imagen a la izquierda
                 rx.image(
                     src="WebMaster.jpg",
+                    alt="Imagen del fundador",
                     style=FOUNDER_IMAGE_STYLE
                 ),
                 # Tarjeta a la derecha

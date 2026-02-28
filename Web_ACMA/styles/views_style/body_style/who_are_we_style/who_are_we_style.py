@@ -43,9 +43,12 @@ INFO_TITLE_STYLE = {
 }
 
 INFO_SUBTITTLE_STYLE = {
-    "color": "white", 
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_MAIN, 
+        dark=DARK_TEXT_MAIN,
+    ), 
     "font_size": "1.2rem",
-    "line_height": "1.6",
+    "line_height": "2",
     "margin_bottom": "0.5rem",
 }
 
@@ -73,9 +76,8 @@ FOUNDER_SECTION_CONTAINER = {
 FOUNDER_IMAGE_STYLE = {
     "width": ["250px", "350px"],
     "height": ["250px", "350px"],
-    "border_radius": "20px",
+    "border_radius": "65px",
     "object_fit": "cover",
-    "border": "2px solid rgba(59, 130, 246, 0.5)",
 }
 
 FOUNDER_TEXT_CARD_STYLE = {
@@ -95,7 +97,10 @@ FOUNDER_TEXT_CARD_STYLE = {
 
 FOUNDER_SECTION_TITLE_STYLE = {
     "font_weight": "bold",
-    "color": "white",
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_MAIN, 
+        dark=DARK_TEXT_MAIN,
+    ),
     "font_size": "2.7rem",
     "margin_top": "1rem",
     "text_align": "center",
