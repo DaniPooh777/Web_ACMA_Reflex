@@ -34,7 +34,7 @@ def index() -> rx.Component:
             link_button(),
             width="100%",
             align_items="center",    
-            spacing="4",
+            spacing={"initial": "4", "sm": "6", "md": "8"},
         ),
         problem_solutions(),
         resources(),

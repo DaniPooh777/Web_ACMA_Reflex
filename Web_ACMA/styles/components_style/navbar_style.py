@@ -62,9 +62,9 @@ HERO_BUTTON_STYLE = {
     "background_color": "rgb(59, 130, 246)",
     "color": "white",
     "border_radius": "8px",
-    "padding_x": "2.5rem", 
-    "padding_y": "1.5rem", 
-    "font_size": "1.1rem", 
+    "padding_x": ["1.5rem", "2.5rem"], 
+    "padding_y": ["1rem", "1.5rem"],  
+    "font_size": ["0.9rem", "1.1rem"], 
     "font_weight": "600",
     "cursor": "pointer",
     "_hover": {
