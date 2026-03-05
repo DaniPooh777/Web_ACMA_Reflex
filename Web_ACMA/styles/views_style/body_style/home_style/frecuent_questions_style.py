@@ -23,6 +23,7 @@ FAQ_CARD_STYLE = {
     "transition": "all 0.3s ease-in-out",
     "cursor": "pointer",
     "_hover": {
+        "transform": "translateY(-5px)",
         "border_color": ACCENT_BLUE, 
         "background_color": rx.color_mode_cond(
             light="rgba(238, 234, 225, 0.7)", 

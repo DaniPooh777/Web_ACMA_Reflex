@@ -11,7 +11,7 @@ def resources() -> rx.Component:
     return rx.vstack(
         # Título de la sección
         rx.heading("Recursos a tu Alcance", 
-                   style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}
+                   style={**HEADER_TITLE_STYLE}
                 ),
         
         # Tarjetas clickeables

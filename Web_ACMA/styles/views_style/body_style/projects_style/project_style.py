@@ -17,6 +17,7 @@ CARD_STYLE = {
     ),
     "transition": "all 0.3s ease",
     "_hover": {
+        "transform": "translateY(-5px)",
         "border": "1.5px solid rgb(59, 130, 246)", 
     }
 }

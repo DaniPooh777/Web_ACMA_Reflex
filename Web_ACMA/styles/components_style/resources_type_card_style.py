@@ -2,12 +2,14 @@ import reflex as rx
 from Web_ACMA.styles.colors import *
 
 HEADER_TITLE_STYLE = {
-    "font_size": "4rem",
+    "font_size": ["1.8rem", "2.2rem", "2.8rem"], # Escalado para que no explote en mobile
     "font_weight": "800",
     "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
-    "line_height": "1.1",
-    "margin_bottom": "1rem",
-    "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
+    "line_height": "1.2",
+    "margin_bottom": "1.5rem",
+    "white_space": "pre-line",
+    "text_align": "center",
+    "width": "100%",
 }
 
 # El Grid de las 4 tarjetas principales
@@ -15,9 +17,10 @@ RESOURCES_GRID_STYLE = {
     "display": "flex",
     "flex_wrap": "wrap",
     "justify_content": "center", 
-    "gap": "1.5rem",
+    "gap": ["1rem", "1.5rem"],
     "width": "100%",
     "max_width": "1200px", 
+    "padding_x": ["1rem", "2rem", "0rem"],
     "margin_bottom": "0.5rem",
     "white_space": "pre-line"
 }
@@ -39,9 +42,11 @@ RESOURCE_CARD_STYLE = {
     "flex_direction": "column",
     "align_items": "center",
     "justify_content": "center",
+    "padding": "1.5rem",
     "transition": "all 0.3s ease-in-out",
     "cursor": "pointer",
     "_hover": {
+        "transform": "translateY(-5px)",
         "background_color": rx.color_mode_cond(
             light=SOFT_PAPER_SOFT, 
             dark="rgba(30, 41, 59, 0.8)"
@@ -62,8 +67,9 @@ RESOURCE_ICON_STYLE = {
 
 # Estilo para el texto de la tarjeta
 RESOURCE_TEXT_STYLE = {
-    "font_size": "1.1rem",
+    "font_size": ["1rem", "1.1rem"],
     "font_weight": "600",
+    "text_align": "center",
     "color": rx.color_mode_cond(
         light=SOFT_TEXT_MAIN, 
         dark="white"
