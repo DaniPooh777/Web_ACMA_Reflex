@@ -9,7 +9,7 @@ def problem_solutions() -> rx.Component:
         # Título de la sección
         rx.heading(
             "Transforma tu Tiempo de Planificación", 
-            style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}
+            style={**HEADER_TITLE_STYLE, "font_size": ["1.8rem", "2.2rem", "2.5rem"], "padding_x": "1rem"}
         ),
 
         # Tarjetas de problema-solución

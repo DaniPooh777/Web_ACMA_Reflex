@@ -11,7 +11,7 @@ def problem_card(tittle_1: str, text_1: str, tittle_2: str, text_2: str) -> rx.C
             text_1, 
             color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark=DARK_TEXT_MAIN), # Dinámico loco!
             font_size="0.95rem", 
-            text_align="justify"
+            text_align=["left", "left", "justify"]
         ),
         
         # Línea divisoria sutil
@@ -23,7 +23,7 @@ def problem_card(tittle_1: str, text_1: str, tittle_2: str, text_2: str) -> rx.C
             text_2, 
             color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark=DARK_TEXT_MAIN), # Dinámico!
             font_size="0.95rem", 
-            text_align="justify"
+            text_align=["left", "left", "justify"]
         ),
         
         style=PROBLEM_CARD_STYLE

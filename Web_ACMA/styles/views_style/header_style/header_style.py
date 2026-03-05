@@ -20,6 +20,7 @@ HEADER_TITLE_STYLE = {
     ),
     "line_height": "1.2",
     "margin_bottom": "1rem",
+    "text_align": "center",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
 }
 
