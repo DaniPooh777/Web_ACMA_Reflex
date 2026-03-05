@@ -285,7 +285,10 @@ def solicitud_form() -> rx.Component:
                         rx.text_area(
                             name="descripcion",
                             placeholder="Describe detalladamente el encargo...",
-                            color="#ffffff",
+                            color=rx.color_mode_cond(
+                                light=SOFT_TEXT_SECONDARY,
+                                dark=DARK_TEXT_SECONDARY
+                            ),
                             width="100%",
                             min_height="160px",
                             background_color="transparent", 
