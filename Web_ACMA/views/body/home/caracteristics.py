@@ -25,7 +25,7 @@ def caracteristics() -> rx.Component:
                 "sparkles"
             ),
             width="100%",
-            max_width="1130px",
+            max_width="1200px",
             display="flex", 
             flex_direction= ["column", "column", "row"],
             justify_content="center",

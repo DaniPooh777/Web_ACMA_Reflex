@@ -4,7 +4,8 @@ from Web_ACMA.styles.colors import *
 FAQ_CONTAINER_STYLE = {
     "width": "100%",
     "max_width": "824px",
-    "padding_y": "4rem",
+    "padding_y": ["2rem", "4rem"],
+    "padding_x": ["1rem", "2rem"],
     "align_items": "center",
 }
 
@@ -47,6 +48,7 @@ FAQ_QUESTION_STYLE = {
     ),
     "font_weight": "600",
     "font_size": "1.1rem",
+    "text_align": "left",
     "user_select": "none",
 }
 
@@ -64,10 +66,11 @@ FAQ_ANSWER_STYLE = {
     "font_size": "1rem",
     "line_height": "1.6",
     "padding_top": "1rem", 
+    "text_align": "left"
 }
 
 HEADER_TITLE_STYLE = {
-    "font_size": "4rem",
+    "font_size": ["1.8rem", "2.2rem", "2.5rem"],
     "font_weight": "800",
     "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"), 
     "line_height": "1.1",

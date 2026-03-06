@@ -12,7 +12,7 @@ SECTION_CONTAINER_STYLE = dict(
 
 # Estilo de cada tabla/columna
 TABLE_CONTAINER_STYLE = dict(
-    width=["100%", "90%", "48%"],
+    width=["100%", "90%", "45%"],
     border_radius="15px",
     padding="1.5rem",
     background=rx.color_mode_cond(

@@ -52,7 +52,7 @@ def faq_item(question: str, answer: str, id: str) -> rx.Component:
 def frecuent_questions() -> rx.Component:
     return rx.vstack(
         # Título de la sección
-        rx.heading("Preguntas Frecuentes", style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}),
+        rx.heading("Preguntas Frecuentes", style={**HEADER_TITLE_STYLE}),
 
         # Tarjetas pregunta + respuesta
         faq_item(
