@@ -12,7 +12,7 @@ SECTION_CONTAINER_STYLE = dict(
 
 # Estilo de cada tabla/columna
 TABLE_CONTAINER_STYLE = dict(
-    width=["95%", "90%", "45%"], # Responsive: full en mobile, mitad en desktop
+    width=["100%", "90%", "48%"],
     border_radius="15px",
     padding="1.5rem",
     background=rx.color_mode_cond(
@@ -41,10 +41,12 @@ ROW_STYLE = dict(
 )
 
 HEADER_TITLE_STYLE = {
-    "font_size": "4rem",
+    "font_size": ["1.8rem", "2.2rem", "2.5rem"],
     "font_weight": "800",
     "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
     "line_height": "1.1",
     "margin_bottom": "1rem",
+    "margin_x": "1rem",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
+    "text_align": "center",
 }

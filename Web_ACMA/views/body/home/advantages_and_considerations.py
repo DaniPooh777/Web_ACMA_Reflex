@@ -25,7 +25,7 @@ def table_row(icon: str, text: str, icon_color: str) -> rx.Component:
 def advantages_and_considerations() -> rx.Component:
     return rx.vstack(
         # Título de la sección
-        rx.heading("Beneficios y Consideraciones de Trabajar con ACMA", style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}),
+        rx.heading("Beneficios y Consideraciones de Trabajar con ACMA", style={**HEADER_TITLE_STYLE}),
 
         # Tablas
         rx.flex(
@@ -49,8 +49,9 @@ def advantages_and_considerations() -> rx.Component:
             width="100%",
             justify="center",
             flex_wrap="wrap",
+            flex_direction=["column", "column", "row"],
             gap="2rem",
-            text_align="justify"
+            padding_x=["1rem", "2rem", "0rem"],
         ),
         **SECTION_CONTAINER_STYLE
     )
