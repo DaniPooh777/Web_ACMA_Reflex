@@ -5,7 +5,7 @@ from Web_ACMA.components.caracteristics_card import *
 def caracteristics() -> rx.Component:
     return rx.vstack(
         # Título de la sección 
-        rx.heading("Tu Clase, Impulsada por la Calidad", style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}),
+        rx.heading("Tu Clase, Impulsada por la Calidad", style={**HEADER_TITLE_STYLE}),
         
         # Tarjetas
         rx.flex(
@@ -28,8 +28,10 @@ def caracteristics() -> rx.Component:
             max_width="1130px",
             display="flex",
             flex_wrap="nowrap", 
+            flex_direction= ["column", "column", "row"],
             justify_content="center",
-            gap="1.5rem",
+            gap=["1.5rem", "2rem"],
+            padding_x=["1rem", "2rem"],
         ),
         width="100%",
         align_items="center",

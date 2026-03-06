@@ -2,7 +2,7 @@ import reflex as rx
 from Web_ACMA.styles.colors import *
 
 HEADER_TITLE_STYLE = {
-    "font_size": ["1.8rem", "2.2rem", "2.8rem"], # Escalado para que no explote en mobile
+    "font_size": ["1.8rem", "2.2rem", "2.5rem"],
     "font_weight": "800",
     "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
     "line_height": "1.2",

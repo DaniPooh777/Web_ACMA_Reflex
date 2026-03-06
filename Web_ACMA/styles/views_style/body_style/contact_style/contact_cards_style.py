@@ -69,7 +69,7 @@ INNER_SCHEDULE_STYLE = {
 }
 
 HEADER_TITLE_STYLE = {
-    "font_size": "4rem",
+    "font_size": ["1.8rem", "2.2rem", "2.5rem"],
     "font_weight": "800",
     "color": rx.color_mode_cond(
         light=SOFT_TEXT_MAIN, 
@@ -77,5 +77,7 @@ HEADER_TITLE_STYLE = {
     ),
     "line_height": "1.1",
     "margin_bottom": "1rem",
+    "margin_x": "1rem",
+    "text_align": "center",
     "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
 }

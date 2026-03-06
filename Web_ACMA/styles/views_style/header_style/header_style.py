@@ -12,7 +12,7 @@ HEADER_CONTAINER_STYLE = {
 }
 
 HEADER_TITLE_STYLE = {
-    "font_size": ["2rem", "3rem", "4rem"], # Mobile, Tablet, Desktop
+    "font_size": ["1.8rem", "2.2rem", "2.5rem"], # Mobile, Tablet, Desktop
     "font_weight": "800",
     "color": rx.color_mode_cond(
         light=SOFT_TEXT_MAIN, 
