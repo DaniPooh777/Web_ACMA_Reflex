@@ -119,8 +119,8 @@ CARDS_FLEX_STYLE = {
     "flex_wrap": "wrap",
     "spacing": "6",
     "justify_content": "center",
-    "align_items": "stretch", 
+    "align_items": "start", 
     "width": "100%",
     "max_width": "1200px",
-    "padding_x": ["1rem", "2rem"], 
+    "padding_x": ["1rem", "1rem"],
 }
