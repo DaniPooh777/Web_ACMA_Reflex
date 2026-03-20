@@ -28,11 +28,7 @@ def founder() -> rx.Component:
                 rx.image(
                     src="WebMaster.jpg",
                     alt="Imagen del fundador",
-                    style={
-                        **FOUNDER_IMAGE_STYLE,
-                        "width": ["200px", "350px"], 
-                        "height": ["200px", "350px"],
-                    }
+                    style=FOUNDER_IMAGE_STYLE,
                 ),
                 # Tarjeta a la derecha
                 rx.vstack(
@@ -48,7 +44,6 @@ def founder() -> rx.Component:
                     style={
                         **FOUNDER_TEXT_CARD_STYLE,
                         "width": "100%", 
-                        "padding": ["1.5rem", "3rem"], 
                     },
                     align_items="start",
                     justify_content="center",

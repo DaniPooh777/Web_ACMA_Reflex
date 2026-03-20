@@ -42,7 +42,13 @@ def collaborators() -> rx.Component:
     return rx.center(
         rx.vstack(
             # Título principal
-            rx.heading("Nuestros Colaboradores Principales", style=FOUNDER_SECTION_TITLE_STYLE),
+            rx.heading("Nuestros Colaboradores Principales", 
+                style={
+                    **FOUNDER_SECTION_TITLE_STYLE,
+                    "font_size": ["2rem", "2.7rem"], 
+                    "padding_x": "1rem"
+                }
+            ),
 
             # Tarjetas + imágenes
             rx.flex(
@@ -68,6 +74,7 @@ def collaborators() -> rx.Component:
                 ),
                 style=COLLABORATOR_SECTION_CONTAINER,
             ),
+            padding_x=["1.5rem", "2rem", "0rem"],
             width="100%",
             max_width="1100px",
             align_items="center",
