@@ -6,9 +6,9 @@ from Web_ACMA.components.caracteristics_card_card import caracteristics_card_car
 # Esta función se encarga de dar estructura a la sección de las distintas tarjetas para contactar a ACMA
 def contact_cards() -> rx.Component:
     return rx.vstack(
-        # Tarjetas superiores
-        rx.hstack(
-            # Tarjeta izquierda: Correo Electrónico
+        # Cambiamos hstack por flex para que sea responsivo
+        rx.flex(
+            # Tarjeta: Correo Electrónico
             caracteristics_card_link(
                 "Correo Electrónico",
                 "acma@alcobendas.manyanet.org", 
@@ -16,15 +16,19 @@ def contact_cards() -> rx.Component:
                 "mailto:acma@alcobendas.manyanet.org"
             ),
 
-            # Tarjeta derecha: Ubicación en el colegio
+            # Tarjeta: Ubicación
             caracteristics_card(
                 "Ubicación",
                 "Sala de ordenadores secundaria Colegio P. M.",
                 "map_pin",
             ),
+            
+            # CONFIGURACIÓN RESPONSIVA:
+            flex_direction=["column", "column", "row"], 
+            spacing="6",
             width="100%",
             justify="center",
-            spacing="6",
+            align_items="center",
         ),
 
         # Tarjeta inferior: Horario Presencial
@@ -36,8 +40,10 @@ def contact_cards() -> rx.Component:
             "10:05 - 11:00",
             "12:25 - 13:20"
         ),
+        
         width="100%",
         max_width="824px", 
         align_items="center",
         spacing="8",
+        padding_x=["1rem", "2rem", "0rem"], 
     )

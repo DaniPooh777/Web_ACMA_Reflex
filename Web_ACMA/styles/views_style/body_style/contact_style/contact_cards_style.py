@@ -2,8 +2,9 @@ import reflex as rx
 from Web_ACMA.styles.colors import *
 
 CONTACT_CARD_STYLE = {
-    "width": ["100%", "100%", "50%", "550px"], 
-    "max_width": "830px", 
+    "width": ["100%", "100%", "400px"], 
+    "max_width": "100%", 
+    "padding": ["1.5rem", "2rem"],
     "background_color": rx.color_mode_cond(
         light=SOFT_PAPER_SOFT,  
         dark="rgba(17, 24, 39, 0.5)"
@@ -12,7 +13,6 @@ CONTACT_CARD_STYLE = {
         light=f"1px solid {SOFT_BORDER}", 
         dark="1px solid rgba(255, 255, 255, 0.1)"
     ),
-    "padding": "2rem",
     "border_radius": "12px",
     "transition": "all 0.3s ease",
 }

@@ -387,5 +387,6 @@ def solicitud_form() -> rx.Component:
             display="flex",
             justify_content="center",
             align_self="center", 
+            padding=["1rem", "3rem"],
         )
     ) 
