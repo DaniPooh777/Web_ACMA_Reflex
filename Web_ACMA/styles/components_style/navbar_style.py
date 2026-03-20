@@ -37,8 +37,10 @@ NAV_LINK_STYLE = {
         dark=DARK_TEXT_MAIN
     ),
     "text_decoration": "none",
-    "font_size": "0.9rem",
+    "font_size": ["1.1rem", "1.1rem", "0.9rem"],
     "font_weight": "500",
+    "width": "100%",
+    "white_space": "nowrap",
     "_hover": {
         "color": ACCENT_BLUE,  # Azul cuando pasás el mouse
         "transition": "0.3s",
@@ -50,12 +52,23 @@ NAV_BUTTON_STYLE = {
     "background_color": ACCENT_BLUE,
     "color": "white",
     "border_radius": "8px",
+    "font_size": ["1.1rem", "1.1rem", "0.9rem"],
+    "font_weight": "600",
     "padding_x": "1.5rem",
     "cursor": "pointer",
     "_hover": {
         "background_color": "rgb(37, 99, 235)",
         "transition": "all 0.2s ease-in-out",
     },
+}
+
+NAVBAR_LOGO_STYLE = {
+    "font_weight": "bold",
+    "font_size": ["1.2rem", "1.2rem", "1.2rem"],
+    "color": rx.color_mode_cond(
+        light=SOFT_TEXT_MAIN, 
+        dark="white"
+    ),
 }
 
 HERO_BUTTON_STYLE = {
@@ -71,4 +84,27 @@ HERO_BUTTON_STYLE = {
         "background_color": "rgb(37, 99, 235)",
         "transition": "all 0.2s ease-in-out",
     },
+}
+
+DRAWER_CONTENT_STYLE = {
+    "background_color": rx.color_mode_cond(
+        light="white", 
+        dark="#111827"
+    ),
+    "height": "100%",
+    "width": ["300px", "400px"], 
+    "padding": "2rem",
+    "box_shadow": "-4px 0 15px rgba(0,0,0,0.1)",
+}
+
+NAVBAR_CONTAINER_STYLE = {
+    "width": "100%",
+    "padding": "1rem 2rem",
+    "background_color": rx.color_mode_cond(
+        light="rgba(255,255,255,0.8)", 
+        dark="rgba(0,0,0,0.8)"
+    ),
+    "backdrop_filter": "blur(10px)",
+    "border_bottom": f"1px solid {SOFT_BORDER}",
+    "align_items": "center",
 }

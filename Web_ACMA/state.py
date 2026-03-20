@@ -393,3 +393,14 @@ class ProjectCardState(rx.State):
     opened_id: str = ""
     def toggle_card(self, card_id: str): self.opened_id = "" if self.opened_id == card_id else card_id
     def clean_state(self): self.opened_id = ""
+
+class NavState(rx.State):
+    drawer_open: bool = False
+
+    def toggle_drawer(self):
+        """Abre o cierra el menú lateral."""
+        self.drawer_open = not self.drawer_open
+
+    def close_drawer(self):
+        """Cierra el menú (se usa al pinchar un link)."""
+        self.drawer_open = False
