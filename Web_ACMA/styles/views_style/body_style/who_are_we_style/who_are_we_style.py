@@ -11,6 +11,7 @@ WHO_ARE_WE_CONTAINER_STYLE = {
     "max_width": "1100px",   
     "align_items": "center",
     "margin": "0 auto", 
+    "padding_x": ["1rem", "2rem", "0rem"],
 }
 
 ORDER_CARD_STYLE = {
@@ -18,6 +19,8 @@ ORDER_CARD_STYLE = {
     "justify_content": "space-between", 
     "flex_wrap": "wrap",
     "margin_top": "1.5rem",
+    "flex_direction": ["column", "row"], 
+    "gap": "1.5rem", 
 }
  
 INFO_CARD_STYLE = {
