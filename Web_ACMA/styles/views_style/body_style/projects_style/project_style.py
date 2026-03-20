@@ -3,8 +3,8 @@ from Web_ACMA.styles.colors import *
 
 # Estilos para la tarjeta de proyecto
 CARD_STYLE = {
-    "width": "100%",
-    "max_width": "360px", 
+    "width": ["100%", "360px"], 
+    "max_width": "100%", 
     "background_color": rx.color_mode_cond(
         light=SOFT_PAPER_SOFT, 
         dark="rgba(17, 24, 39, 0.5)"
@@ -119,7 +119,8 @@ CARDS_FLEX_STYLE = {
     "flex_wrap": "wrap",
     "spacing": "6",
     "justify_content": "center",
-    "align_items": "start",
+    "align_items": "stretch", 
     "width": "100%",
     "max_width": "1200px",
+    "padding_x": ["1rem", "2rem"], 
 }

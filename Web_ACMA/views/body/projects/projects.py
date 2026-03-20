@@ -66,5 +66,5 @@ def projects() -> rx.Component:
             ),
             **PROJECTS_CONTAINER_STYLE
         ),
-        **PROJECTS_SECTION_STYLE
+        **PROJECTS_SECTION_STYLE,
     )

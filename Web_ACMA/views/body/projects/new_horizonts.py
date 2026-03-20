@@ -8,52 +8,60 @@ from Web_ACMA.styles.views_style.body_style.who_are_we_style.who_are_we_style im
     INFO_TEXT_STYLE,
 )
 
-# Esta función se encarga de dar estructura a la sección de Nuevos Horizontes solicitada por Marcos :)
 def new_horizonts() -> rx.Component:
     return rx.vstack(
-        # Título
+        # Título de la sección
         rx.heading(
             "Nuevos Horizontes", 
-            style={**HEADER_TITLE_STYLE, "font_size": "2.5rem"}
+            style={**HEADER_TITLE_STYLE, "font_size": ["2rem", "2.5rem"], "padding_x": "1rem"}
         ),
         
-        # Tarjeta + imagen
         rx.flex(
-            # Tarjeta de texto
+            # 1. Tarjeta de texto (Aparece PRIMERO en móvil)
             rx.vstack(
                 rx.heading("Propuesta de Innovación", style=INFO_TITLE_STYLE),
                 rx.text(
-                    """A partir de este año, en ACMA, estamos abiertos a la idea de de expandirnos en el área de la
-                    programación. Nuesto objetivo detrás de ello es de crear la posibilidad de poder desarrollar
-                    proyectos más personalizados para aquellas tareas más complejas que crear una presentación
-                    interactiva en Genially. Un claro ejemplo de ello es esta página web. Fue creada por el 
-                    colaborador principal de ACMA Daniel González, cuya visión es que ACMA sea más accesible y
-                    entendible para todos los profesores independientemente de si es de Guardería o de Bachillerato.
-                    Por esta razón, consideramos la importancia de intentar establecer en ACMA la programación como
-                    uno de nuestros servicios fijos para así poder mejorar la enseñanza con proyectos personalizados
-                    para las necesidades de cada profesor.""",
-                    style=INFO_TEXT_STYLE
+                    """A partir de este año, en ACMA, estamos abiertos a la idea de expandirnos en el área de la
+                    programación. Nuestro objetivo es crear proyectos personalizados para tareas complejas, 
+                    como esta misma página web, desarrollada por Daniel González para que ACMA sea accesible 
+                    para todos los niveles educativos.""",
+                    style=INFO_TEXT_STYLE,
+                    text_align="justify"
                 ),
-                style={**FOUNDER_TEXT_CARD_STYLE, "flex": "1"}, # Forzamos que crezca
+                style={
+                    **FOUNDER_TEXT_CARD_STYLE, 
+                    "flex": "1", 
+                    "width": "100%",
+                },
                 align_items="start",
                 justify_content="center",
-                text_align="justify"
             ),
-            # Imagen a la derecha
+            
+            # 2. Imagen (Aparece SEGUNDO en móvil, debajo del texto)
             rx.image(
                 src="Código ACMA.png", 
-                style={**FOUNDER_IMAGE_STYLE, "width": "400px", "height": "400px"} 
+                style={
+                    **FOUNDER_IMAGE_STYLE, 
+                    "width": ["100%", "450px"], 
+                    "height": "auto", 
+                    "border_radius": "15px",
+                    "margin_top": ["1.5rem", "1.5rem", "0rem"],
+                    "box_shadow": "0px 4px 20px rgba(0,0,0,0.2)" 
+                } 
             ),
+            
+            # Layout: Columna simple en móvil, Fila en desktop
             style={
                 **FOUNDER_SECTION_CONTAINER, 
                 "max_width": "1150px", 
                 "width": "100%",
-                "justify_content": "space-between", # Empuja imagen a la derecha y texto a la izquierda
-                "padding_y": "0rem",
+                "padding_x": ["1.5rem", "2rem"],
+                "gap": ["2rem", "4rem"], 
             },
-            flex_direction=["column-reverse", "row"],
+            flex_direction=["column", "column", "row"],
+            align_items="center",
         ),
         width="100%",
         align_items="center",
-        padding_y="4rem",
+        padding_y=["3rem", "5rem"],
     )
