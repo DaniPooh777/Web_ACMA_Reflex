@@ -3,7 +3,7 @@ from Web_ACMA.styles.colors import *
 
 FOOTER_CONTAINER_STYLE = {
     "width": "100%",
-    "padding_x": "2rem",
+    "padding_x": ["1rem", "2rem"],
     "padding_y": "2rem",
     "border_top": rx.color_mode_cond(
         light=f"1px solid {SOFT_BORDER}",

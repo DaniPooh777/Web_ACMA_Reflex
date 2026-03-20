@@ -12,8 +12,21 @@ def footer() -> rx.Component:
     year = datetime.now().year
 
     return rx.vstack(
-        rx.hstack(
-            # Bloque Izquierdo: Logo
+        rx.flex(
+            # Bloque de Navegación (Ahora arriba en mobile)
+            rx.hstack(
+                rx.link("Inicio", href="/", **FOOTER_NAV_LINK_STYLE),
+                rx.link("Proyectos", href="/project", **FOOTER_NAV_LINK_STYLE),
+                rx.link("Quiénes somos", href="/quienes-somos", **FOOTER_NAV_LINK_STYLE),
+                rx.link("Contacto", href="/contact", **FOOTER_NAV_LINK_STYLE),
+                spacing="6",
+                justify_content="center",
+                flex_wrap="wrap",
+                width=["100%", "auto"],
+                order=["1", "2"], # <--- PRIMERO en mobile, SEGUNDO en desktop
+            ),
+
+            # Bloque del Logo (Al medio en mobile)
             rx.hstack(
                 rx.link(
                     rx.hstack(
@@ -22,34 +35,36 @@ def footer() -> rx.Component:
                             "ACMA", 
                             font_weight="bold", 
                             color=rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
-                            font_size="1.2rem"),
+                            font_size=["1rem", "1.2rem"]
+                        ),
                         align_items="center",
                     ),                    
                     href="/",
                 ),
                 align_items="center",
-                spacing="3",
+                justify_content="center",
+                width=["100%", "auto"],
+                order=["2", "1"], # <--- SEGUNDO en mobile, PRIMERO en desktop
             ),
             
-            rx.spacer(), 
-            
-            # Bloque Derecho: Navegación
-            rx.hstack(
-                rx.link("Inicio", href="/", **FOOTER_NAV_LINK_STYLE),
-                rx.link("Proyectos", href="/project", **FOOTER_NAV_LINK_STYLE),
-                rx.link("Quiénes somos", href="/quienes-somos", **FOOTER_NAV_LINK_STYLE),
-                rx.link("Contacto", href="/contact", **FOOTER_NAV_LINK_STYLE),
-                spacing="6",
-            ),
+            flex_direction=["column", "row"], # Columna en mobile
+            justify_content="space-between",
+            align_items="center",
+            spacing="6",
             width="100%",
             max_width="1100px",
         ),
         
-        # Bloque inferior: Copyright
+        # Bloque inferior: Copyright (Siempre al final)
         rx.text(
             f"© {year} ACMA. Agencia de Contenido Manyanet Alcobendas.",
-            **FOOTER_COPYRIGHT_STYLE
+            **FOOTER_COPYRIGHT_STYLE,
+            text_align="center",
+            width="100%",
+            order="3", # <--- SIEMPRE ÚLTIMO
         ),
         
-        style=FOOTER_CONTAINER_STYLE
+        style=FOOTER_CONTAINER_STYLE,
+        width="100%",
+        align_items="center",
     )
