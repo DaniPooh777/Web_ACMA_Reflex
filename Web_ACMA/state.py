@@ -1,4 +1,4 @@
-import reflex as rx                                                                                                                                                                                                                                                                                         # Autor: DaniPooh777
+import reflex as rx  # Autor: DaniPooh777
 import smtplib
 import os
 from email.message import EmailMessage
@@ -6,11 +6,12 @@ from dotenv import load_dotenv
 from datetime import date
 import datetime
 
-load_dotenv() # Carga las variables del archivo .env al entorno. NUNCA subir el .env a Git.
+load_dotenv()  # Carga las variables del archivo .env al entorno. NUNCA subir el .env a Git.
 
 # =================================
 # LÓGICA DEL FORMULARIO DE CONTACTO
 # =================================
+
 
 class FormState(rx.State):
     """
@@ -20,18 +21,20 @@ class FormState(rx.State):
 
     # --- 1. ESTADO DE CAMPOS (UI) ---
     archivos_seleccionados: list[str] = []
-    _rutas_temporales: list[str] = [] # El guion bajo indica que es "privada" (no se envía al frontend)
+    _rutas_temporales: list[
+        str
+    ] = []  # El guion bajo indica que es "privada" (no se envía al frontend)
 
     # Variables reactivas para los inputs.
     email_valor: str = ""
     email_tocado: bool = False
-    
+
     nombre_valor: str = ""
     nombre_tocado: bool = False
-    
+
     asunto_valor: str = ""
     asunto_tocado: bool = False
-    
+
     fecha_valor: str = ""
     fecha_tocado: bool = False
 
@@ -51,14 +54,23 @@ class FormState(rx.State):
     # Nota: Usamos funciones para marcar que el usuario interactuó con el campo ("tocado")
     # Nota 2: Reflex necesita estos métodos para actualizar el estado desde la UI.
 
-    def set_email_valor(self, valor: str): self.email_valor = valor
-    def marcar_email_tocado(self, _=None): self.email_tocado = True
+    def set_email_valor(self, valor: str):
+        self.email_valor = valor
 
-    def set_nombre_valor(self, valor: str): self.nombre_valor = valor
-    def marcar_nombre_tocado(self, _=None): self.nombre_tocado = True
+    def marcar_email_tocado(self, _=None):
+        self.email_tocado = True
 
-    def set_asunto_valor(self, valor: str): self.asunto_valor = valor
-    def marcar_asunto_tocado(self, _=None): self.asunto_tocado = True
+    def set_nombre_valor(self, valor: str):
+        self.nombre_valor = valor
+
+    def marcar_nombre_tocado(self, _=None):
+        self.nombre_tocado = True
+
+    def set_asunto_valor(self, valor: str):
+        self.asunto_valor = valor
+
+    def marcar_asunto_tocado(self, _=None):
+        self.asunto_tocado = True
 
     def set_fecha_valor(self, date_str: str):
         # El DatePicker de Reflex devuelve la fecha en formato string
@@ -68,15 +80,18 @@ class FormState(rx.State):
     def marcar_fecha_tocado(self, _=None):
         self.fecha_tocado = True
 
-    def set_descripcion_valor(self, valor: str): self.descripcion_valor = valor
-    def marcar_descripcion_tocado(self, _=None): self.descripcion_tocado = True
+    def set_descripcion_valor(self, valor: str):
+        self.descripcion_valor = valor
+
+    def marcar_descripcion_tocado(self, _=None):
+        self.descripcion_tocado = True
 
     def set_nivel_seleccionado(self, value: str):
         self.nivel_seleccionado = value
         self.nivel_tocado = True
 
     def manejar_cierre_menu(self, abierto: bool):
-        # 'abierto' es un booleano que manda Reflex. 
+        # 'abierto' es un booleano que manda Reflex.
         # Si es False, es porque el menú se cerró (el usuario eligió o hizo clic afuera)
         if not abierto:
             self.nivel_tocado = True
@@ -84,16 +99,22 @@ class FormState(rx.State):
     def tocar_nivel(self, _=None):
         self.nivel_tocado = True
 
-    def abrir_dialogo(self): self.dialogo_abierto = True
-    def cerrar_dialogo(self): self.dialogo_abierto = False
+    def abrir_dialogo(self):
+        self.dialogo_abierto = True
 
-    def abrir_dialogo_exito(self): self.dialogo_exito_abierto = True
-    def cerrar_dialogo_exito(self): self.dialogo_exito_abierto = False
+    def cerrar_dialogo(self):
+        self.dialogo_abierto = False
+
+    def abrir_dialogo_exito(self):
+        self.dialogo_exito_abierto = True
+
+    def cerrar_dialogo_exito(self):
+        self.dialogo_exito_abierto = False
 
     # --- 4. VARIABLES COMPUTADAS (rx.var) ---
     """Los rx.var no se guardan, se CALCULAN en tiempo real. 
        Son ideales para validaciones y lógica de UI que depende de otros datos."""
-    
+
     @rx.var
     def mostrar_error_email(self) -> bool:
         if not self.email_tocado:
@@ -107,16 +128,18 @@ class FormState(rx.State):
     @rx.var
     def error_asunto(self) -> bool:
         return self.asunto_tocado and len(self.asunto_valor.strip()) == 0
-    
+
     @rx.var
     def error_descripcion(self) -> bool:
         return self.descripcion_tocado and len(self.descripcion_valor.strip()) == 0
-    
+
     @rx.var
     def error_nivel(self) -> bool:
         # Si fue tocado y no seleccionó nada (está el placeholder)
-        return self.nivel_tocado and (not self.nivel_seleccionado or self.nivel_seleccionado == "")
-    
+        return self.nivel_tocado and (
+            not self.nivel_seleccionado or self.nivel_seleccionado == ""
+        )
+
     @rx.var
     def fecha_minima(self) -> str:
         # Retorna hoy en formato ISO (AAAA-MM-DD) que es lo que entiende el input date
@@ -130,45 +153,45 @@ class FormState(rx.State):
         # Si se tocó y está vacío O la fecha es pasada, hay error
         hoy = datetime.date.today().isoformat()
         return not self.fecha_valor or self.fecha_valor < hoy
-    
+
     @rx.var
     def formulario_invalido(self) -> bool:
         # Verificamos que todos los campos tengan contenido y que NO haya errores activos
         # Usamos strip() para que no nos engañen con puros espacios en blanco.
         campos_vacios = (
-            len(self.nombre_valor.strip()) == 0 or
-            len(self.email_valor.strip()) == 0 or
-            len(self.asunto_valor.strip()) == 0 or
-            len(self.fecha_valor.strip()) == 0 or
-            len(self.descripcion_valor.strip()) == 0 or
-            self.nivel_seleccionado == ""
+            len(self.nombre_valor.strip()) == 0
+            or len(self.email_valor.strip()) == 0
+            or len(self.asunto_valor.strip()) == 0
+            or len(self.fecha_valor.strip()) == 0
+            or len(self.descripcion_valor.strip()) == 0
+            or self.nivel_seleccionado == ""
         )
-        
+
         # También chequeamos que no existan errores de validación (como el dominio del email)
         hay_errores = (
-            self.mostrar_error_email or 
-            self.error_nombre or 
-            self.error_asunto or 
-            self.error_fecha or 
-            self.error_descripcion or 
-            self.error_nivel
+            self.mostrar_error_email
+            or self.error_nombre
+            or self.error_asunto
+            or self.error_fecha
+            or self.error_descripcion
+            or self.error_nivel
         )
         return campos_vacios or hay_errores
-    
+
     @rx.var
     def formulario_completo(self) -> bool:
         # Verificamos que todo esté lleno y sin errores
         return (
-            len(self.nombre_valor.strip()) > 0 and
-            len(self.email_valor.strip()) > 0 and
-            not self.mostrar_error_email and
-            len(self.asunto_valor.strip()) > 0 and
-            len(self.fecha_valor.strip()) > 0 and
-            len(self.descripcion_valor.strip()) > 0 and
-            self.nivel_seleccionado != ""
+            len(self.nombre_valor.strip()) > 0
+            and len(self.email_valor.strip()) > 0
+            and not self.mostrar_error_email
+            and len(self.asunto_valor.strip()) > 0
+            and len(self.fecha_valor.strip()) > 0
+            and len(self.descripcion_valor.strip()) > 0
+            and self.nivel_seleccionado != ""
         )
 
-    # --- 5. LÓGICA DE ARCHIVOS (SUBIDA) ---    
+    # --- 5. LÓGICA DE ARCHIVOS (SUBIDA) ---
     async def handle_upload(self, files: list[rx.UploadFile]):
         """Procesa archivos subidos a la carpeta temporal del servidor."""
         for file in files:
@@ -177,13 +200,13 @@ class FormState(rx.State):
 
             if not os.path.exists(directorio_externo):
                 os.makedirs(directorio_externo)
-            
+
             nombre_limpio = file.filename.replace(" ", "_")
             ruta_final = os.path.join(directorio_externo, nombre_limpio)
 
             with open(ruta_final, "wb") as f:
                 f.write(upload_data)
-            
+
             self.archivos_seleccionados.append(file.filename)
             self._rutas_temporales.append(ruta_final)
 
@@ -208,7 +231,7 @@ class FormState(rx.State):
         self.fecha_valor = ""
         self.descripcion_valor = ""
         self.nivel_seleccionado = ""
-        
+
         # Reseteamos los estados de "tocado" para que no salten errores
         self.nombre_tocado = False
         self.email_tocado = False
@@ -216,36 +239,36 @@ class FormState(rx.State):
         self.fecha_tocado = False
         self.descripcion_tocado = False
         self.nivel_tocado = False
-        
+
         # Limpiamos archivos si corresponde
         self.archivos_seleccionados = []
         self._rutas_temporales = []
-    
+
     # --- 6. ENVÍO DE FORMULARIO ---
-    async def handle_submit(self, data: dict): 
+    async def handle_submit(self, data: dict):
         """Construye y envía los correos electrónicos usando smtplib."""
         if not self.formulario_completo:
             self.abrir_dialogo()
             return
 
-        self.cargando = True     
-        yield # Permite que Reflex actualice la UI para mostrar el spinner mientras sigue el proceso.
+        self.cargando = True
+        yield  # Permite que Reflex actualice la UI para mostrar el spinner mientras sigue el proceso.
 
-        # Capturamos la información del formulario  
+        # Capturamos la información del formulario
         email_cliente = data.get("email")
         nombre = data.get("nombre")
         nivel = data.get("nivel_educativo")
         asunto = data.get("asunto")
-        descripcion = data.get("descripcion")       
+        descripcion = data.get("descripcion")
 
-        fecha = self.fecha_valor 
+        fecha = self.fecha_valor
         if fecha:
             # De "aaaa-mm-dd" pasamos a "dd/mm/aaaa"
             partes = fecha.split("-")
             fecha = f"{partes[2]}/{partes[1]}/{partes[0]}"
         else:
             fecha = "No especificada"
-        
+
         if not self.formulario_completo:
             self.abrir_dialogo()
             return
@@ -298,11 +321,11 @@ class FormState(rx.State):
         # Configuramos el mensaje para ACMA
         msg_acma = EmailMessage()
         msg_acma.set_content(cuerpo_mail)
-        msg_acma['Subject'] = f"Solicitud encargo: {asunto}"
-        msg_acma['From'] = f"{nombre} <{os.getenv('EMAIL_USER')}>"
-        msg_acma['To'] = "acma@alcobendas.manyanet.org"
-        msg_acma['Reply-To'] = email_cliente
-        msg_acma.add_alternative(cuerpo_mail, subtype='html')
+        msg_acma["Subject"] = f"Solicitud encargo: {asunto}"
+        msg_acma["From"] = f"{nombre} <{os.getenv('EMAIL_USER')}>"
+        msg_acma["To"] = "acma@alcobendas.manyanet.org"
+        msg_acma["Reply-To"] = email_cliente
+        msg_acma.add_alternative(cuerpo_mail, subtype="html")
 
         # Mail para el cliente
         cuerpo_cliente = f"""
@@ -328,27 +351,36 @@ class FormState(rx.State):
 
         # Configuramos el mensaje para el cliente
         msg_cliente = EmailMessage()
-        msg_cliente['Subject'] = f"Confirmación de pedido: {asunto}"
-        msg_cliente['From'] = f"ACMA Manyanet <{os.getenv('EMAIL_USER')}>"
-        msg_cliente['To'] = email_cliente # El destinatario es el cliente
-        msg_cliente['Reply-To'] = "acma@alcobendas.manyanet.org"
-        msg_cliente.add_alternative(cuerpo_cliente, subtype='html')
-
+        msg_cliente["Subject"] = f"Confirmación de pedido: {asunto}"
+        msg_cliente["From"] = f"ACMA Manyanet <{os.getenv('EMAIL_USER')}>"
+        msg_cliente["To"] = email_cliente  # El destinatario es el cliente
+        msg_cliente["Reply-To"] = "acma@alcobendas.manyanet.org"
+        msg_cliente.add_alternative(cuerpo_cliente, subtype="html")
 
         # Adjuntamos los archivos a AMBOS mensajes
         for ruta in self._rutas_temporales:
             if os.path.exists(ruta):
-                with open(ruta, 'rb') as f:
+                with open(ruta, "rb") as f:
                     contenido_adjunto = f.read()
                     nombre_archivo = os.path.basename(ruta)
-                    
+
                     # Adjunto para ACMA
-                    msg_acma.add_attachment(contenido_adjunto, maintype='application', subtype='octet-stream', filename=nombre_archivo)
+                    msg_acma.add_attachment(
+                        contenido_adjunto,
+                        maintype="application",
+                        subtype="octet-stream",
+                        filename=nombre_archivo,
+                    )
                     # Adjunto para el Cliente
-                    msg_cliente.add_attachment(contenido_adjunto, maintype='application', subtype='octet-stream', filename=nombre_archivo)
-        
+                    msg_cliente.add_attachment(
+                        contenido_adjunto,
+                        maintype="application",
+                        subtype="octet-stream",
+                        filename=nombre_archivo,
+                    )
+
         # Configuración del servidor y envío
-        try:            
+        try:
             with smtplib.SMTP("smtp.gmail.com", 587) as server:
                 server.starttls()
                 server.login(os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS"))
@@ -356,7 +388,7 @@ class FormState(rx.State):
                 # Mandamos los dos
                 server.send_message(msg_acma)
                 server.send_message(msg_cliente)
-                
+
                 # Limpiamos los archivos temporales
                 for ruta in self._rutas_temporales:
                     if os.path.exists(ruta):
@@ -368,34 +400,68 @@ class FormState(rx.State):
         except Exception as e:
             yield rx.window_alert(f"Error al enviar: {str(e)}")
         finally:
-            self.cargando = False # Liberamos el botón pase lo que pase.
+            self.cargando = False  # Liberamos el botón pase lo que pase.
+
 
 # =============================================================================
 # OTROS ESTADOS DE LA APLICACIÓN
 # =============================================================================
 
+
 class State(rx.State):
     """Maneja la visibilidad de secciones dinámicas en la página principal."""
+
     seccion_activa: str = ""
-    def toggle_posters(self): self.seccion_activa = "" if self.seccion_activa == "posters" else "posters"
-    def toggle_presentaciones(self): self.seccion_activa = "" if self.seccion_activa == "presentaciones" else "presentaciones"
-    def toggle_cuestionarios(self): self.seccion_activa = "" if self.seccion_activa == "cuestionarios" else "cuestionarios"
-    def toggle_documentos(self): self.seccion_activa = "" if self.seccion_activa == "documentos" else "documentos"
+
+    def toggle_posters(self):
+        self.seccion_activa = "" if self.seccion_activa == "posters" else "posters"
+
+    def toggle_presentaciones(self):
+        self.seccion_activa = (
+            "" if self.seccion_activa == "presentaciones" else "presentaciones"
+        )
+
+    def toggle_cuestionarios(self):
+        self.seccion_activa = (
+            "" if self.seccion_activa == "cuestionarios" else "cuestionarios"
+        )
+
+    def toggle_documentos(self):
+        self.seccion_activa = (
+            "" if self.seccion_activa == "documentos" else "documentos"
+        )
+
 
 class FaqState(rx.State):
     """Controla cuál pregunta del FAQ está expandida."""
+
     opened_id: str = ""
-    def toggle_faq(self, id: str): self.opened_id = "" if self.opened_id == id else id
-    def clean_state(self): self.opened_id = ""
+
+    def toggle_faq(self, id: str):
+        self.opened_id = "" if self.opened_id == id else id
+
+    def clean_state(self):
+        self.opened_id = ""
+
 
 class ProjectCardState(rx.State):
     """Maneja la expansión individual de las tarjetas de proyectos."""
+
     opened_id: str = ""
-    def toggle_card(self, card_id: str): self.opened_id = "" if self.opened_id == card_id else card_id
-    def clean_state(self): self.opened_id = ""
+
+    def toggle_card(self, card_id: str):
+        self.opened_id = "" if self.opened_id == card_id else card_id
+
+    def clean_state(self):
+        self.opened_id = ""
+
 
 class NavState(rx.State):
     drawer_open: bool = False
+
+    def set_drawer_open(self, value: bool):
+        """Setter explícito para drawer_open (requerido por Reflex 0.8.9+)."""
+        self.drawer_open = value
 
     def toggle_drawer(self):
         """Abre o cierra el menú lateral."""
