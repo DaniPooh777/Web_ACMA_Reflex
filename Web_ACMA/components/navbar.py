@@ -43,7 +43,7 @@ def navbar() -> rx.Component:
             rx.link("Proyectos", href="/project", **NAV_LINK_STYLE),
             rx.link("Quiénes Somos", href="/quienes-somos", **NAV_LINK_STYLE),
             rx.link("Contacto", href="/contact", **NAV_LINK_STYLE),
-            spacing="3",
+            spacing="6",
             style=NAV_CENTER_HSTACK_STYLE,
             display=["none", "none", "flex"],  # <--- OCULTO EN MÓVIL
         ),
