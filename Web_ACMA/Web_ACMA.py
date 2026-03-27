@@ -50,6 +50,7 @@ def index() -> rx.Component:
         background_color=rx.color_mode_cond(light=SOFT_PAPER, dark=DARK_PAPER),
         # Para resetear a sus valores iniciales
         on_mount=[
+            State.clean_state,
             ProjectCardState.clean_state,
             FaqState.clean_state,
             FormState.limpiar_validacion,

@@ -431,6 +431,10 @@ class State(rx.State):
             "" if self.seccion_activa == "documentos" else "documentos"
         )
 
+    def clean_state(self):
+        """Resetea las secciones desplegadas de recursos."""
+        self.seccion_activa = ""
+
 
 class FaqState(rx.State):
     """Controla cuál pregunta del FAQ está expandida."""
