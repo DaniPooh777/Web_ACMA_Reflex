@@ -2,16 +2,14 @@ import reflex as rx
 from Web_ACMA.styles.colors import *
 
 CONTACT_CARD_STYLE = {
-    "width": ["100%", "100%", "400px"], 
-    "max_width": "100%", 
+    "width": ["100%", "100%", "400px"],
+    "max_width": "100%",
     "padding": ["1.5rem", "2rem"],
     "background_color": rx.color_mode_cond(
-        light=SOFT_PAPER_SOFT,  
-        dark="rgba(17, 24, 39, 0.5)"
+        light=SOFT_PAPER_SOFT, dark="rgba(17, 24, 39, 0.5)"
     ),
     "border": rx.color_mode_cond(
-        light=f"1px solid {SOFT_BORDER}", 
-        dark="1px solid rgba(255, 255, 255, 0.1)"
+        light=f"1px solid {SOFT_BORDER}", dark="1px solid rgba(255, 255, 255, 0.1)"
     ),
     "border_radius": "12px",
     "transition": "all 0.3s ease",
@@ -28,10 +26,7 @@ ICON_CONTAINER_STYLE = {
 }
 
 CARD_TITLE_STYLE = {
-    "color": rx.color_mode_cond(
-        light=SOFT_TEXT_MAIN, 
-        dark="white"
-    ),
+    "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
     "size": "6",
 }
 
@@ -42,16 +37,16 @@ CARD_LINK_STYLE = {
 }
 
 SCHEDULE_CARD_STYLE = {
-    "width": "100%", 
-    "max_width": "824px", 
+    "width": "100%",
+    "max_width": "824px",
     "background_color": rx.color_mode_cond(
-        light=SOFT_PAPER_SOFT, 
+        light=SOFT_PAPER_SOFT,
         dark=DARK_PAPER_SOFT,
-    ), 
+    ),
     "border": rx.color_mode_cond(
-        light="1 pixel solid {SOFT_TEXT_MAIN}", 
-        dark="1 pixel solid {DARK_TEXT_MAIN}",
-    ), 
+        light=f"1px solid {SOFT_BORDER}",
+        dark="1px solid rgba(255, 255, 255, 0.1)",
+    ),
     "padding": "2rem",
     "border_radius": "12px",
     "margin_top": "0rem",
@@ -59,8 +54,7 @@ SCHEDULE_CARD_STYLE = {
 
 INNER_SCHEDULE_STYLE = {
     "background_color": rx.color_mode_cond(
-        light="rgba(0, 0, 0, 0.03)", 
-        dark="rgba(255, 255, 255, 0.03)"
+        light="rgba(0, 0, 0, 0.03)", dark="rgba(255, 255, 255, 0.03)"
     ),
     "padding": "1.5rem",
     "border_radius": "8px",
@@ -71,13 +65,10 @@ INNER_SCHEDULE_STYLE = {
 HEADER_TITLE_STYLE = {
     "font_size": ["1.8rem", "2.2rem", "2.5rem"],
     "font_weight": "800",
-    "color": rx.color_mode_cond(
-        light=SOFT_TEXT_MAIN, 
-        dark="white"
-    ),
+    "color": rx.color_mode_cond(light=SOFT_TEXT_MAIN, dark="white"),
     "line_height": "1.1",
     "margin_bottom": "1rem",
     "margin_x": "1rem",
     "text_align": "center",
-    "white_space": "pre-line", # <--- ESTO permite que el \n funcione 
+    "white_space": "pre-line",  # <--- ESTO permite que el \n funcione
 }
