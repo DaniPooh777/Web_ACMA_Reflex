@@ -23,14 +23,16 @@ def footer() -> rx.Component:
                     "Quiénes somos", href="/quienes-somos", **FOOTER_NAV_LINK_STYLE
                 ),
                 rx.link("Contacto", href="/contact", **FOOTER_NAV_LINK_STYLE),
-                rx.link("Política de Cookies", href="/cookies", **FOOTER_NAV_LINK_STYLE),
+                rx.link(
+                    "Política de Cookies", href="/cookies", **FOOTER_NAV_LINK_STYLE
+                ),
                 spacing="6",
                 justify_content="center",
                 flex_wrap="wrap",
                 width=["100%", "auto"],
                 order=["1", "2"],  # <--- PRIMERO en mobile, SEGUNDO en desktop
             ),
-            # Bloque del Logo (Al medio en mobile)
+            # Bloque del Logo (Oculto en móvil, visible en desktop)
             rx.hstack(
                 rx.link(
                     rx.hstack(
@@ -50,7 +52,8 @@ def footer() -> rx.Component:
                 align_items="center",
                 justify_content="center",
                 width=["100%", "auto"],
-                order=["2", "1"],  # <--- SEGUNDO en mobile, PRIMERO en desktop
+                order=["2", "1"],
+                display=["none", "flex"],  # Oculto en móvil, visible en desktop
             ),
             flex_direction=["column", "row"],  # Columna en mobile
             justify_content="space-between",
