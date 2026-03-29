@@ -330,7 +330,7 @@ def solicitud_form() -> rx.Component:
                                 ),
                             },
                         ),
-                        # Botón de adjuntar archivos
+                        # Botón de adjuntar archivos (solo multimedia, documentos y comprimidos)
                         rx.upload(
                             rx.hstack(
                                 rx.icon(tag="upload", size=16),
@@ -341,6 +341,64 @@ def solicitud_form() -> rx.Component:
                             on_drop=FormState.handle_upload(
                                 rx.upload_files(upload_id="upload_files")
                             ),
+                            accept={
+                                "image/*": [
+                                    ".jpg",
+                                    ".jpeg",
+                                    ".png",
+                                    ".gif",
+                                    ".bmp",
+                                    ".tiff",
+                                    ".webp",
+                                    ".svg",
+                                    ".ico",
+                                    ".heic",
+                                ],
+                                "video/*": [
+                                    ".mp4",
+                                    ".avi",
+                                    ".mov",
+                                    ".wmv",
+                                    ".flv",
+                                    ".mkv",
+                                    ".webm",
+                                    ".m4v",
+                                    ".mpg",
+                                    ".mpeg",
+                                    ".3gp",
+                                ],
+                                "application/pdf": [".pdf"],
+                                "application/msword": [".doc"],
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [
+                                    ".docx"
+                                ],
+                                "application/vnd.ms-excel": [".xls"],
+                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
+                                    ".xlsx"
+                                ],
+                                "application/vnd.ms-powerpoint": [".ppt"],
+                                "application/vnd.openxmlformats-officedocument.presentationml.presentation": [
+                                    ".pptx"
+                                ],
+                                "application/vnd.oasis.opendocument.text": [".odt"],
+                                "application/vnd.oasis.opendocument.spreadsheet": [
+                                    ".ods"
+                                ],
+                                "application/vnd.oasis.opendocument.presentation": [
+                                    ".odp"
+                                ],
+                                "text/plain": [".txt", ".rtf", ".md", ".csv", ".log"],
+                                "application/epub+zip": [".epub"],
+                                "application/x-zip-compressed": [
+                                    ".zip",
+                                    ".rar",
+                                    ".7z",
+                                    ".tar",
+                                    ".gz",
+                                    ".bz2",
+                                    ".xz",
+                                ],
+                            },
                             **UPLOAD_CLEAN_STYLE,
                         ),
                         position="relative",
@@ -400,6 +458,16 @@ def solicitud_form() -> rx.Component:
                         align_items="start",
                         width="100%",
                         padding_top="0.5rem",
+                    ),
+                    # Mensaje de error para tipos de archivo no permitidos
+                    rx.cond(
+                        FormState.error_archivo,
+                        rx.text(
+                            FormState.error_archivo,
+                            color="#ef4444",
+                            font_size="0.75rem",
+                            margin_top="0.5rem",
+                        ),
                     ),
                     width="100%",
                     align_items="start",

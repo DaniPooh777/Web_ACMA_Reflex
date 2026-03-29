@@ -12,6 +12,88 @@ load_dotenv()  # Carga las variables del archivo .env al entorno. NUNCA subir el
 # LÓGICA DEL FORMULARIO DE CONTACTO
 # =================================
 
+# Tipos de archivo permitidos por categoría
+ARCHIVOS_MULTIMEDIA = {
+    # Imágenes
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".bmp",
+    ".tiff",
+    ".tif",
+    ".webp",
+    ".svg",
+    ".ico",
+    ".heic",
+    ".heif",
+    # Vídeos
+    ".mp4",
+    ".avi",
+    ".mov",
+    ".wmv",
+    ".flv",
+    ".mkv",
+    ".webm",
+    ".m4v",
+    ".mpg",
+    ".mpeg",
+    ".3gp",
+    ".ogv",
+}
+
+ARCHIVOS_DOCUMENTOS = {
+    # PDF
+    ".pdf",
+    # Microsoft Office
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".ppt",
+    ".pptx",
+    ".pps",
+    ".ppsx",
+    # OpenOffice / LibreOffice
+    ".odt",
+    ".ods",
+    ".odp",
+    ".odg",
+    ".odf",
+    # Texto
+    ".txt",
+    ".rtf",
+    ".md",
+    ".csv",
+    ".log",
+    # Otros documentos
+    ".epub",
+    ".mobi",
+    ".pages",
+    ".numbers",
+    ".key",
+}
+
+ARCHIVOS_COMPRIMIDOS = {
+    ".zip",
+    ".rar",
+    ".7z",
+    ".tar",
+    ".gz",
+    ".tgz",
+    ".bz2",
+    ".xz",
+    ".zipx",
+    ".cab",
+    ".lz",
+    ".zst",
+}
+
+# Todos los tipos permitidos (unión de todas las categorías)
+TIPOS_ARCHIVOS_PERMITIDOS = (
+    ARCHIVOS_MULTIMEDIA | ARCHIVOS_DOCUMENTOS | ARCHIVOS_COMPRIMIDOS
+)
+
 
 class FormState(rx.State):
     """
@@ -24,6 +106,7 @@ class FormState(rx.State):
     _rutas_temporales: list[
         str
     ] = []  # El guion bajo indica que es "privada" (no se envía al frontend)
+    error_archivo: str = ""  # Mensaje de error para tipos de archivo no permitidos
 
     # Variables reactivas para los inputs.
     email_valor: str = ""
@@ -193,8 +276,19 @@ class FormState(rx.State):
 
     # --- 5. LÓGICA DE ARCHIVOS (SUBIDA) ---
     async def handle_upload(self, files: list[rx.UploadFile]):
-        """Procesa archivos subidos a la carpeta temporal del servidor."""
+        """Procesa archivos subidos a la carpeta temporal del servidor.
+        Solo acepta archivos multimedia, documentos y comprimidos."""
+        self.error_archivo = ""  # Limpiamos errores previos
+
         for file in files:
+            # Obtener extensión del archivo (en minúsculas)
+            _, extension = os.path.splitext(file.filename.lower())
+
+            # Validar que la extensión esté permitida
+            if extension not in TIPOS_ARCHIVOS_PERMITIDOS:
+                self.error_archivo = f"Tipo de archivo no permitido: '{extension}'. Solo se aceptan imágenes, vídeos, documentos y archivos comprimidos."
+                continue  # Saltar este archivo, no procesarlo
+
             upload_data = await file.read()
             directorio_externo = rx.get_upload_dir()
 
@@ -243,6 +337,7 @@ class FormState(rx.State):
         # Limpiamos archivos si corresponde
         self.archivos_seleccionados = []
         self._rutas_temporales = []
+        self.error_archivo = ""
 
     # --- 6. ENVÍO DE FORMULARIO ---
     async def handle_submit(self, data: dict):
