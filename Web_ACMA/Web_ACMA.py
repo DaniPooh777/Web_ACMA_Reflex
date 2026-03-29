@@ -22,6 +22,7 @@ from Web_ACMA.views.body.home.advantages_and_considerations import (
     advantages_and_considerations,
 )
 from Web_ACMA.views.body.projects.new_horizonts import new_horizonts
+from Web_ACMA.views.body.cookies.cookies import cookies_view
 
 
 # Página Inicio
@@ -128,6 +129,27 @@ def contact() -> rx.Component:
     )
 
 
+# Página Cookies
+def cookies() -> rx.Component:
+    return rx.vstack(
+        navbar(),
+        header(
+            "Política de Cookies",
+            "",
+        ),
+        cookies_view(),
+        footer(),
+        spacing="0",
+        width="100%",
+        background_color=rx.color_mode_cond(light=SOFT_PAPER, dark=DARK_PAPER),
+        on_mount=[
+            ProjectCardState.clean_state,
+            FaqState.clean_state,
+            FormState.limpiar_validacion,
+        ],
+    )
+
+
 # Configuración de la app con estilos para animaciones
 app = rx.App(
     head_components=[rx.el.link(rel="icon", href="/Acma Logo 2025-2026.png")],
@@ -159,3 +181,4 @@ app.add_page(index, route="/", title="ACMA | Inicio")
 app.add_page(project, route="/project", title="ACMA | Proyecto")
 app.add_page(who_are_we, route="/quienes-somos", title="ACMA | Quiénes Somos")
 app.add_page(contact, route="/contact", title="ACMA | Contacto")
+app.add_page(cookies, route="/cookies", title="ACMA | Política de Cookies")
