@@ -23,9 +23,24 @@ from Web_ACMA.views.body.home.advantages_and_considerations import (
 )
 from Web_ACMA.views.body.projects.new_horizonts import new_horizonts
 from Web_ACMA.views.body.cookies.cookies import cookies_view
+from Web_ACMA.components.seo_metadata import (
+    get_homepage_meta,
+    get_projects_meta,
+    get_who_are_we_meta,
+    get_contact_meta,
+    get_cookies_meta,
+    get_schema_markup_component,
+)
 
 
 # Página Inicio
+@rx.page(
+    route="/",
+    title="ACMA | Inicio",
+    description="ACMA - Agencia de Contenido Manyanet Alcobendas. Creamos recursos educativos digitales de alta calidad.",
+    image="https://web-acma-gray-orca.reflex.run/og-image.png",
+    meta=get_homepage_meta(),
+)
 def index() -> rx.Component:
     return rx.vstack(
         navbar(),
@@ -49,7 +64,6 @@ def index() -> rx.Component:
         width="100%",
         align_items="center",
         background_color=rx.color_mode_cond(light=SOFT_PAPER, dark=DARK_PAPER),
-        # Para resetear a sus valores iniciales
         on_mount=[
             State.clean_state,
             ProjectCardState.clean_state,
@@ -60,6 +74,13 @@ def index() -> rx.Component:
 
 
 # Página Proyectos
+@rx.page(
+    route="/project",
+    title="ACMA | Proyectos",
+    description="Descubre nuestros proyectos educativos más destacados.",
+    image="https://web-acma-gray-orca.reflex.run/og-image.png",
+    meta=get_projects_meta(),
+)
 def project() -> rx.Component:
     return rx.vstack(
         navbar(),
@@ -82,6 +103,13 @@ def project() -> rx.Component:
 
 
 # Página Quiénes Somos
+@rx.page(
+    route="/quienes-somos",
+    title="ACMA | Quiénes Somos",
+    description="Conoce a ACMA, el equipo detrás de la Agencia de Contenido Manyanet Alcobendas.",
+    image="https://web-acma-gray-orca.reflex.run/og-image.png",
+    meta=get_who_are_we_meta(),
+)
 def who_are_we() -> rx.Component:
     return rx.vstack(
         navbar(),
@@ -102,6 +130,13 @@ def who_are_we() -> rx.Component:
 
 
 # Página Contacto
+@rx.page(
+    route="/contact",
+    title="ACMA | Contacto",
+    description="Contacta con ACMA para solicitar tus recursos educativos.",
+    image="https://web-acma-gray-orca.reflex.run/og-image.png",
+    meta=get_contact_meta(),
+)
 def contact() -> rx.Component:
     return rx.vstack(
         navbar(),
@@ -130,6 +165,13 @@ def contact() -> rx.Component:
 
 
 # Página Cookies
+@rx.page(
+    route="/cookies",
+    title="ACMA | Política de Cookies",
+    description="Política de cookies de ACMA.",
+    image="https://web-acma-gray-orca.reflex.run/og-image.png",
+    meta=get_cookies_meta(),
+)
 def cookies() -> rx.Component:
     return rx.vstack(
         navbar(),
@@ -150,9 +192,12 @@ def cookies() -> rx.Component:
     )
 
 
-# Configuración de la app con estilos para animaciones
+# Configuración de la app
 app = rx.App(
-    head_components=[rx.el.link(rel="icon", href="/Acma Logo 2025-2026.png")],
+    head_components=[
+        rx.el.link(rel="icon", href="/Acma Logo 2025-2026.png"),
+        get_schema_markup_component(),
+    ],
     style={
         "html": {
             "scroll_behavior": "smooth",
@@ -185,10 +230,3 @@ app = rx.App(
         accent_color="blue",
     ),
 )
-
-# Registrar páginas
-app.add_page(index, route="/", title="ACMA | Inicio")
-app.add_page(project, route="/project", title="ACMA | Proyecto")
-app.add_page(who_are_we, route="/quienes-somos", title="ACMA | Quiénes Somos")
-app.add_page(contact, route="/contact", title="ACMA | Contacto")
-app.add_page(cookies, route="/cookies", title="ACMA | Política de Cookies")
