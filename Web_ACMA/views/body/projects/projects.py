@@ -1,12 +1,15 @@
 import reflex as rx
+
 from Web_ACMA.components.project_card import project_card
 from Web_ACMA.styles.views_style.body_style.projects_style.project_style import (
     PROJECTS_CONTAINER_STYLE,
     CARDS_FLEX_STYLE,
-    PROJECTS_SECTION_STYLE
+    PROJECTS_SECTION_STYLE,
 )
 
-# Esta función se encarga de dar estructura a la sección de los distintos proyectos destacados de ACMA.
+
+# Esta función se encarga de dar estructura a la sección de los distintos
+# proyectos destacados de ACMA.
 def projects() -> rx.Component:
     return rx.box(
         rx.vstack(
@@ -14,57 +17,94 @@ def projects() -> rx.Component:
             rx.flex(
                 # ---PRIMERA FILA---
                 project_card(
-                    "p1", "La Fe en el Marco del Pensamiento.png",
+                    "p1",
+                    "La Fe en el Marco del Pensamiento.png",
                     "La Fe en el Marco del Pensamiento",
-                    "Presentación interactiva en Genially sobre las principales religiones del mundo, con elementos multimedia y actividades."
+                    "Presentación interactiva en Genially sobre las principales "
+                    "religiones del mundo, con elementos multimedia y actividades.",
                 ),
                 project_card(
-                    "p2", "Tarjeta Horizontal Feliz Navidad.png",
+                    "p2",
+                    "Tarjeta Horizontal Feliz Navidad.png",
                     "Tarjeta Horizontal Feliz Navidad",
-                    "Tatjeta navideña diseñada para desear feliz Navidad a todos."
+                    "Tatjeta navideña diseñada para desear feliz Navidad a todos.",
                 ),
                 project_card(
-                    "p3", "Día de la Paz.png",
+                    "p3",
+                    "Día de la Paz.png",
                     "Vídeo del Acto de la Virgen",
-                    "Un montaje de las distintas fotos que se realizaron durante el evento escolar."
+                    "Un montaje de las distintas fotos que se realizaron "
+                    "durante el evento escolar.",
                 ),
-
                 # ---SEGUNDA FILA---
                 project_card(
-                    "p4", "Nomas de convivencia.png",
+                    "p4",
+                    "Nomas de convivencia.png",
                     "Normas de Convivencia",
-                    "Normas de convivencia para el buen uso del taller y para garantizar la seguridad de los alumnos."
+                    "Normas de convivencia para el buen uso del taller "
+                    "y para garantizar la seguridad de los alumnos.",
                 ),
                 project_card(
-                    "p5", "Horario Enfermería.png",
+                    "p5",
+                    "Horario Enfermería.png",
                     "Horario Enfermería",
-                    "Un cartel innovador para informar de cuándo está abierto la enfermería. "
+                    "Un cartel innovador para informar de cuándo está abierto la enfermería. ",
                 ),
                 project_card(
-                    "p6", "Uno Morfología.png",
+                    "p6",
+                    "Uno Morfología.png",
                     "Uno Morfología",
-                    "Actividad lúdica sobre la morfología en el formato del famoso juego de mesa (UNO) para que los estudiantes repasen los contenido de una forma innovadora."
+                    "Actividad lúdica sobre la morfología en el formato del "
+                    "famoso juego de mesa (UNO) para que los estudiantes repasen "
+                    "los contenido de una forma innovadora.",
                 ),
-
                 # ---TERCERA FILA---
                 project_card(
-                    "p7", "Horario Secretaría.png",
+                    "p7",
+                    "Horario Secretaría.png",
                     "Horario Secretaría",
-                    "Para que cualquiera sepa cuándo está abierto secretaría. Está hecho de tal forma que sea muy visual y bonita."
+                    "Para que cualquiera sepa cuándo está abierto secretaría. "
+                    "Está hecho de tal forma que sea muy visual y bonita.",
                 ),
                 project_card(
-                    "p8", "Formulario Internet - Security and responsibility.png",
+                    "p8",
+                    "Formulario Internet - Security and responsibility.png",
                     "Formulario Internet",
-                    "Un breve formulario con preguntas para evaluar el conocimiento de los alumnos sobre la seguridad en internet."
+                    "Un breve formulario con preguntas para evaluar el "
+                    "conocimiento de los alumnos sobre la seguridad en internet.",
                 ),
                 project_card(
-                    "p9", "Mural.jpeg",
+                    "p9",
+                    "Mural.jpeg",
                     "El Mural de Manyanet",
-                    "Póster motivacional y creativo sobre los distintos aspectos y valores que aprendemos en el Colegio Padre Manyanet Alcobendas."
+                    "Póster motivacional y creativo sobre los distintos "
+                    "aspectos y valores que aprendemos en el Colegio Padre "
+                    "Manyanet Alcobendas.",
                 ),
-                **CARDS_FLEX_STYLE
+                # ---CUARTA FILA---
+                project_card(
+                    "p10",
+                    "Póster carnaval de 3º Primaria.png",
+                    "Póster Carnaval de 3º Primaria",
+                    "Uno de los múltiples pósters que realizamos para el Carnaval de 2026.",
+                ),
+                project_card(
+                    "p11",
+                    "Formulario Tema 7 Física.png",
+                    "Formulario Tema 7 Física",
+                    "Un breve formulario con los conceptos clave que los "
+                    "alumnos de 2º de Bachillerato adquirieron durante el tema.",
+                ),
+                project_card(
+                    "p12",
+                    "Excursión Yebes.png",
+                    "Excursión Yebes",
+                    "Póster para recordar la excursión que hicieron los "
+                    "alumnos de 2º de Bachillerato al observatorio situado en Yebes.",
+                ),
+                **CARDS_FLEX_STYLE,
             ),
-            **PROJECTS_CONTAINER_STYLE
+            **PROJECTS_CONTAINER_STYLE,
         ),
         **PROJECTS_SECTION_STYLE,
     )
