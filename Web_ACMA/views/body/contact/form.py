@@ -197,13 +197,13 @@ def solicitud_form() -> rx.Component:
                     rx.box(
                         rx.select(
                             [
-                                "Guardería",
-                                "Infantil",
-                                "Primaria",
-                                "Secundaria",
+                                "1º Ciclo Educación Infantil",
+                                "2º Ciclo Educación Infantil",
+                                "Educación Primaria",
+                                "Educación Secundaria",
                                 "Bachillerato",
                             ],
-                            placeholder="Selecciona el nivel...",
+                            placeholder="Selecciona el nivel.",
                             name="nivel_educativo",
                             value=FormState.nivel_seleccionado,
                             on_change=lambda v: FormState.set_nivel_seleccionado(v),
@@ -342,62 +342,21 @@ def solicitud_form() -> rx.Component:
                                 rx.upload_files(upload_id="upload_files")
                             ),
                             accept={
-                                "image/*": [
-                                    ".jpg",
-                                    ".jpeg",
-                                    ".png",
-                                    ".gif",
-                                    ".bmp",
-                                    ".tiff",
-                                    ".webp",
-                                    ".svg",
-                                    ".ico",
-                                    ".heic",
-                                ],
-                                "video/*": [
-                                    ".mp4",
-                                    ".avi",
-                                    ".mov",
-                                    ".wmv",
-                                    ".flv",
-                                    ".mkv",
-                                    ".webm",
-                                    ".m4v",
-                                    ".mpg",
-                                    ".mpeg",
-                                    ".3gp",
-                                ],
+                                "image/*": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".svg", ".ico", ".heic"],
+                                "video/*": [".mp4", ".avi", ".mov", ".wmv", ".flv", ".mkv", ".webm", ".m4v", ".mpg", ".mpeg", ".3gp"],
                                 "application/pdf": [".pdf"],
                                 "application/msword": [".doc"],
-                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [
-                                    ".docx"
-                                ],
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
                                 "application/vnd.ms-excel": [".xls"],
-                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
-                                    ".xlsx"
-                                ],
+                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
                                 "application/vnd.ms-powerpoint": [".ppt"],
-                                "application/vnd.openxmlformats-officedocument.presentationml.presentation": [
-                                    ".pptx"
-                                ],
+                                "application/vnd.openxmlformats-officedocument.presentationml.presentation": [".pptx"],
                                 "application/vnd.oasis.opendocument.text": [".odt"],
-                                "application/vnd.oasis.opendocument.spreadsheet": [
-                                    ".ods"
-                                ],
-                                "application/vnd.oasis.opendocument.presentation": [
-                                    ".odp"
-                                ],
+                                "application/vnd.oasis.opendocument.spreadsheet": [".ods"],
+                                "application/vnd.oasis.opendocument.presentation": [".odp"],
                                 "text/plain": [".txt", ".rtf", ".md", ".csv", ".log"],
                                 "application/epub+zip": [".epub"],
-                                "application/x-zip-compressed": [
-                                    ".zip",
-                                    ".rar",
-                                    ".7z",
-                                    ".tar",
-                                    ".gz",
-                                    ".bz2",
-                                    ".xz",
-                                ],
+                                "application/x-zip-compressed": [".zip", ".rar", ".7z", ".tar", ".gz", ".bz2", ".xz"],
                             },
                             **UPLOAD_CLEAN_STYLE,
                         ),
