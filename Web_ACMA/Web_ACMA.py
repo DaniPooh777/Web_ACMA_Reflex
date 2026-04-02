@@ -149,7 +149,7 @@ def contact() -> rx.Component:
             solicitud_form(),
             width="100%",
             align_items="center",
-            spacing="8",
+            spacing="0",
             padding_y="4rem",
         ),
         footer(),
