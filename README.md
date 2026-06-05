@@ -8,7 +8,7 @@ Sitio web institucional de ACMA, desarrollado 100% en **Python** con [Reflex](ht
 
 Web ACMA es una aplicación web full-stack construida enteramente en Python. Usa Reflex para generar automáticamente un frontend React y un backend FastAPI a partir de código Python puro.
 
-**¿Qué significa esto?** Un solo lenguaje para todo — sin JavaScript escrito a mano, con hot-reload en desarrollo y type-safety con Pydantic.
+**¿Qué significa esto?** Un solo lenguaje para todo —> sin JavaScript escrito a mano, con hot-reload en desarrollo y type-safety con Pydantic.
 
 ---
 
