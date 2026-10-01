@@ -392,24 +392,6 @@ class FormState(rx.State):
                                 <p style="font-size: 16px;"><b>Este es el encargo que nos han mandado, equipo de ACMA:</b></p>
                                 <pre style="font-size: 16px; font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word; margin: 0;">{descripcion}</pre>
                             </div>
-
-                            <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
-                                <p style="margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">
-                                    <b>----------------------------</b><br>
-                                    <b>|   Instrucciones    |</b><br>
-                                    <b>----------------------------</b>
-                                </p>
-                                <div style="margin-bottom: 20px;">
-                                    <p style="font-size: 16px;">Buenas equipo de ACMA,</p>
-                                    <p style="font-size: 16px;">Me presento, soy Daniel, fundador de esta página web, y me gustaría daros algunas recomendaciones a la hora de enviar los correos a los profesores.</p>
-                                    <p style="font-size: 16px;">Mi objetivo con esto es elevar la calidad de ACMA a un siguiente nivel. Que seamos alumnos de 2º Bach. no es la escusa para presentar correos deficientes que mellarán en la reputación de la companía. Dichos consejos son:</p>
-                                    <p style="font-size: 16px;"><b>1º</b> Es obligatorio usar un léxico formal pero a la vez cercano. Debemos dar una buena imagen hacia el profesorado pero con esa calidez que den ganas de estar con nosotros. Esto es con el objetivo de crear confianza y de nos confíen sus trabajos.</p>
-                                    <p style="font-size: 16px;"><b>2º</b> Es preciso una estructura clara y uniforme sobre los correos de ACMA. Repasad la estructura del email vista en el cole (buscad en Google). Debemos demostrar la profesionalidad de la empresa.</p>
-                                    <p style="font-size: 16px;"><b>3º</b> Siempre incidir en que necesitáis una respuesta al correo para así que José Antonio os den puntos. Pero no lo digáis en el correo, decid algo como: "Necesitamos que nos digas cómo le a parecido el (inserte tipo de trabajo) y si necesitas algún cambio."</p>
-                                    <p style="font-size: 16px;"><b>Que la fuerza os acompañe.</b></p>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
