@@ -30,20 +30,4 @@ def contact_cards() -> rx.Component:
             justify="center",
             align_items="center",
         ),
-
-        # Tarjeta inferior: Horario Presencial
-        caracteristics_card_card(
-            "Horario Presencial",
-            "Martes y Jueves",
-            "Miércoles y Viernes",
-            "clock-4",
-            "10:05 - 11:00",
-            "12:25 - 13:20"
-        ),
-        
-        width="100%",
-        max_width="824px", 
-        align_items="center",
-        spacing="8",
-        padding_x=["1rem", "2rem", "0rem"], 
     )
