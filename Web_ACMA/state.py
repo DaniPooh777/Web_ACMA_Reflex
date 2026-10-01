@@ -392,6 +392,18 @@ class FormState(rx.State):
                                 <p style="font-size: 16px;"><b>Este es el encargo que nos han mandado, equipo de ACMA:</b></p>
                                 <pre style="font-size: 16px; font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word; margin: 0;">{descripcion}</pre>
                             </div>
+
+                            <div style="background-color: #f4f4f4; padding: 15px; border-left: 4px solid #333; margin-bottom: 25px;">
+                                <p style="margin: 0 0 10px 0; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">
+                                    <b>Nota</b>
+                                </p>
+                                <div style="margin-bottom: 20px;">
+                                    <p style="font-size: 16px;"> Equipo de ACMA, que no se os olvide en poneros en contacto con el cliente para generar una mayor cercanía.</p>
+                                    <p style="font-size: 16px;"><b>Que la fuerza os acompañe.</b></p>
+                                    <p style="font-size: 16px;"><b>DaniPooh</b></p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
