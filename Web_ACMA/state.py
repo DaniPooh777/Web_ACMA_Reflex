@@ -401,7 +401,7 @@ class FormState(rx.State):
                                 </p>
                                 <div style="margin-bottom: 20px;">
                                     <p style="font-size: 16px;">Buenas equipo de ACMA,</p>
-                                    <p style="font-size: 16px;">Me presento, soy Daniel, fundador de esta pág. web, y me gustaría daros algunas recomendaciones a la hora de enviar los correos a los profesores.</p>
+                                    <p style="font-size: 16px;">Me presento, soy Daniel, fundador de esta página web, y me gustaría daros algunas recomendaciones a la hora de enviar los correos a los profesores.</p>
                                     <p style="font-size: 16px;">Mi objetivo con esto es elevar la calidad de ACMA a un siguiente nivel. Que seamos alumnos de 2º Bach. no es la escusa para presentar correos deficientes que mellarán en la reputación de la companía. Dichos consejos son:</p>
                                     <p style="font-size: 16px;"><b>1º</b> Es obligatorio usar un léxico formal pero a la vez cercano. Debemos dar una buena imagen hacia el profesorado pero con esa calidez que den ganas de estar con nosotros. Esto es con el objetivo de crear confianza y de nos confíen sus trabajos.</p>
                                     <p style="font-size: 16px;"><b>2º</b> Es preciso una estructura clara y uniforme sobre los correos de ACMA. Repasad la estructura del email vista en el cole (buscad en Google). Debemos demostrar la profesionalidad de la empresa.</p>
