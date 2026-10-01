@@ -31,7 +31,7 @@ def navbar() -> rx.Component:
         # LADO IZQUIERDO: Logo (Siempre visible)
         rx.link(
             rx.hstack(
-                rx.avatar(src="Acma Logo 2025-2026.png", size="3"),
+                rx.avatar(src="Acma Logo 2026-2027.png", size="3"),
                 rx.text("ACMA", style=NAVBAR_LOGO_STYLE),
                 align_items="center",
             ),

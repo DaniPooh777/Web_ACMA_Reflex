@@ -195,7 +195,7 @@ def cookies() -> rx.Component:
 # Configuración de la app
 app = rx.App(
     head_components=[
-        rx.el.link(rel="icon", href="/Acma Logo 2025-2026.png"),
+        rx.el.link(rel="icon", href="/Acma Logo 2026-2027.png"),
         get_schema_markup_component(),
     ],
     style={

@@ -36,7 +36,7 @@ def footer() -> rx.Component:
             rx.hstack(
                 rx.link(
                     rx.hstack(
-                        rx.avatar(src="Acma Logo 2025-2026.png", size="3"),
+                        rx.avatar(src="Acma Logo 2026-2027.png", size="3"),
                         rx.text(
                             "ACMA",
                             font_weight="bold",
