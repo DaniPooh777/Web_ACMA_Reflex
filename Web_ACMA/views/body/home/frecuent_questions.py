@@ -68,7 +68,7 @@ def frecuent_questions() -> rx.Component:
         faq_item(
             "¿Qué información necesito proporcionar para solicitar un trabajo?",
             """Necesitamos conocer el tipo de proyecto, qué quieres incluir, el estilo (opcional), 
-            la fecha de entrega y algún ejemplo de trabajos similares que tengas para orientarnos.""",
+            la fecha de entrega y algún ejemplo de trabajos similares que tengas para orientarnos (si tienes trabajos previos).""",
             "q3"
         ),
         faq_item(
